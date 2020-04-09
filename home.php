@@ -39,6 +39,8 @@ if ($_SESSION['usuario_valido']==$usuario)
 ?>
 
 <FORM NAME="home" ACTION="" METHOD="POST">
+  probando kraken
+  :)
   <?PHP
   print(' <div class="jumbotron jumbotron-fluid">');
   print(' <div class="container">');
@@ -47,8 +49,7 @@ if ($_SESSION['usuario_valido']==$usuario)
    print('</div>');
  print('</div>');
  print(' <input type="hidden"  id="usuario" name="usuario" value="'.$usuario.'">');
- }
-
+ 
 // Intento de entrada fallido
    else
    {
