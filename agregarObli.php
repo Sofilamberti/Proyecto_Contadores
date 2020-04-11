@@ -41,9 +41,9 @@ print('<h2>Seleccione la obligacion a agregar para '.$dat.'  </h2>');
 print('<TABLE class="table table-bordered">');
              print('<thead>');
       print('<TR>');
-      print('<TH style="background-color:#9970E5;"> Rubro </TH>');
-      print('<TH style="background-color:#9970E5;" scope="row"> Impuesto </TH>');
-       print('<TH style="background-color:#9970E5;" scope="row"> Seleccionar  </TH>');
+      print('<TH style="background-color:#FCC839;"> Rubro </TH>');
+      print('<TH style="background-color:#FCC839;" scope="row"> Impuesto </TH>');
+       print('<TH style="background-color:#FCC839;" scope="row"> Seleccionar  </TH>');
        print('</TR>');
       print('</thead>');
     

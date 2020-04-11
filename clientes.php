@@ -27,8 +27,8 @@
 <body>
 
   <?PHP 
+   if($_SESSION['usuario_valido']!=""){
    
-      $instruccion = "select * from cliente"; 
       $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
       $nfilas = mysqli_num_rows ($consulta);
 
@@ -111,7 +111,13 @@
 </div>
 </body>
 </html>
-
+<?PHP
+}
+else {
+header("Location: index.html");
+        exit();
+}
+?>
 
     
 <script type="text/javascript">

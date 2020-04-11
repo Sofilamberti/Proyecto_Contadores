@@ -1,8 +1,12 @@
 <?PHP 
+session_start ();
 
       include ("conexion.php");
       
-      $instruccion = "select * from cliente";
+       $id_cuenta=$_SESSION['cuenta'];
+       
+      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'"; 
+      
        
       $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
 
