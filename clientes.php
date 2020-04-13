@@ -36,9 +36,10 @@
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
       $filas=mysqli_num_rows ($consulta2);
 
-   ?>   
+   ?>
+      
 <BR>
-
+<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
 <BR>
 
 

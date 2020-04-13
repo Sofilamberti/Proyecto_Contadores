@@ -14,8 +14,9 @@
 <?PHP include ("menu.php");
 ?>
   <style>
-     h2 {
+     .btn.link {
         text-align: center;
+        color:black;
       }
       
       
@@ -24,6 +25,7 @@
 </HEAD>
 
 <BODY>
+  
 <?PHP
  include ("conexion.php");
 if ($_SESSION['usuario_valido']!="")
@@ -31,7 +33,7 @@ if ($_SESSION['usuario_valido']!="")
 ?>
 <BR>
 
-      
+      <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
 
 
   <?PHP     
@@ -40,17 +42,18 @@ if ($_SESSION['usuario_valido']!="")
       $consulta = mysqli_query ($conexion, $instruccion)  or die ("Fallo en la consulta");
       $nfilas = mysqli_num_rows ($consulta);
 
-  print(' <div class="accordion" id="accordionExample">');
+
+  print(' <div class="accordion" id="accordionExample"  >');
 
     for($i=0; $i<$nfilas; $i++){
           
           $resultado = mysqli_fetch_array ($consulta);
           print('<center>');
 print('<div class="col-8">');
-    print('<div class="card">');
-    print('<div class="card-header" id="headin'.$i.'">');
+    print('<div class="card" >');
+    print('<div class="card-header" id="headin'.$i.'" style="background-color:#FCC839;">');
       print('<h2 >');
-        print('<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse'.$i.'" aria-expanded="false" aria-controls="collapse'.$i.'"><i class="fas fa-user-friends"></i>
+        print('<button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapse'.$i.'" aria-expanded="false" aria-controls="collapse'.$i.'"><i class="fas fa-user-friends" ></i>
           '. $resultado['nombre']. "  ".$resultado['apellido'].'
         </button>');
      print(' </h2>');

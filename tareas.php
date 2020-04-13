@@ -1,52 +1,22 @@
 <?PHP
- 
-   session_start ();
-
-
+ session_start ();
   ?>
   <HTML>
 <HEAD>
 <TITLE>Aca va el nombre del programa </TITLE>
+
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<style type="text/css">
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
-</style>
 <?PHP include ("menu.php");
 ?>
   <style>
-     h2 {
-        text-align:center;
+     .btn.link {
+        text-align: center;
+        color:black;
       }
       
       
@@ -55,157 +25,106 @@
 </HEAD>
 
 <BODY>
+  
 <?PHP
+ include ("conexion.php");
 if ($_SESSION['usuario_valido']!="")
    {
-    $conexion = mysqli_connect ("localhost", "root", "")
-         or die ("No se puede conectar con el servidor");
-        mysqli_select_db ($conexion,"contadores")
-         or die ("No se puede seleccionar la base de datos");
-         $in2 = "select * from tarea order by vencimiento asc" ;
-          $cons2 = mysqli_query ($conexion, $in2)
-         or die ("Fallo en la consulta 2");
-         $nf = mysqli_num_rows ($cons2);
-         
-          // $band=0;
-    print('<BR>');
-print('<BR>');
+?>
+<BR>
+
+<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+
+
+  <?PHP     
+   $id_cuenta=$_SESSION['cuenta'];
+      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'" ;
+      $consulta = mysqli_query ($conexion, $instruccion)  or die ("Fallo en la consulta");
+      $nfilas = mysqli_num_rows ($consulta);
+
+
+  print(' <div class="accordion" id="accordionExample"  >');
+
+    for($i=0; $i<$nfilas; $i++){
+          
+          $resultado = mysqli_fetch_array ($consulta);
+          print('<center>');
+print('<div class="col-8">');
+    print('<div class="card" >');
+    print('<div class="card-header" id="headin'.$i.'" style="background-color:#FCC839;">');
+      print('<h2 >');
+        print('<button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapse'.$i.'" aria-expanded="false" aria-controls="collapse'.$i.'"><i class="fas fa-user-friends" ></i>
+          '. $resultado['nombre']. "  ".$resultado['apellido'].'
+        </button>');
+     print(' </h2>');
+    print('</div>');
+print('<div id="collapse'.$i.'" class="collapse" aria-labelledby="heading'.$i.'" data-parent="#accordionExample">');
+      print('<div class="card-body">');
+          
+          $in2 = "select id_tarea from tareaxcliente where id_cliente=".$resultado['cuit']." order by id_tarea " ;
+          $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
+           $nf = mysqli_num_rows ($cons2);
+          
+        print('<TABLE class="table table-bordered">');
+             print('<thead>');
+      print('<TR>');
+      print('<TH style="background-color:#FCC839;"><center> Tarea </center></TH>');
+       print('</TR>');
+      print('</thead>');
+          for($n=0;$n<$nf;$n++){
+          $res2 = mysqli_fetch_array ($cons2);
+          $in3="select * from tarea where id=".$res2['id_tarea']."";
+          $cons3 = mysqli_query ($conexion, $in3) or die ("Fallo en la consulta 3");
+          $nf3 = mysqli_num_rows ($cons3);
+         $res3 = mysqli_fetch_array ($cons3);
+            
+        print('<TR>');
+        print('<TD>'.$res3['nombre'].'</TD>');
+        print('</TR>');
+         }
+         print('<BR>');
+          print('</TABLE>');
+      
+          print('<FORM NAME="agr" ACTION="/Proyecto_Contadores/agregarTarea.php" METHOD="POST">
+  <div class="form-group">');
+          print('<input type="hidden" class="form-control" value="'.$resultado['cuit'].'" id="in1" name="in1">');
+          print('<input type="hidden" class="form-control" value="'. $resultado['nombre']. "  ".$resultado['apellido'].'" id="in2" name="in2" >');
+        print('<button type="submit" class="btn btn-outline-success " aria-pressed="true">Agregar</button>');
+        print('</FORM>');
+         print('<BR>');
+        print('<FORM NAME="elim" ACTION="/Proyecto_Contadores/eliminarTarea.php" METHOD="POST"><div class="form-group">');
+          print('<BR>');
+          print('<input type="hidden" class="form-control" value="'.$resultado['cuit'].'" id="in1" name="in1">');
+          print('<input type="hidden"  class="form-control" value="'. $resultado['nombre']. "  ".$resultado['apellido'].'" id="in2" name="in2" >');
+
+        print('<button type="submit" class="btn btn-outline-danger " aria-pressed="true">Eliminar</button>');
+         print('</FORM>');
+      print('</div>');
+    print('</div>');
+  print('</div>');
+  print('</div>');
+print('</center>');
+           
+        }
+       
+        print('</div>');
+
 ?>
 
 
-      
+     
+<script type="text/javascript">
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var recipient = button.data('whatever') 
+  var modal = $(this)
+  modal.find('.modal-title').text('Agregar obligacion para  ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>
 <?PHP
+  }
 
-print('<div class="col-11">');
-print('                     ');
- print('<input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="filtrar" style=" width:250px; height:50px; margin-top:10px;margin-left:10px;">');
- print('</div>');
-print('<BR>');
-print('<center>');
-print('<div class="col-11">');
-
-print('<TABLE class="table table table-bordered table-hover" id="tareas" name="tareas">');
-             print('<thead>');
-      print('<TR>');
-      print('<TH style="background-color:#9970E5;"><i class="fas fa-user-friends"></i>   Cliente </TH>');
-      print('<TH style="background-color:#9970E5;" scope="row"><i class="far fa-sticky-note"></i> Obligacion </TH>');
-       print('<TH style="background-color:#9970E5;" scope="row"> <i class="far fa-calendar-alt"></i>    Periodo  </TH>');
-       print('<TH style="background-color:#9970E5;" scope="row"><i class="far fa-calendar-alt"></i>   Vencimiento  </TH>');
-       print('<TH style="background-color:#9970E5;" scope="row"> <i class="fas fa-stream"></i>   Estado  </TH>');
-  $i=0;
-       print('</TR>');
-      print('</thead>');
-        for($h=0;$h<$nf;$h++){
-          
-            $res2 = mysqli_fetch_array ($cons2);
-            $in3 = "select * from obligacionxcliente where id_oxc=".$res2['id_oxc']."" ;
-              $cons3 = mysqli_query ($conexion, $in3)
-            or die ("Fallo en la consulta 3");
-            $res3 = mysqli_fetch_array ($cons3);
-            $in4 = "select * from cliente where cuit=".$res3['Cliente_cuit'] ."";
-            $cons4 = mysqli_query ($conexion, $in4)
-            or die ("Fallo en la consulta 4");
-            $res4= mysqli_fetch_array ($cons4);
-            $in5 = "select * from obligacion where id=".$res3['Obligacion_id'] ."";
-            $cons5 = mysqli_query ($conexion, $in5)
-            or die ("Fallo en la consulta 4");
-            $res5= mysqli_fetch_array ($cons5);
-            $fec=strtotime($res2['periodo']);
-            $mes = date("M", $fec);
-        $anio = date("Y", $fec);
-        print('<tbody>');
-              print('<TR >');
-              print('<TD>'.$res4['nombre'].'  '.$res4['apellido'].' </TD>');
-            print('<TD>'.$res5['impuesto'].'</TD>');
-            print('<TD>'.$anio.'-'.$mes. '</TD>');
-            print('<TD>'.date("d-M-Y", strtotime($res2['vencimiento'])). '</TD>');
-            if($res2['estado']=="Vencido"){
-          
-              print('<TD class="bg-danger" >'.$res2['estado']. '</TD>');
-            
-            }
-            elseif($res2['estado']=="Pendiente"){
-          
-              print('<TD class="bg-warning" >'.$res2['estado']. '</TD>');
-            
-            }elseif($res2['estado']=="Realizado"){
-
-          print('<TD class="bg-success" >'.$res2['estado']. '</TD>');
-        }
-        print('<TD><div class="btn-group" name="btnEnv"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modales" data-whatever="'.$res4['cuit'].'" ><i class="fas fa-share-square"></i></button> </div></TD>');
-  
-          
-    
-  $i=$i+1;
-        }
-
-            print('</tbody>');
-       print('</table>');
-       print('</div>');
-  print('</center>');
-   print('<div calss="conteiner">');
-             print('<div class="modal fade" id="modales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">');
-  print('<div class="modal-dialog" role="document">');
-   print(' <div class="modal-content">');
-       print('<div class="modal-header">');
-         print('<h5 class="modal-title" id="exampleModalLabel">Enviar Comprobantes a: </h5>');
-        print(' <button type="button" class="close" data-dismiss="modal" aria-label="Close">');
-         print('  <span aria-hidden="true">&times;</span>');
-         print('</button>');
-       print('</div>');
-      print(' <div class="modal-body">');
-        print(' <form>');
-         print('<div class="col-8"> ');
-        print('   <div class="form-group">');
-       
-         print('    <label for="recipient-name" class="col-form-label">Importe:</label>');
-          print('   <input type="number" class="form-control" id="recipient-name" name="recipient-name">');
-          print(' </div>');
-          print(' <div class="form-group">');
-        
-      print('<label for="ejemplo_archivo_1"> <i class="fas fa-file-upload"></i> DDJJ: </label>');
-      print('<input type="file" class="btn btn-default btn-file" id="ejemplo_archivo_1" required>');
-      print('<label for="ejemplo_archivo_2"> <i class="fas fa-file-upload"></i> Ticket: </label>');
-      print('<input type="file" class="btn btn-default btn-file" id="ejemplo_archivo_2">');
-      print('<label for="ejemplo_archivo_3"> <i class="fas fa-file-upload"></i> VEP: </label>');
-      print('<input type="file" class="btn btn-default btn-file" id="ejemplo_archivo_3">');
-      print('<label for="ejemplo_archivo_4"> <i class="fas fa-file-upload"></i> Compensacion: </label>');
-      print('<input type="file" class="btn btn-default btn-file" id="ejemplo_archivo_4">');
-      print('<label for="ejemplo_archivo_5"><i class="fas fa-file-upload"></i> Otro Archivo: </label>');
-      print('<input type="file"  class="btn btn-default btn-file" id="ejemplo_archivo_5">');
-           print('</div>');
-         print('</form>');
-       print('</div>');
-       print('</div>');
-      print(' <div class="modal-footer">');
-       print('  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>');
-       print('  <button type="button" class="btn btn-primary">Send message</button>');
-      print(' </div>');
-     print('</div>');
-  print(' </div>');
- print('</div>');
- print('</div>');
-
-    ?>
-
-
-    <script type="text/javascript">
-    
-      $('document').on("click", ".btnEnv", function() {
-  //var button = $(e.relatedTarget) // Button that triggered the modal
-  //var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this).closest('tr');
-  nombre=modal.find('td:eq(0)').text();
-  $("#recipient-name").val(nombre);
-  //modal.find('.modal-body input').val(recipient)
-});
-    </script>
-
-    <?PHP
-
-      }
  else
    {
      header("Location: index.html");

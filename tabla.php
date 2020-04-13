@@ -22,7 +22,7 @@ session_start ();
 
 
             <table class="table table-striped table-hover  "  id="tablaClientes" style="margin-top:10px;" >
-            <caption>List of users</caption>
+            <caption>Lista de  clientes</caption>
              <thead class="thead-light">
               <tr>
                 <th scope="col" style="background-color:#27B8CB;">Nombre</th>

@@ -64,14 +64,28 @@
 </style>
 </HEAD>
 <body>
+	<?PHP
+ include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
+?>
 <div class="col-11">
-	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/clientes.php">ESTUDIO</h1></a>  </div>
+	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/estudio.php">ESTUDIO</h1></a>  </div>
 
 	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/clientes.php">USUARIOS </a></div>
 	<div  id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/clientes.php"> CLIENTES </a> </div>
 	<BR>
 	<div id="circulo2"   class="forma" ><a a href="/Proyecto_Contadores/oxc.php"> OBLIG.</a> </div>
 	
-	<div  id="circulo2"  class="forma" > <a href="/Proyecto_Contadores/clientes.php">TAREAS  </a></div>
+	<div  id="circulo2"  class="forma" > <a href="/Proyecto_Contadores/tareas.php">TAREAS  </a></div>
 </div>
+<?php
+ }
+
+ else
+   {
+     header("Location: index.html");
+        exit();
+   }
+?>
 </body>
