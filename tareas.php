@@ -6,6 +6,7 @@
 <TITLE>Aca va el nombre del programa </TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
+<script src="alertify/alertify.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -34,12 +35,13 @@ if ($_SESSION['usuario_valido']!="")
 <BR>
 
 <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+<?PHP
 
 
-  <?PHP     
+      
    $id_cuenta=$_SESSION['cuenta'];
       $instruccion = "select * from cliente where cuenta_id='$id_cuenta'" ;
-      $consulta = mysqli_query ($conexion, $instruccion)  or die ("Fallo en la consulta");
+      $consulta = mysqli_query ($conexion, $instruccion)  or die ();
       $nfilas = mysqli_num_rows ($consulta);
 
 
@@ -109,20 +111,7 @@ print('</center>');
        
         print('</div>');
 
-?>
 
-
-     
-<script type="text/javascript">
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) 
-  var recipient = button.data('whatever') 
-  var modal = $(this)
-  modal.find('.modal-title').text('Agregar obligacion para  ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-</script>
-<?PHP
   }
 
  else
