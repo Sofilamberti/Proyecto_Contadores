@@ -23,66 +23,66 @@
 </head>
 <body>
 <div class="card-deck">
-  <div class="card">
+  <div class="card" style="background-color:#E7E7E7;">
  
-    <div class="card-body">
+    <div class="card-body" >
       <h5 class="card-title">Card title</h5>
-    <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+    <img src="/Proyecto_Contadores/img/men1.png"  class="card-img-top" alt="..." >
     </div>
     
   </div>
-  <div class="card">
+  <div class="card" style="background-color:#E7E7E7;">
     
     <div class="card-body">
 
       <h5 class="card-title">Card title</h5>
-      <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+      <img src="/Proyecto_Contadores/img/men2.png" class="card-img-top" alt="...">
     </div>
     
   </div>
-  <div class="card">
+  <div class="card"style="background-color:#E7E7E7;">
     
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
-     <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+     <img src="/Proyecto_Contadores/img/men3.png"  class="card-img-top" alt="...">
     </div>
     
   </div>
-  <div class="card">
+  <div class="card" style="background-color:#E7E7E7;">
     
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
-     <img src="/Proyecto_Contadores/men2.png" width="57" height="79" class="card-img-top" alt="...">
+     <img src="/Proyecto_Contadores/img/men4.png" class="card-img-top" alt="...">
     </div>
     
   </div>
 </div>
 <BR>
 <div class="card-deck">
-  <div class="card">
-   <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+  <div class="card" style="background-color:#E7E7E7;">
+   <img src="/Proyecto_Contadores/img/men5.png"  class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
       
     </div>
   
   </div>
-  <div class="card">
-   <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+  <div class="card" style="background-color:#E7E7E7;">
+   <img src="/Proyecto_Contadores/img/men6.png"  class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
       
     </div>
   </div>
-  <div class="card">
-   <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+  <div class="card" style="background-color:#E7E7E7;">
+   <img src="/Proyecto_Contadores/img/men7.png"  class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
     </div>
    
   </div>
-  <div class="card">
-   <img src="/Proyecto_Contadores/men2.png" class="card-img-top" alt="...">
+  <div class="card" style="background-color:#E7E7E7;">
+   <img src="/Proyecto_Contadores/img/men8.png"  class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
       

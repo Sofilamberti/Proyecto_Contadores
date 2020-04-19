@@ -58,7 +58,7 @@ nav a:visited{
      
 
     
-}*/
+}
         </style>
      <?PHP 
       $conexion = mysqli_connect ("localhost", "root", "")
