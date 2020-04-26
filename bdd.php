@@ -62,6 +62,10 @@
 	font-weight: bold;
 }
 </style>
+
+<!--  ESTOS  ESTILOS PODRIAN IR EN UN ARCHIVO .CSS  ASI LO IMPORTAMOS Y QUEDA MAS LIMPIO EL PHP
+
+SUPONETE estilosBdd.CSS  -->
 </HEAD>
 <body>
 	<?PHP
@@ -72,7 +76,8 @@ if ($_SESSION['usuario_valido']!="")
 <div class="col-11">
 	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/estudio.php">ESTUDIO</h1></a>  </div>
 
-	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/clientes.php">USUARIOS </a></div>
+	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/usuarios.php">USUARIOS </a></div>
+	
 	<div  id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/clientes.php"> CLIENTES </a> </div>
 	<BR>
 	<div id="circulo2"   class="forma" ><a a href="/Proyecto_Contadores/oxc.php"> OBLIG.</a> </div>
