@@ -46,7 +46,8 @@ session_start ();
                           
                      print('<td>'.$nombreRol['descripcion_rol'].'</td>
                             <td >'.$resultado['email'].'</td>  
-                            <td><button class="btn ajs-capture  btn-warning " value='.$resultado['id_user'].' id="editar"  ><i class="fas fa-edit"></i> Editar datos </button> </td>  
+                            <td><a href="/Proyecto_Contadores/editarUsuario.php?id_user='.$resultado['id_user'].'" ><i class="fas fa-edit"></i> Editar datos </a> </td> 
+
                             <td><button class="btn ajs-capture " value='.$resultado['id_user'].' id="eliminar"  ><i class="fas fa-trash"></i> dar de baja </button> </td>
 
                             </tr>');
@@ -79,17 +80,16 @@ session_start ();
   $(document).ready(function(){
     $("#eliminar").click(function(){
         id_user=$('#eliminar').val();
-      cadena="id_user="+id_user;
+        cadena="id_user="+id_user;
       $.ajax({
-          url: "/Proyecto_Contadores/eliminarUsuario.php?"+cadena,
+          url:"/Proyecto_Contadores/eliminarUsuario.php?"+cadena,
         }).done(function(data) {
         $('#tablaUsuario').load('tablaUsuarios.php');
         alertify.success("El usuario fue dado de baja con exito! ");
         });
-
-
     });
 });
 </script>
 
-  
+
+
