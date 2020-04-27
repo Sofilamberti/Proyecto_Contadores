@@ -29,8 +29,7 @@
   <?PHP 
    if($_SESSION['usuario_valido']!=""){
    
-      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
-      $nfilas = mysqli_num_rows ($consulta);
+  
 
       $instruccion2 = "select * from tiposocietario";
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
