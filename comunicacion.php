@@ -1,5 +1,10 @@
 <?PHP
  session_start ();
+
+ include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
+
   ?>
   <HTML>
 <HEAD>
@@ -61,17 +66,120 @@
 
 </style>
 </HEAD>
+
 <body>	
 	
 <div class="col-12">
 	
-	<div id="circulo1"  class="forma" ><a href=""> MENSAJES MASIVOS
+	<div id="circulo1"  class="forma" ><a href="" data-toggle="modal" data-target="#modalTarea"> MENSAJES MASIVOS
 	</a> </div>
+	
 
-	<div  id="circulo2"  class="forma" > <a href=""> MENSAJES PARA GRUPO DE CLIENTES
+	<div  id="circulo2"  class="forma" > <a href="" data-toggle="modal" data-target="#modalTarea1"> MENSAJES PARA GRUPO DE CLIENTES
  </a></div>
 
-	<div  id="circulo1"  class="forma" > <a a href="">MENSAJES INTERNOS
+	<div  id="circulo1"  class="forma" > <a a href="" data-toggle="modal" data-target="#modalTarea2">MENSAJES INTERNOS
 	 </a></div>
 </div>
+<form method="POST" action="/Proyecto_Contadores/agregarTarea.php">
+  <div class="modal fade" id="modalTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+         <div class="modal-body">
+                <label>Nombre</label>
+                  <input type="text"   name="nombre" id="nombre" class="form-control input-sm">
+                <BR>
+                <label>Descripcion</label>
+                <input type="text"   name="Descripcion" id="Descripcion" class="form-control input-sm">
+                <!--<input type="hidden" class="form-control" value="<?PHP  print( $cu );?>" id="in1" name="in1">
+                <input type="hidden" class="form-control" value="<?PHP print($dat); ?>" id="in2" name="in2">-->
+                
+          </div>
+      <div class="modal-footer">
+        <button  type="submit" class="btn btn-primary"  name="submitSave" id="submitSave">
+        Agregar
+        </button>
+       
+      </div>
+    </div>
+    
+    </div>
+</div>
+</form>
+<form method="POST" action="/Proyecto_Contadores/agregarTarea1.php">
+  <div class="modal fade" id="modalTarea1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Agregar Tarea1</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+         <div class="modal-body">
+                <label>Nombre</label>
+                  <input type="text"   name="nombre" id="nombre" class="form-control input-sm">
+                <BR>
+                <label>Descripcion</label>
+                <input type="text"   name="Descripcion" id="Descripcion" class="form-control input-sm">
+                <!--<input type="hidden" class="form-control" value="<?PHP  print( $cu );?>" id="in1" name="in1">
+                <input type="hidden" class="form-control" value="<?PHP print($dat); ?>" id="in2" name="in2">-->
+                
+          </div>
+      <div class="modal-footer">
+        <button  type="submit" class="btn btn-primary"  name="submitSave" id="submitSave">
+        Agregar
+        </button>
+       
+      </div>
+    </div>
+    
+    </div>
+</div>
+</form>
+<form method="POST" action="/Proyecto_Contadores/agregarTarea.php">
+  <div class="modal fade" id="modalTarea2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Agregar Tarea2</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+         <div class="modal-body">
+                <label>Nombre</label>
+                  <input type="text"   name="nombre" id="nombre" class="form-control input-sm">
+                <BR>
+                <label>Descripcion</label>
+                <input type="text"   name="Descripcion" id="Descripcion" class="form-control input-sm">
+                <!--<input type="hidden" class="form-control" value="<?PHP  print( $cu );?>" id="in1" name="in1">
+                <input type="hidden" class="form-control" value="<?PHP print($dat); ?>" id="in2" name="in2">-->
+                
+          </div>
+      <div class="modal-footer">
+        <button  type="submit" class="btn btn-primary"  name="submitSave" id="submitSave">
+        Agregar
+        </button>
+       
+      </div>
+    </div>
+    
+    </div>
+</div>
+</form>
+
 </body>
+<?PHP
+}
+
+ else
+   {
+     header("Location: index.html");
+        exit();
+   }
+  ?>
+

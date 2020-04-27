@@ -28,7 +28,7 @@ if ($_SESSION['usuario_valido']!="")
  }
  else
    {
-     header("Location: index.php");
+     header("Location: index.html");
         exit();
    }
   ?>

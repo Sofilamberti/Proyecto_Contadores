@@ -18,7 +18,7 @@
      color: black;
     font-size:18px;
     font-family: sans-serif;
-    border: solid 1px #000;
+    
 
 }
         
@@ -28,8 +28,7 @@ nav li{
     font-family: sans-serif;
     
     font-color:black;
-    border: solid 1px #000;
-     
+    
    
 }
 

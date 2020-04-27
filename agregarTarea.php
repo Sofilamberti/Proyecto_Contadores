@@ -3,6 +3,8 @@
    session_start ();
 
 
+if ($_SESSION['usuario_valido']!="")
+   {
   ?>
   <HTML>
 <HEAD>
@@ -25,8 +27,6 @@
 
 <BODY>
 <?PHP
-if ($_SESSION['usuario_valido']!="")
-   {
     $cu= $_POST['in1'];
     $dat=$_POST['in2'];
       

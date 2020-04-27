@@ -1,6 +1,10 @@
 <?PHP
  session_start ();
-  ?>
+
+ include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
+?>
   <HTML>
 <HEAD>
 <TITLE>Aca va el nombre del programa </TITLE>
@@ -27,11 +31,7 @@
 
 <BODY>
   
-<?PHP
- include ("conexion.php");
-if ($_SESSION['usuario_valido']!="")
-   {
-?>
+
 <BR>
 
 <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
