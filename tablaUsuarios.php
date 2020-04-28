@@ -25,6 +25,7 @@ session_start ();
             <caption>Lista de Usuarios</caption>
              <thead class="thead-light">
               <tr>
+                <th scope="col" style="background-color:#27B8CB;">ID</th>
                 <th scope="col" style="background-color:#27B8CB;">Usuario</th>
                 <th scope="col" style="background-color:#27B8CB;">Rol</th>
                 <th scope="col" style="background-color:#27B8CB;">Email</th>
@@ -38,6 +39,7 @@ session_start ();
                      {
                       $resultado = mysqli_fetch_array ($consulta);
                       print('<tr>
+                        <td>'.$resultado['id_user'].'</td>
                               <td >'.$resultado['user'].'</td>');
 
                      $instruccion2 = "select descripcion_rol from rol where id_rol=".$resultado['id_rol'].";";
@@ -46,11 +48,14 @@ session_start ();
                           
                      print('<td>'.$nombreRol['descripcion_rol'].'</td>
                             <td >'.$resultado['email'].'</td>  
-                            <td><a href="/Proyecto_Contadores/editarUsuario.php?id_user='.$resultado['id_user'].'" ><i class="fas fa-edit"></i> Editar datos </a> </td> 
+                            <div class="btn-group">
+                            <td><a style="color:black;" href="/Proyecto_Contadores/editarUsuario.php?id_user='.$resultado['id_user'].'" ><i class="fas fa-edit"></i><input type="hidden" value='.$resultado['id_user'].'/> Editar datos </a> </td>
 
-                            <td><button class="btn ajs-capture " value='.$resultado['id_user'].' id="eliminar"  ><i class="fas fa-trash"></i> dar de baja </button> </td>
+                           <td> <button class="btn ajs-capture btnElim" value='.$resultado['id_user'].' id="eliminar"  ><i class="fas fa-trash"></i><input type="hidden" value='.$resultado['id_user'].'/> dar de baja </button> </div></td>
+                            ');
+                    
 
-                            </tr>');
+                            print('</tr>');
                         }
                         ?>
 
@@ -76,11 +81,13 @@ session_start ();
 
 
   <!--script para  dar de baja un usuario en la tabla -->
-<script>
+<!--<script>
   $(document).ready(function(){
     $("#eliminar").click(function(){
+      alert($('#eliminar').val());
         id_user=$('#eliminar').val();
         cadena="id_user="+id_user;
+
       $.ajax({
           url:"/Proyecto_Contadores/eliminarUsuario.php?"+cadena,
         }).done(function(data) {
@@ -89,6 +96,24 @@ session_start ();
         });
     });
 });
+</script>-->
+<script type="text/javascript">
+
+  $(document).on("click",".btnElim",function(){
+
+      fila=$(this).closest("tr");
+
+      id_user=fila.find('td:eq(0)').text()
+        cadena="id_user="+id_user;
+
+      $.ajax({
+          url:"/Proyecto_Contadores/eliminarUsuario.php?"+cadena,
+        }).done(function(data) {
+        $('#tablaUsuario').load('tablaUsuarios.php');
+        });
+
+  });
+
 </script>
 
 

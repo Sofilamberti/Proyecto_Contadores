@@ -133,7 +133,7 @@ header("Location: index.html");
       email=$('#email').val();
      
       cadena="usuario="+usuario+"&password="+password+ "&rol="+rol+ "&email="+email;
-
+      
       $.ajax({
           url: "/Proyecto_Contadores/agregarUsuario.php?"+cadena,
         }).done(function(data) {

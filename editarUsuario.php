@@ -44,13 +44,14 @@
     Edicion de datos de usuario
   </div>
   <div class="card-body" name="userData" id="userData">
-      <form method="post" id="formdata"> 
+      <form method="GET" id="formdata"> 
   <?PHP
            $usuario = mysqli_fetch_array ($consulta);
-           print('<label>Nombre de usuario</label>
-            <input type="text"  placeholder="'.$usuario['user'].'" name="" id="user" class="form-control input-sm">
+           print('<input type="hidden"  value="'.$usuario['id_user'].'" name="id_user" id="id_user"  class="form-control input-sm">
+            <label>Nombre de usuario</label>
+            <input type="text"  value="'.$usuario['user'].'" name="user" id="user" class="form-control input-sm">
                 <label>contrseña</label>
-                <input type="text" placeholder="'.$usuario['password'].'"  name="" id="password"  class="form-control"">
+                <input type="text" value="'.$usuario['password'].'"  name="password" id="password"  class="form-control"">
                 <label>Rol</label>
                 <select id="id_rol" name="id_rol" style="display:block;width:250px;">
                    <option  disabled> Seleccione un rol </option>');
@@ -62,36 +63,46 @@
                         
                  print('</select>
                        <label>email</label>
-                  <input type="email"  placeholder="'.$usuario['email'].'" id="email" class="form-control input-sm">');
+                  <input type="email"  value="'.$usuario['email'].'" id="email" name="email" class="form-control input-sm"/>
+                  ');
          ?>
-            <button type="button" class="btn btn-primary"   id="guardarDatos">
-             Guardar cambios
-            </button>
+            <input type="submit" name="submit" class="btn btn-outline-success " aria-pressed="true" value="Guardar Datos" />
     </form> 
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer ">
   
        
   </div>
 </div>
 
 </div>
+<?PHP
+if (isset($_GET['submit'])) {
 
+  $id_user=$_GET["id_user"];
+   $usuario= $_GET["user"];
+   $password= $_GET["password"]; ///aca se haria el hash 
+   $rol= $_GET["id_rol"];
+   $email= $_GET["email"];
+  $cuenta=$_SESSION['cuenta'];
 
+  $instruccion = "update  usuario  set user='$usuario', password='$password', Cuenta_id='$cuenta', id_rol='$rol',email='$email' where id_user='$id_user'";
+  mysqli_query($conexion, $instruccion) or die ("Fallo en insertar  en la tabla de usuarios");
 
-
-
-<script>
+    echo '<script language="javascript">alert("Se han editado los datos con exito");window.location.href="usuarios.php"</script>';
+  }
+?>
+<!--<script>
     $(document).ready(function(){
      $("#guardarDatos").click(function(){
-
+      id_user=$('#id_user').val()
       usuario=$('#user').val();
       password=$('#password').val();
       rol=$('#id_rol').val();
       email=$('#email').val();
      
-      cadena="usuario="+usuario+"&password="+password+"&rol="+rol+"&email="+email;
-
+      cadena= "id_user="+id_user+"&usuario="+usuario+"&password="+password+"&rol="+rol+"&email="+email;
+      alert(cadena);
       $.ajax({
           url:"/Proyecto_Contadores/actualizarDatosUsuario.php?"+cadena,
         }).done(function(data) {
@@ -107,7 +118,7 @@
 });
     
  
-</script>
+</script>-_>
 
 
 

@@ -30,7 +30,8 @@ session_start ();
                 <th scope="col" style="background-color:#27B8CB;">CUIT</th>
                 <th scope="col" style="background-color:#27B8CB;">Email</th>
                 <th scope="col" style="background-color:#27B8CB;">Tipo Societario</th>
-                <th scope="col" style="background-color:#27B8CB;">Operaciones</th>
+                <th scope="col" style="background-color:#27B8CB;">Editar</th>
+                <th scope="col" style="background-color:#27B8CB;">Dar de baja</th>
                </tr>
               </thead>
               <tbody >
@@ -44,8 +45,8 @@ session_start ();
                               <td >'.$resultado['cuit'].'</td>
                               <td >'.$resultado['email'].'</td>
                               <td >'.$resultado['TipoSocietario_tipo_societario'].'</td>
-                              <td><button class="btn ajs-capture  btn-warning " value='.$resultado['cuit'].' id="edit"  ><i class="fas fa-edit"></i> Editar </button>  
-                                   <button class="btn ajs-capture " value='.$resultado['cuit'].' id="eliminar"  > <i class="fas fa-trash"></i> Eliminar </button> 
+                              <td><a style="color:black;" href="/Proyecto_Contadores/editarCliente.php?cuit='.$resultado['cuit'].'" ><i class="fas fa-edit"></i><input type="hidden" value='.$resultado['cuit'].'/> Editar datos </a> </td>
+                                  <td> <button class="btn ajs-capture btnElim   " value='.$resultado['cuit'].' id="eliminar"  > <i class="fas fa-trash"></i> Eliminar </button> </div>
                               </td>
 
                             </tr>');
@@ -75,19 +76,23 @@ session_start ();
 
   <!--script para  eliminar clientes en la tabla -->
 <script>
-  $(document).ready(function(){
-    $("#eliminar").click(function(){
-      cuitCliente=$('#eliminar').val();
-      cadena="cuit="+cuitCliente;
+
+  $(document).on("click",".btnElim",function(){
+
+      fila=$(this).closest("tr");
+      cuitCliente=fila.find('td:eq(2)').text()
+        cadena="cuit="+cuitCliente;
+
       $.ajax({
           url: "/Proyecto_Contadores/eliminarCliente.php?"+cadena,
         }).done(function(data) {
 
         $('#tabla').load('tabla.php');
-        alertify.success("cliente eliminado con exito  ");
+        
         });
 
 
     });
-});
+   
+
 </script>
