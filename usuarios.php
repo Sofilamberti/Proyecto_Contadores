@@ -67,17 +67,17 @@
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">agregar usuario</h4>
+        <h4 class="modal-title" id="myModalLabel">Agregar Usuario</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
         <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
          <div class="modal-body">
                 <label>Nombre de usuario</label>
                   <input type="text"   name="" id="user" class="form-control input-sm">
-                <label>contrseña</label>
-                  <input type="text"   name="" id="password" class="form-control input-sm">
+                <label>Contrseña</label>
+                  <input type="password"   name="" id="password" class="form-control input-sm">
                 <label>Rol</label>
-                <select id="id_rol" name="id_rol" style="display:block;width:250px;" >
+                <select id="id_rol" name="id_rol" class="form-control">
                    <option value='' disabled>Seleccione un rol</option>
                          <?PHP 
                            if($filas>0)
@@ -90,7 +90,7 @@
                           ?>
                   </select>    
   
-                <label>email</label>
+                <label>Email</label>
                   <input type="email"   name="" id="email" class="form-control input-sm">
 
             

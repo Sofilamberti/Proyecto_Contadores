@@ -34,26 +34,56 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+  .forma{
+  display: inline-block;
+
+}
+  
+#rectangle {
+  width:140px; 
+  height:42px; 
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+  padding:20px 50px;
+  margin: 10px   50px   20px   50px;
+}
+#rectangle > h3 {
+  font-family: sans-serif;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+</style>
  </head>       
 
     
 
-<div   class="container-fluid"   style="width: 18rem;" >
-<div class="card text-center">
-  <div class="card-header">
-    Edicion de datos de usuario
-  </div>
-  <div class="card-body" name="userData" id="userData">
+<center>
+  <div class="col-7">
+    <h3>Edicion de datos de Usuario</h3>
+
       <form method="GET" id="formdata"> 
   <?PHP
            $usuario = mysqli_fetch_array ($consulta);
            print('<input type="hidden"  value="'.$usuario['id_user'].'" name="id_user" id="id_user"  class="form-control input-sm">
-            <label>Nombre de usuario</label>
-            <input type="text"  value="'.$usuario['user'].'" name="user" id="user" class="form-control input-sm">
-                <label>contrseña</label>
-                <input type="text" value="'.$usuario['password'].'"  name="password" id="password"  class="form-control"">
-                <label>Rol</label>
-                <select id="id_rol" name="id_rol" style="display:block;width:250px;">
+           <div class="form-group col-md-6">
+                <div id="rectangle" style="background-color:#27B8CB;"><h3>Nombre Usuario</h3></div> <br>
+            <input type="text"  value="'.$usuario['user'].'" name="user" id="user" class="form-control input-sm"></div>
+            
+            
+             <div class="form-group col-md-6">
+                <div id="rectangle" style="background-color:#D16659;"><h3>Contraseña</h3></div>
+                <input type="password" value="'.$usuario['password'].'"  name="password" id="password"  class="form-control""> 
+                </div>
+                <div class="form-group col-md-6">
+                <div id="rectangle" style="background-color: #FCC839;"><h3>Rol</h3> </div>
+                <select id="id_rol" name="id_rol" class="form-control" >
                    <option  disabled> Seleccione un rol </option>');
                         for($i=0; $i<$filas; $i++){
                               $arregloRol= mysqli_fetch_array ($consulta2);
@@ -62,20 +92,16 @@
                            
                         
                  print('</select>
-                       <label>email</label>
-                  <input type="email"  value="'.$usuario['email'].'" id="email" name="email" class="form-control input-sm"/>
+                       </div>
+                         <div class="form-group col-md-6">
+                <div id="rectangle" style="background-color:#27B8CB;"><h3>Email</h3></div> <br>
+                  <input type="email"  value="'.$usuario['email'].'" id="email" name="email" class="form-control input-sm"/></div>
                   ');
          ?>
             <input type="submit" name="submit" class="btn btn-outline-success " aria-pressed="true" value="Guardar Datos" />
     </form> 
   </div>
-  <div class="card-footer ">
-  
-       
-  </div>
-</div>
-
-</div>
+</center>
 <?PHP
 if (isset($_GET['submit'])) {
 

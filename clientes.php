@@ -5,6 +5,8 @@
 <html>
 <head>
   <?PHP 
+
+   if($_SESSION['usuario_valido']!=""){
     include ("menu.php");
     include ("conexion.php");
     ?>
@@ -26,8 +28,7 @@
 </head>
 <body>
 
-  <?PHP 
-   if($_SESSION['usuario_valido']!=""){
+<?PHP
    
   
 
@@ -59,28 +60,40 @@
    <!-- modal para agregar los datos de un cliente nuevo-->
    
 <div class="modal fade" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">agregar cliente</h4>
+        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
         <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
          <div class="modal-body">
-                <label>Nombre</label>
+           <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Nombre</label>
                   <input type="text"   name="" id="nombre" class="form-control input-sm">
-                <label>apellido</label>
+                </div>
+                <div class="form-group col-md-6">
+                <label>Apellido</label>
+             
                   <input type="text"   name="" id="apellido" class="form-control input-sm">
-                <label>cuit</label>
-                  <input type="number" name="" id="cuit" class="form-control input-sm" >
-                <label>dni</label>
+                   </div>
+            </div>
+           
+           <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Cuit</label>
+                  <input type="number" name="" id="cuit" class="form-control input-sm" ></div>
+            <div class="form-group col-md-6">
+                <label>Dni</label>
                   <input type="number" name="" id="dni" class="form-control input-sm">
-
-                <label>email</label>
+            </div>
+          </div>
+                <label>Email</label>
                   <input type="text"   name="" id="email" class="form-control input-sm">
 
-              <label>tipo de societario</label>
-                <select id="tipoSocietario" name="tipoSocietario" style="display:block;width:250px;" >
+              <label>Tipo de Societario</label>
+                <select id="tipoSocietario" name="tipoSocietario" class="form-control" >
                    <option value='' disabled>Seleccione una opcion</option>
                          <?PHP 
                            if($filas>0)
@@ -92,11 +105,15 @@
                              print('</select>');
                            }
                           ?>
-
-                  <label>domicilio fiscal</label>
-                    <input type="text" name="" id="domicilio_fiscal" class="form-control input-sm">
-                  <label>domicilio legal</label>
+                    <div class="form-row">
+            <div class="form-group col-md-6">
+                  <label>Domicilio Fiscal</label>
+                    <input type="text" name="" id="domicilio_fiscal" class="form-control input-sm"></div>
+                      <div class="form-group col-md-6">
+                  <label>Domicilio Legal</label>
                     <input type="text" name="" id="domicilio_legal" class="form-control input-sm">
+                  </div>
+                </div>
   
           </div>
       <div class="modal-footer">
