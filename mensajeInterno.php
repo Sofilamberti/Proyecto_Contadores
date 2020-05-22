@@ -161,17 +161,17 @@ if (isset($_POST['enviar']) ) {
           $i++;
       }
       }
-      // este for es para enviar a varios destinatarios, en este caso los clientes seleccionados
+      // este for es para enviar a varios destinatarios, en este caso los usuarios seleccionados
      foreach($destino as $des){
           
         $mail->AddAddress($des); 
-        $cond=$mail->Send();
+        
         
       }
     
-    
+    $cond=$mail->Send();
       
-   echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';
+   if($cond){echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';}//verifico que el email se haya enviado bien
  
  }
 }
@@ -211,7 +211,7 @@ $(document).on('click','.btn-quitarMail', function(e){
 
   $('#'+id_user).attr("disabled",false); //el boton para elegir el cliente vuelve a estar activado
 });
-//funcion para buscar en la tabla de clientes
+//funcion para buscar en la tabla de usuarios
 $(document).ready(function(){
    $("#search").keyup(function(){
      _this = this;

@@ -160,17 +160,14 @@ if (isset($_POST['enviar']) ) {
           $i++;
       }
       }
-      // este for es para enviar a varios destinatarios, en este caso los clientes seleccionados
-     foreach($destino as $des){
-          
-        $mail->AddAddress($des); 
-        $cond=$mail->Send();
-        '<script language="javascript">alert("'.$des.'")</script>';
+      ;// este for es para enviar a varios destinatarios, en este caso los clientes seleccionados
+     for($i=0;$i<count($destino);$i++){
+        $mail->AddAddress($destino[$i]); 
+       
       }
-    
-    
+    $cond =$mail->Send();
       
-   echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';
+    if($cond){echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';}//verifico que el email se haya enviado bien
  
  }
 }

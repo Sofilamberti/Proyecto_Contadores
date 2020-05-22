@@ -121,12 +121,12 @@ if (isset($_POST['enviar']) ) {
   	 			$resultado = mysqli_fetch_array ($consulta);
   	 			$value=$resultado['email'];
 				$mail->AddAddress($value); 
-				$cond=$mail->Send();
+				
 			}
 		
-		
+		  $cond=$mail->Send();
     	
-   echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';
+   if($cond){echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';}//verifico que el email se haya enviado bien
  
  }
 }
