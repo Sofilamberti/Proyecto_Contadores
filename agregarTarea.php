@@ -91,7 +91,7 @@ if (isset($_POST['submitSave'])) {
         $instruccion = "insert into tarea ( nombre,descripcion)  values ('$v1','$v2')";
       mysqli_query($conexion, $instruccion) or die ("Fallo en insertar  en la tabla");
        echo '<div class="alert alert-success" role="alert">
-                Email <strong>'.$_POST['nombre'].'</strong> recibido correctamente!
+                Tarea <strong>'.$_POST['nombre'].'</strong> agregada correctamente!
             </div>';
           }
     
