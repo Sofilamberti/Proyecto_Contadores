@@ -4,7 +4,7 @@
 
 <?php
 require('pdf/fpdf.php');
-
+include ("conexion.php");
 
 
 
@@ -43,11 +43,11 @@ function Footer()
 }
 
 
-include ("conexion.php");
+
 
 ///aca se tendria qeu recibir el dni del cliente que esta seleccionado en el select de archivo.php 
 //$dni=$_GET["dni"];
-$dni=41476363;
+$dni=$_GET['dni'];
 
 $instruccion= "select * from cliente where dni='$dni'";
 
