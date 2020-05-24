@@ -132,8 +132,8 @@ header("Location: index.html");
       rol=$('#id_rol').val();
       email=$('#email').val();
      
-      cadena="usuario="+usuario+"&password="+password+ "&rol="+rol+ "&email="+email;
-      
+      cadena="usuario="+usuario+"&password="+password+"&rol="+rol+"&email="+email;
+
       $.ajax({
           url: "/Proyecto_Contadores/agregarUsuario.php?"+cadena,
         }).done(function(data) {
