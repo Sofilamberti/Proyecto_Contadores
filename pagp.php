@@ -74,7 +74,7 @@ if ($_SESSION['usuario_valido']==$id_user)
     <div class="card-body" >
       <h4 class="card-title"><center>Inicio  </center></h4>
     
-    <a href="/Proyecto_Contadores/home1.php"><img src="/Proyecto_Contadores/men1.png"   width="210" height="210" class="card-img-top" alt="..." ></a>
+    <a href="/Proyecto_Contadores/home1.php"><br><img src="/Proyecto_Contadores/men1.png"  align="center" width="180" height="180"  alt="..." ></a>
 
     </div>
     
@@ -84,7 +84,7 @@ if ($_SESSION['usuario_valido']==$id_user)
     <div class="card-body">
 
       <h4 class="card-title"><center> Base de Datos  </center></h4>
-      <a href="/Proyecto_Contadores/bdd.php"><img src="/Proyecto_Contadores/men2.png"  width="210" height="210" class="card-img-top" alt="..."></a>
+      <a href="/Proyecto_Contadores/bdd.php"><img src="/Proyecto_Contadores/men2.png"  width="210" height="210"  alt="..."></a>
   </center>
     </div>
     
@@ -93,7 +93,7 @@ if ($_SESSION['usuario_valido']==$id_user)
     
     <div class="card-body">
       <h4 class="card-title"><center> Vinculaciones  </center></h4>
-    <a href="/Proyecto_Contadores/vinculaciones.php"> <img src="/Proyecto_Contadores/men3.png" width="210" height="210" class="card-img-top" alt="..."></a>
+    <a href="/Proyecto_Contadores/vinculaciones.php"> <img src="/Proyecto_Contadores/men3.png" width="210" height="210"  alt="..."></a>
     </div>
     
   </div>
@@ -101,7 +101,7 @@ if ($_SESSION['usuario_valido']==$id_user)
     
     <div class="card-body">
       <h4 class="card-title"><center> Tablero de Control   </center></h4>
-     <a href="/Proyecto_Contadores/tabcont.php"><img src="/Proyecto_Contadores/men4.png" width="210" height="210" class="card-img-top" alt="..."></a>
+     <a href="/Proyecto_Contadores/tabcont.php"><img src="/Proyecto_Contadores/men4.png" width="210" height="210"  alt="..."></a>
     </div>
     </center>
   </div>
@@ -109,7 +109,7 @@ if ($_SESSION['usuario_valido']==$id_user)
 <BR>
 <div class="card-deck">
   <div class="card" style="background-color:#E7E7E7;">
-      <a href="/Proyecto_Contadores/archivos.php"><img src="/Proyecto_Contadores/men5.png" width="210" height="210" class="card-img-top" alt="..."></a>
+      <a href="/Proyecto_Contadores/archivos.php"><img src="/Proyecto_Contadores/men5.png" width="210" height="210"  alt="..."></a>
     <div class="card-body">
    <h4 class="card-title"><center> Archivos  </center></h4>
       
@@ -117,21 +117,21 @@ if ($_SESSION['usuario_valido']==$id_user)
   
   </div>
   <div class="card" style="background-color:#E7E7E7;">
-     <a href="/Proyecto_Contadores/comunicacion.php"> <img src="/Proyecto_Contadores/men6.png" width="210" height="210"  class="card-img-top" alt="..."></a>
+     <a href="/Proyecto_Contadores/comunicacion.php"> <img src="/Proyecto_Contadores/men6.png" width="210" height="210"   alt="..."></a>
     <div class="card-body">
       <h4 class="card-title"><center>Comunicacion  </center></h4>
       
     </div>
   </div>
   <div class="card" style="background-color:#E7E7E7;">
-      <a href="/Proyecto_Contadores/informes.php"><img src="/Proyecto_Contadores/men7.png" width="210" height="210"  class="card-img-top" alt="..."></a>
+      <a href="/Proyecto_Contadores/informes.php"><img src="/Proyecto_Contadores/men7.png" width="210" height="210"   alt="..."></a>
     <div class="card-body">
       <h4 class="card-title"> <center> Informes  </center></h4>
     </div>
    
   </div>
   <div class="card" style="background-color:#E7E7E7;">
-     <a href="/Proyecto_Contadores/normativa.php"> <img src="/Proyecto_Contadores/men8.png" width="210" height="210" class="card-img-top" alt="..."></a>
+     <a href="/Proyecto_Contadores/normativa.php"> <img src="/Proyecto_Contadores/men8.png" width="210" height="210"  alt="..."></a>
     <div class="card-body">
       <h4 class="card-title"> <center> Normativa   </center></h4>
       

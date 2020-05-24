@@ -68,7 +68,7 @@
   <div class="col-7">
     <h3>Edicion de datos de Usuario</h3>
 
-      <form method="GET" id="formdata"> 
+      <form method="POST" id="formdata"> 
   <?PHP
            $usuario = mysqli_fetch_array ($consulta);
            print('<input type="hidden"  value="'.$usuario['id_user'].'" name="id_user" id="id_user"  class="form-control input-sm">
@@ -103,13 +103,13 @@
   </div>
 </center>
 <?PHP
-if (isset($_GET['submit'])) {
+if (isset($_POST['submit'])) {
 
-  $id_user=$_GET["id_user"];
-   $usuario= $_GET["user"];
-   $password= $_GET["password"]; ///aca se haria el hash 
-   $rol= $_GET["id_rol"];
-   $email= $_GET["email"];
+  $id_user=$_POST["id_user"];
+   $usuario= $_POST["user"];
+   $password= $_POST["password"]; ///aca se haria el hash 
+   $rol= $_POST["id_rol"];
+   $email= $_POST["email"];
   $cuenta=$_SESSION['cuenta'];
 
   $instruccion = "update  usuario  set user='$usuario', password='$password', Cuenta_id='$cuenta', id_rol='$rol',email='$email' where id_user='$id_user'";
