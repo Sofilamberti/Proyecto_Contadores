@@ -104,21 +104,23 @@
                            {
                             for($i=0; $i<$filas; $i++){
                               $result= mysqli_fetch_array ($consulta);
-                              print('<option name="dni" value="'.$result['dni'].'">'.$result['nombre'].' '.$result['apellido'].'</option>');
+							  print('<option name="dni" value="'.$result['dni'].'">'.$result['nombre'].' '.$result['apellido'].'</option>');
+							  
                                                       }
                             
                            }
-                           
-						  ?>
-	</select>  
+						
+						   
+						  
+print('</select>  
 	</div>
 	</div>
-	</div>
-	<!--id="crearPDF"
-	id="crearPDF"-->
-<div class="col-12">	
+	</div>');
+	
+print('<div class=col-12">	
 
-	<div id="circulo1"  class="forma"  > <a  id="crearPDF" href=""> DATOS </a> </div>
+	<div id="circulo1"  class="forma" > <a  id="" href="crearPdf.php?dni='.$result['dni'].'"> DATOS </a> </div>');
+	?>
 
 	<div  id="circulo1"  class="forma" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
 
@@ -126,32 +128,4 @@
 
 </div>
 </body>
-
-
-<script>
-
-    $("#crearPDF").click(function(){
-
-      dni=$('#dni').val();
-
-     alert (dni);
-
-		//window.location.href="crearPdf.php?dni=";
-      cadena="dni="+dni ;
-   
-      //window.location.href="crearPdf.php";
-      $.ajax({
-        url: "/Proyecto_Contadores/crearPdf.php",
-        }).done(function(data) {
-
-       
-        alertify.success("agregado con exito  ");
-        }).fail(function(jqXHR, textStatus, errorThrown) { 
-          
-          alertify.error("agregado con exito  ");
-          });
-
-    });
-
-</script>
 

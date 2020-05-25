@@ -59,11 +59,10 @@ $pdf->AliasNbPages();///esto es para que siempre se generen los pies de paginas 
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 
-
 while($row = $resultado->fetch_assoc())
 
 {
-
+   
     $pdf->SetTextColor(50);
     $pdf->SetFont('','B');
     $pdf->SetDrawColor(128,100,10);
