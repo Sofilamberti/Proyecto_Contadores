@@ -92,19 +92,20 @@
 
 	  <div class="form-group col-md-3">
 	  	<div aling="left">
-	<select id="dni" name="dni"  class="form-control" style="width:200px; 
+	  		<form action="/Proyecto_Contadores/archivos.php" >
+	<select id="dni" name="dni"  class="form-control" onchange="location.href='archivos.php?dni='+this.value;" style="width:200px; 
 	height:50px; 
 	justify-content: left;
 	align-items: left;
 	text-align: left;
 	margin: 40px   10px   15px   10px;">
                          <?PHP 
-                         $d;
+                         
                            if($filas>0)
                            {
                             for($i=0; $i<$filas; $i++){
                               $result= mysqli_fetch_array ($consulta);
-							  print('<option name="dni" value="'.$result['dni'].'">'.$result['nombre'].' '.$result['apellido'].'</option>');
+							  print('<option value="'.$result['dni'].'">'.$result['nombre'].' '.$result['apellido'].'</option>');
 							  
                                                       }
                             
@@ -112,20 +113,38 @@
 						
 						   
 						  
-print('</select>  
+print('</select>
+		 
 	</div>
 	</div>
 	</div>');
-	
+//$d=$_GET['dni'];
+	//href="crearPdf.php?dni='.$_GET['dni'].'"
+//onchange="this.form.submit()"
 print('<div class=col-12">	
 
-	<div id="circulo1"  class="forma" > <a  id="" href="crearPdf.php?dni='.$result['dni'].'"> DATOS </a> </div>');
-	?>
+	<div id="circulo1"  class="forma" > <a  id="" href="crearPdf.php?dni='.$_GET['dni'].'"> DATOS </a> </div>');
 
+	?>
+</form> 
 	<div  id="circulo1"  class="forma" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
 
 	<div  id="circulo1"  class="forma" > <a  href="">  	OTRA DOC </a></div>
 
 </div>
 </body>
+<!--<script type="text/javascript">
+	 $("#crearPDF").click(function(){
+	 	dni=$('#dni').val();
+	 	cadena="dni="+dni ;
+
+	$.ajax({
+      type: "get",
+      url: "crearPDF.php",
+      data: cadena
+ }).done(function( msg ) {
+               window.location.href="crearPdf.php";
+            });
+});
+</script>-->
 
