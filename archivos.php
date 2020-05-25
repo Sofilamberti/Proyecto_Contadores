@@ -61,6 +61,14 @@
 	font-size: 40px;
 	font-weight: bold;
 }
+#circulo1 > button {
+	font-family: sans-serif;
+	color: black;
+	font-size: 40px;
+	font-weight: bold;
+	background: #27B8CB;
+border-width: 0px;
+}
 #rectangle {
 	width:200px; 
 	height:50px; 
@@ -79,6 +87,7 @@
 	font-weight: bold;
 }
 
+
 </style>
 </HEAD>
 
@@ -92,8 +101,8 @@
 
 	  <div class="form-group col-md-3">
 	  	<div aling="left">
-	  		<form action="/Proyecto_Contadores/archivos.php" >
-	<select id="dni" name="dni"  class="form-control" onchange="location.href='archivos.php?dni='+this.value;" style="width:200px; 
+	  	
+	<select id="dni" name="dni"  class="form-control" style="width:200px; 
 	height:50px; 
 	justify-content: left;
 	align-items: left;
@@ -121,30 +130,24 @@ print('</select>
 //$d=$_GET['dni'];
 	//href="crearPdf.php?dni='.$_GET['dni'].'"
 //onchange="this.form.submit()"
-print('<div class=col-12">	
+?>
+<div class="col-12">	
 
-	<div id="circulo1"  class="forma" > <a  id="" href="crearPdf.php?dni='.$_GET['dni'].'"> DATOS </a> </div>');
+	<div id="circulo1"  class="forma" > <button type="submit" id="crearPDF" name="crearPDF"><a> DATOS </a> </button> </div>
 
-	?>
-</form> 
+
 	<div  id="circulo1"  class="forma" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
 
 	<div  id="circulo1"  class="forma" > <a  href="">  	OTRA DOC </a></div>
 
 </div>
 </body>
-<!--<script type="text/javascript">
+<script type="text/javascript">
 	 $("#crearPDF").click(function(){
 	 	dni=$('#dni').val();
 	 	cadena="dni="+dni ;
-
-	$.ajax({
-      type: "get",
-      url: "crearPDF.php",
-      data: cadena
- }).done(function( msg ) {
-               window.location.href="crearPdf.php";
-            });
+		window.location.href="crearPdf.php?"+cadena;
+            
 });
 </script>-->
 
