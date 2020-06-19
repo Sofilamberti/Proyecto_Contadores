@@ -25,8 +25,8 @@ if ($_SESSION['usuario_valido']!="")
 
 }
 	#circulo1 {
-	width: 300px;
-	height: 300px;
+	width: 270px;
+	height: 270px;
 	background: #FCC839;
    -moz-border-radius: 150px;
    -webkit-border-radius: 150px;
@@ -34,20 +34,20 @@ if ($_SESSION['usuario_valido']!="")
 
 	text-align: center;
  
-  padding:90px 20px;
-	margin: 100px  50px 50px  70px;
+  padding:80px 20px;
+	margin: 50px   20px   15px   20px;
 }
 
 #circulo1 > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 35px;
 	font-weight: bold;
 	text-align: center;
 }
 #circulo2 {
-	width: 300px;
-	height: 300px;
+	width: 270px;
+	height: 270px;
 	background: #FCC839;
    -moz-border-radius: 150px;
    -webkit-border-radius: 150px;
@@ -56,12 +56,12 @@ if ($_SESSION['usuario_valido']!="")
 	text-align: center;
  
   padding:60px 20px;
-	margin: 100px  50px 50px  70px;
+	margin: 50px   20px   15px   20px;
 }
 #circulo2 > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -79,9 +79,13 @@ if ($_SESSION['usuario_valido']!="")
 	<div  id="circulo2"  class="forma" > <a href="/Proyecto_Contadores/mensajeGrupo.php" > MENSAJES PARA GRUPO DE CLIENTES
  </a></div>
 
-	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJES INTERNOS
+	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJES ENTRE USUARIOS
 	 </a></div>
+	 
 
+	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJERIA CON ADMIN DE CONTAONLINE
+	 </a></div>
+	</div>
 <?PHP
 }
 

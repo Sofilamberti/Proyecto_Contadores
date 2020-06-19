@@ -1,20 +1,28 @@
 <?PHP
  session_start ();
-
-
-if ($_SESSION['usuario_valido']!="")
-   {
-?>
+  ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
-<script src="alertify/alertify.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="alertify.css" >
+<link rel="stylesheet" type="text/css" href="semantic.css" >
+<link rel="stylesheet" type="text/css" href="default.css" >
+
+<script src="alertify/alertify.js"></script>
+
+<script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <?PHP include ("menu.php");
  include ("conexion.php");
@@ -32,86 +40,70 @@ if ($_SESSION['usuario_valido']!="")
 
 <BODY>
   
+<?PHP
+ include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
 
+      
+    
+
+
+?>
 <BR>
 
-<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
-<?PHP
+      <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
 
 
-      
-   $id_cuenta=$_SESSION['cuenta'];
-      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'" ;
-      $consulta = mysqli_query ($conexion, $instruccion)  or die ();
-      $nfilas = mysqli_num_rows ($consulta);
+<div class="container">
+    <div class="col-12">
+ <div style="float:right;">
+<caption>
+      <button class="btn btn-primary" style="background-color:#D16659; color:white;" data-toggle="modal" data-target="#modalUsuario">
+        Agregar Nueva Tarea
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+</caption>
+</div>
+</div>
+        <div id="tablaTarea"> </div>
+   </div>
 
-
-  print(' <div class="accordion" id="accordionExample"  >');
-
-    for($i=0; $i<$nfilas; $i++){
-          
-          $resultado = mysqli_fetch_array ($consulta);
-          print('<center>');
-print('<div class="col-8">');
-    print('<div class="card" >');
-    print('<div class="card-header" id="headin'.$i.'" style="background-color:#FCC839;">');
-      print('<h2 >');
-        print('<button class="btn btn-link text-dark" type="button" data-toggle="collapse" data-target="#collapse'.$i.'" aria-expanded="false" aria-controls="collapse'.$i.'"><i class="fas fa-user-friends" ></i>
-          '. $resultado['nombre']. "  ".$resultado['apellido'].'
-        </button>');
-     print(' </h2>');
-    print('</div>');
-print('<div id="collapse'.$i.'" class="collapse" aria-labelledby="heading'.$i.'" data-parent="#accordionExample">');
-      print('<div class="card-body">');
-          
-          $in2 = "select id_tarea from tareaxcliente where id_cliente=".$resultado['cuit']." order by id_tarea " ;
-          $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
-           $nf = mysqli_num_rows ($cons2);
-          
-        print('<TABLE class="table table-bordered">');
-             print('<thead>');
-      print('<TR>');
-      print('<TH style="background-color:#FCC839;"><center> Tarea </center></TH>');
-       print('</TR>');
-      print('</thead>');
-          for($n=0;$n<$nf;$n++){
-          $res2 = mysqli_fetch_array ($cons2);
-          $in3="select * from tarea where id=".$res2['id_tarea']."";
-          $cons3 = mysqli_query ($conexion, $in3) or die ("Fallo en la consulta 3");
-          $nf3 = mysqli_num_rows ($cons3);
-         $res3 = mysqli_fetch_array ($cons3);
+   <!-- modal para agregar los datos de un usuario nuevo-->
+   
+<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+         <div class="modal-body">
+                <label>Nombre</label>
+                  <input type="text"   name="" id="nombre" class="form-control input-sm">
+                <label>Descripcion</label>
+                  <input type="text"   name="" id="descripcion" class="form-control input-sm">
+                  <label>Vencimiento</label>
+                  <input type="date"   name="" id="vencimiento" class="form-control input-sm">
             
-        print('<TR>');
-        print('<TD>'.$res3['nombre'].'</TD>');
-        print('</TR>');
-         }
-         print('<BR>');
-          print('</TABLE>');
-      
-          print('<FORM NAME="agr" ACTION="/Proyecto_Contadores/agregarTarea.php" METHOD="POST">
-  <div class="form-group">');
-          print('<input type="hidden" class="form-control" value="'.$resultado['cuit'].'" id="in1" name="in1">');
-          print('<input type="hidden" class="form-control" value="'. $resultado['nombre']. "  ".$resultado['apellido'].'" id="in2" name="in2" >');
-        print('<button type="submit" class="btn btn-outline-success " aria-pressed="true">Agregar</button>');
-        print('</FORM>');
-         print('<BR>');
-        print('<FORM NAME="elim" ACTION="/Proyecto_Contadores/eliminarTarea.php" METHOD="POST"><div class="form-group">');
-          print('<BR>');
-          print('<input type="hidden" class="form-control" value="'.$resultado['cuit'].'" id="in1" name="in1">');
-          print('<input type="hidden"  class="form-control" value="'. $resultado['nombre']. "  ".$resultado['apellido'].'" id="in2" name="in2" >');
-
-        print('<button type="submit" class="btn btn-outline-danger " aria-pressed="true">Eliminar</button>');
-         print('</FORM>');
-      print('</div>');
-    print('</div>');
-  print('</div>');
-  print('</div>');
-print('</center>');
-           
-        }
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="agregarTarea">
+        Agregar Tarea
+        </button>
        
-        print('</div>');
+      </div>
+    </div>
+    
+    </div>
+</div>
+</body>
 
+
+
+
+      <?PHP
 
   }
 
@@ -123,3 +115,33 @@ print('</center>');
   ?>
 
 </BODY>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tablaTarea').load('tablaTareas.php');
+  });
+</script>
+
+<!--FALTARIA hacer un hash a la contraseña  para  seguridad-->
+<script>
+  $(document).ready(function(){
+    $("#agregarTarea").click(function(){
+
+      nombre=$('#nombre').val();
+      descripcion=$('#descripcion').val();
+      vencimiento=$('#vencimiento').val();
+     
+      cadena="nombre="+nombre+"&descripcion="+descripcion+"&vencimiento="+vencimiento;
+
+      $.ajax({
+          url: "/Proyecto_Contadores/agregarTarea.php?"+cadena,
+        }).done(function(data) {
+        $('#tablaTarea').load('tablaTareas.php');
+        alertify.success("Tarea agregada con exito  ");
+        }).fail(function(jqXHR, textStatus, errorThrown) { 
+          alertify.error("No se pudo agregar al nuevo usuario ");
+          });
+
+
+    });
+});
+</script>

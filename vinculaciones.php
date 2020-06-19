@@ -46,13 +46,13 @@
 </HEAD>
 <body>
 <div class="col-11">
-	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/clientes.php">VINCULACION 
+	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/vinculacionOxU.php">VINCULACION 
 	DE OBLIGACION
 	Y USUARIO A 
 	CLIENTE
 	</a> </div>
 
-	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/clientes.php">VINCULACION
+	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/vinculacionTxU.php">VINCULACION
 	DE TAREAS
 	Y USUARIO A
 	CLIENTE </a></div>
