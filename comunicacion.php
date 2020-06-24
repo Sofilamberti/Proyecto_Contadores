@@ -83,7 +83,7 @@ if ($_SESSION['usuario_valido']!="")
 	 </a></div>
 	 
 
-	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJERIA CON ADMIN DE CONTAONLINE
+	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeAdministracion.php">MENSAJERIA CON ADMIN DE CONTAONLINE
 	 </a></div>
 	</div>
 <?PHP

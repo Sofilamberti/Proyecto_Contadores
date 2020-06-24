@@ -56,10 +56,21 @@ if ($_SESSION['usuario_valido']!="")
 			 <BR>
 			 <form ACTION="" METHOD="POST" enctype="multipart/form-data">
                 <div  id="rectangle" style="background: #FCC839" align="left"><h3>Mensaje para grupo de clientes</h3></div>
-                 
+                  
                 <BR>
+                <div class="form-row">
+                <div class="form-group col-md-6">
                 <h5 align="left" >Seleccione los clientes:</h5>
-                              <div align="left">
+              </div>
+
+                <div class="form-group col-md-6">  
+                <div align="right">           
+                <input type="button" value=" Grupos de Clientes" class="btn btn-primary" style="background-color:#FCC839; color:white;"name=" Grupos de Clientes" OnClick="location.href='/Proyecto_Contadores/grupo.php'">
+                
+              </div>
+              </div>
+            </div>
+      <div align="left">
                 <input type="text" class="form-control"  id="search" placeholder="filtrar">
 
                 </table>
@@ -76,6 +87,24 @@ if ($_SESSION['usuario_valido']!="")
                      <table   align="left" style="border-collapse: separate; border-spacing: 0 10px; width: 100%;"  name="tablaClientes" id="tablaClientes" >
                       <tbody>
                   <?PHP
+                  $ins = "select  DISTINCT (nombre) FROM grupo where id_cuenta='$id_cuenta'";
+                $con = mysqli_query ($conexion, $ins) or die ("Fallo en la consulta"); 
+                 $nf = mysqli_num_rows ($con);
+                
+                 for($j=0;$j<$nf;$j++){
+                             $res = mysqli_fetch_array ($con);
+
+                          print('<tr>
+                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"> Grupo </td>
+                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"> '.$res['nombre'].'   </td>
+                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"></td>
+                             <td>
+                             <button value="grupo" title="grupo" class="btn btn-primary grupo" id="'.$res['nombre'].'" name="'.$res['nombre'].'" aling="right">
+                              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                            </button></td>
+                             <td style="display:none " id="" name=""></td>
+                            </tr>');
+                        }
                   for($i=0;$i<$nfilas;$i++){
                   $resultado = mysqli_fetch_array ($consulta);
                   print('<tr>
@@ -87,7 +116,7 @@ if ($_SESSION['usuario_valido']!="")
                               <button value="comprarLibro" title="Agregar a la lista" class="btn btn-primary btn-cargar" id="'.$resultado['cuit'].'" aling="right">
                               <i class="fa fa-check-square-o" aria-hidden="true"></i>
                             </button></td>
-                            <td style="visibility: hidden " id="'.$resultado['cuit'].'" name="'.$resultado['cuit'].'">'.$resultado['cuit'].'</td>
+                            <td style="display:none" id="'.$resultado['cuit'].'" name="'.$resultado['cuit'].'">'.$resultado['cuit'].'</td>
                             </tr>');
                         }
                ?>
@@ -129,7 +158,8 @@ if (isset($_POST['enviar']) ) {
     $asunto=$_POST['asunto'];
     $cuerpo=$_POST['cuerpo'];
      $id_cuenta=$_SESSION['cuenta'];
-     $destino=$_POST['emails'];
+    // $destino=$_POST['emails'];
+     $grupos=$_POST['grupos'];
        $archivos = $_FILES['archivos'];
     $nombre_archivos = $archivos['name'];
     $ruta_archivos = $archivos['tmp_name'];
@@ -159,12 +189,33 @@ if (isset($_POST['enviar']) ) {
           $mail->AddAttachment($rutas_archivos,$nombre_archivos[$i]);
           $i++;
       }
+    };
+      
+     
+     
+      //print($nom);// este for es para enviar a los integrantes de un grupo, primero busco los integrantes y despues en clientes busco el mail de cada integrante 
+      for($j=0;$j<count($grupos);$j++){
+         $nom=trim($grupos[$j]);
+          $instruccion3 = "select * from grupo where nombre='".$nom."' and id_cuenta='$id_cuenta'"; 
+          $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta grupos");
+          $nfilas3 = mysqli_num_rows ($consulta3);
+          print($nfilas3);
+          for($h=0;$h<$nfilas3;$h++){
+              $resultado3 = mysqli_fetch_array ($consulta3);
+              $cu=$resultado3['cuit'];
+              print($cu);
+              $instruccion4= "select * from cliente where cuenta_id='$id_cuenta' and cuit='$cu'";  
+              $consulta4 = mysqli_query ($conexion, $instruccion4) or die ("Fallo en la consulta clientes");
+              $resultado4 = mysqli_fetch_array ($consulta4);
+              $ma=$resultado4['email'];
+              $mail->AddAddress($ma); 
+           
+          }
       }
-      ;// este for es para enviar a varios destinatarios, en este caso los clientes seleccionados
-     for($i=0;$i<count($destino);$i++){
+    /* for($i=0;$i<count($destino);$i++){
         $mail->AddAddress($destino[$i]); 
        
-      }
+      }*/
     $cond =$mail->Send();
       
     if($cond){echo '<script language="javascript">alert("Se ha enviado el mail correctamente");window.location.href="comunicacion.php"</script>';}//verifico que el email se haya enviado bien
@@ -173,6 +224,37 @@ if (isset($_POST['enviar']) ) {
 }
 ?>
 <script type="text/javascript">
+
+$(document).on('click','.grupo', function(e){ // funcion para cargar los grupos al id="destinatarios"
+  e.preventDefault(); //evita que se recargue la pagina
+
+  $(this).attr("disabled",true);
+
+  nombre=$(this).parent().parent().children("td:eq(1)").text(); 
+
+  agregarGrupo(nombre);
+});
+function agregarGrupo(nombre) {
+   //esto le da un estilo, para que quede lindo
+    var htmlTags = '<tr>'+'<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" value=""> Grupo </td>'+
+    '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden"  name="grupos[]"value="'+nombre+'"> '+nombre+' </td>'+
+      '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" name="" value=""></td>'+
+      '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px; visibility: hidden " value=""> <input type="hidden" value="'+nombre+'"></td>'+
+        '<td><button type="button" class="btn btn-danger btn-quitarGrupo" ><i class="fa fa-times"></i></button></td>'+
+        
+        '</tr>';
+    
+   $('#destinatarios tbody').append(htmlTags);
+}
+$(document).on('click','.btn-quitarGrupo', function(e){
+  //funcion para sacar un grupo
+  e.preventDefault(); //evita que se recargue la pagina
+  
+  $(this).parent().parent().remove();
+
+  $('.grupo').attr("disabled",false); //el boton para elegir el grupo vuelve a estar activado
+});
+
 
 $(document).on('click','.btn-cargar', function(e){ // funcion para cargar los datos al id="destinatarios"
   e.preventDefault(); //evita que se recargue la pagina
@@ -189,8 +271,8 @@ $(document).on('click','.btn-cargar', function(e){ // funcion para cargar los da
 });
 function agregarMail(cuit,nombre,apellido,email) {
    //esto le da un estilo, para que quede lindo
-    var htmlTags = '<tr>'+'<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" value="'+nombre+'"> '+nombre+'</td>'+
-    '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" value="'+apellido+'"> '+apellido+' </td>'+
+    var htmlTags = '<tr>'+'<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" value=""> '+nombre+'</td>'+
+    '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" value=""> '+apellido+' </td>'+
       '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px" value="" readonly><input type="hidden" name="emails[]" value="'+email+'">'+email+'</td>'+
       '<td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px; visibility: hidden " value=""> <input type="hidden" value="'+cuit+'"></td>'+
         '<td><button type="button" class="btn btn-danger btn-quitarMail" ><i class="fa fa-times"></i></button></td>'+
@@ -203,8 +285,7 @@ $(document).on('click','.btn-quitarMail', function(e){
   //funcion para sacar un destinatario
   e.preventDefault(); //evita que se recargue la pagina
   
-  var cuit = $(this).closest('tr').find('td:eq(3)').find('input').attr('value');
- 
+  var cuit=$(this).closest('tr').find('td:eq(3)').find('input').attr('value');
   $(this).parent().parent().remove();
 
   $('#'+cuit).attr("disabled",false); //el boton para elegir el cliente vuelve a estar activado
