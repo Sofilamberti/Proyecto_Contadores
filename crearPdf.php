@@ -1,6 +1,7 @@
 <?PHP
  session_start ();
   ?>
+  
 
 <?php
 require('pdf/fpdf.php');
@@ -45,13 +46,14 @@ function Footer()
 
 
 
+
 ///aca se tendria qeu recibir el dni del cliente que esta seleccionado en el select de archivo.php 
 //$dni=$_GET["dni"];
 $dni=$_GET['dni'];
 
 $instruccion= "select * from cliente where dni='$dni'";
 
-$resultado = mysqli_query ($conexion, $instruccion) or die ("errro al buscar cliente al usuario");
+$resultado = mysqli_query ($conexion, $instruccion) or die ("error al buscar cliente al usuario");
 
 
 $pdf = new PDF();
@@ -59,10 +61,11 @@ $pdf->AliasNbPages();///esto es para que siempre se generen los pies de paginas 
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 
+
 while($row = $resultado->fetch_assoc())
 
 {
-   
+
     $pdf->SetTextColor(50);
     $pdf->SetFont('','B');
     $pdf->SetDrawColor(128,100,10);

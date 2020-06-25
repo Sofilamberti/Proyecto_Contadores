@@ -133,7 +133,7 @@ print('</select>
 ?>
 <div class="col-12">	
 
-	<div id="circulo1"  class="forma" > <button type="submit" id="crearPDF" name="crearPDF"><a> DATOS </a> </button> </div>
+	<div id="circulo1"  class="forma" > <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
 
 
 	<div  id="circulo1"  class="forma" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
@@ -146,7 +146,8 @@ print('</select>
 	 $("#crearPDF").click(function(){
 	 	dni=$('#dni').val();
 	 	cadena="dni="+dni ;
-		window.location.href="crearPdf.php?"+cadena;
+		 window.open("crearPdf.php?"+cadena, '_blank');
+	//	window.location.href="crearPdf.php?"+cadena;
             
 });
 </script>-->

@@ -73,14 +73,14 @@ if ($_SESSION['usuario_valido']!="")
 <div class="col-12">
 
 	
-	<div id="circulo1"  class="forma" ><a href="" > LABORAL Y PREVISIONAL
+	<div id="circulo1"  class="forma" ><a href="noticiasLaboralPrevisional.php" > LABORAL Y PREVISIONAL
 	</a> </div>
 	
 
-	<div  id="circulo1"  class="forma" > <a href="" > IMPUESTOS NACIONALES
+	<div  id="circulo1"  class="forma" > <a href="noticiasImpuestosNacionales.php" > IMPUESTOS NACIONALES
  </a></div>
 
-	<div  id="circulo1"  class="forma" > <a a href="">SOCIEDADES COMERCIALES
+	<div  id="circulo1"  class="forma" > <a a href="noticiasSociedadesComerciales.php">SOCIEDADES COMERCIALES
 	 </a></div>
 	
 	</div>
