@@ -17,7 +17,7 @@ $rss = fetch_rss($url);
 
 $items = array_slice($rss->items, 0);
 
- $max_noticias = 30;
+$max_noticias = 30;
 $cont = 0;
 
 print('<h1> Titulares</h1>');

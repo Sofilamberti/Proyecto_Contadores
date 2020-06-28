@@ -30,7 +30,7 @@
 
 	  include ("conexion.php");
 	  
-	  $instruccion = "select * from cliente " ;
+	  $instruccion = "select * from cliente " ;////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
       $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
       $filas = mysqli_num_rows ($consulta);
 ?>

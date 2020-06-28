@@ -16,15 +16,36 @@
      
      }
 
-
-
-
 </style>
 
 
 
 
+
+
+/**       
+
 <?php
+
+
+/**    function feed($feedURL){
+$i = 0; 
+$url = $feedURL; 
+$rss = simplexml_load_file($url); 
+    foreach($rss->channel->item as $item) { 
+    $link = $item->link;  //extrae el link
+    $title = $item->title;  //extrae el titulo
+    $date = $item->pubDate;  //extrae la fecha
+    $guid = $item->guid;  //extrae el link de la imagen
+    $description = strip_tags($item->description);  //extrae la descripcion
+    if (strlen($description) > 600) { //limita la descripcion a 600 caracteres
+    $stringCut = substr($description, 0, 300);                   
+    $description = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';}
+    if ($i < 21) { // extrae solo 21 items
+     echo '<div class="feed"><h2><a href="'.$link.'" target="_blank">'.$title.'</a></h2><br><img src="'.$guid.'"><br>'.$description.'<br><div class="time">'.$date.'</div></div>';}
+     $i++;}
+	echo '<div style="clear: both;"></div>';}
+                 */
 include ("menu.php");
 
 
