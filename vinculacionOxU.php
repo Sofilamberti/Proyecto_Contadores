@@ -9,7 +9,18 @@ if ($_SESSION['usuario_valido']!="")
   <HTML>
 <HEAD>
 <TITLE>Aca va el nombre del programa </TITLE>
+<link rel="stylesheet" type="text/css" href="alertify.css" >
+<link rel="stylesheet" type="text/css" href="semantic.css" >
+<link rel="stylesheet" type="text/css" href="default.css" >
 
+<script src="alertify/alertify.js"></script>
+
+<script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
@@ -54,25 +65,24 @@ if ($_SESSION['usuario_valido']!="")
       $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
 
       $nfilas = mysqli_num_rows ($consulta);
-      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta'"; 
       
-       
-      $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
-
-      $nfilas2 = mysqli_num_rows ($consulta2);
-
  ?>
  <center>
 
     <div class="col-10">
-       <BR>
+       <BR>     
+       
                 <div  id="rectangle" style="background: #27B8CB" align="left"><h3>VINCULACION  DE OBLIGACION Y USUARIO A CLIENTE</h3></div>
+                <form  METHOD="POST" enctype="multipart/form-data">
+             <div align="right">
+                     <input type="button" value="Ver Vinculaciones" class="btn btn-primary" style="background-color:#27B8CB; color:white;"name="VerVInculaciones" OnClick="location.href='/Proyecto_Contadores/verVinculacionesObligacion.php'"></div>
+               
                 <table class="table table-striped table-hover  "  id="tablaVinculaciones" style="margin-top:10px;" >
                   <thead class="thead-light">
                 <tr>
                 <th scope="col" style="background-color:#E7E7E7;">Cliente</th>
-                <th scope="col" style="background-color:#E7E7E7;">Obligacion</th>
                 <th scope="col" style="background-color:#E7E7E7;">Usuario</th>
+                <th scope="col" style="background-color:#E7E7E7;">Obligaciones</th>
                 <th scope="col" style="background-color:#E7E7E7;">Vincular</th>
               </tr>
             </thead>
@@ -82,39 +92,89 @@ if ($_SESSION['usuario_valido']!="")
                      {
                       $resultado = mysqli_fetch_array ($consulta);
                       print('<tr>
-                        <td>'.$resultado['nombre'].' '.$resultado['apellido'].'</td>
-                        <td><select id="obligacion" name="obligacion" class="form-control" style="height: 50px;overflow: auto;" multiple>');
-                        $in2 = "select Obligacion_id from obligacionxcliente where CLiente_cuit=".$resultado['cuit']." order by Obligacion_id" ;
-                         $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
-                         $nf = mysqli_num_rows ($cons2);
+                        <td value="'.$resultado['cuit'].'"><input type="hidden" value="'.$resultado['cuit'].'" class="cliente">'.$resultado['nombre'].' '.$resultado['apellido'].'</td>
+          
+                        <td>  <select id="usuario" name="usuario" class="usuario form-control">');
+                      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta' and id_rol=2"; 
+      
+       
+      $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
+
+      $nfilas2 = mysqli_num_rows ($consulta2);
+      
+                        for($j=0;$j<$nfilas2;$j++){
+                          $res3 = mysqli_fetch_array ($consulta2);
+                          print('<option value="'.$res3['id_user'].'">'.$res3['user'].'</option>');
+                        }
+                         print(' </select></td>
+                         <td><select id="obligacion[]" name="obligacion[]" class="obligacion form-control" style="height: 50px;overflow: auto;" multiple>');
+                      $in2 = "select Obligacion_id from obligacionxcliente where Cliente_cuit=".$resultado['cuit']." order by Obligacion_id" ;
+         $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
+         $nf = mysqli_num_rows ($cons2);
                           for($h=0;$h<$nf;$h++){
                           $res4 = mysqli_fetch_array ($cons2);
-                            $in5="select * from obligacion where id=".$res4['Obligacion_id']." order by id";
-                              $cons5 = mysqli_query ($conexion, $in5) or die ("Fallo en la consulta 4");
-                              $nf4 = mysqli_num_rows ($cons5);
-                          $res5 = mysqli_fetch_array ($cons5);
+                            
+                              $in5="select * from obligacion where id=".$res4['Obligacion_id']." order by id";
+                                $cons5 = mysqli_query ($conexion, $in5) or die ("Fallo en la consulta 4");
+                                $nf4 = mysqli_num_rows ($cons5);
+                            $res5 = mysqli_fetch_array ($cons5);
                                print('<option value="'.$res5['id'].'">'.$res5['impuesto'].'</option>');
 
                         }
-                       print(' </td>
-                        <td>  <select id="usuario" name="usuario" class="form-control">');
-                        for($j=0;$j<$nfilas2;$j++){
-                          $res3 = mysqli_fetch_array ($consulta2);
-                          print('<option value="'.$res3['id'].'">'.$res3['user'].'</option>');
-                        }
-                         print(' </td>
-                          <td> <button value="vincular"  class="btn btn-primary btn-cargar" id="'.$resultado['cuit'].'" aling="right">
+                          print('</select></td>
+                            <td> <button value="vincular" name="vincular" class="btn btn-primary btnVincular" id="'.$resultado['cuit'].'" aling="right">
+
                               <i class="fa fa-check-square-o" aria-hidden="true"></i>
                             </button></td>
+
                         </tr>');
                       }
                        ?> 
                      </tbody>
                    </table>
-
+</form>
               </div>
+
             </center>
 
 <?PHP
+/*if (isset($_POST['vincular']) ) {
+  $cliente=$_POST['cliente'];
+   $usuario=$_POST['usuario'];
+    $obligacion=$_POST['obligacion'];
+    print($cliente);
+    print($usuario);
+    for($i=0;$i<count($obligacion);$i++){
+       print($obligacion[$i]);
+    }
+   
+
+}*/
 }
 ?>
+<script type="text/javascript">
+
+$(document).on('click','.btnVincular', function(e){ // funcion para cargar las vinculaciones en la tabla
+  e.preventDefault(); //evita que se recargue la pagina
+
+  var fila = $(this).parents("tr");// aca agarro la fila y despues agarro todos los valores de la fila
+  cuit=fila.find(".cliente").val();
+  usuario= fila.find('.usuario').val();
+  obligacion= fila.find('.obligacion').val();// es un select multiple por lo que puede tener mas de un valor
+  alert(cuit);
+  alert(usuario);
+  alert(obligacion);
+  cadena="cuit="+cuit+"&usuario="+usuario+"&obligacion="+obligacion;
+  //alert(cadena);
+  //window.location.href="/Proyecto_Contadores/agregarVinculacion.php?"+cadena;
+ $.ajax({
+          url:"/Proyecto_Contadores/agregarVinculacion.php?"+cadena,
+        }).done(function(data) {
+          alertify.success("agregado con exito");
+        });
+
+  });
+  
+     
+
+</script>

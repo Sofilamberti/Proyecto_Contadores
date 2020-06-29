@@ -31,7 +31,7 @@
 	text-align: center;
  
   padding:85px 10px;
-	margin: 20px   70px   15px   90px;
+	margin: 20px   70px   15px   70px;
 }
 
 #circulo1 > a {
