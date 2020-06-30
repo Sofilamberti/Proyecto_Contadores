@@ -14,6 +14,8 @@ class PDF extends FPDF
 function Header()
 {					 
    // Logo
+
+  
    
    $this->SetDrawColor(12, 80, 40);
    $this->SetFillColor(249, 205, 43);
@@ -104,10 +106,20 @@ function Footer()
 
 
 $dni=$_GET['dni'];
+$costo=$_GET['costoNumero'];
+$costoEscrito=$_GET['costoEscrito'];
 
 $instruccion= "select * from cliente where dni='$dni'";
 
 $resultado = mysqli_query ($conexion, $instruccion) or die ("error al buscar cliente al usuario");
+
+while($row = $resultado->fetch_assoc())
+{
+  
+$nombre=$row["nombre"];
+$apellido=$row["apellido"];
+
+}   
 
 
 $pdf = new PDF();
@@ -116,14 +128,43 @@ $pdf->AddPage();
 
 
 ////----------------------
+$pdf->SetFont('Arial','B',15);
+$pdf->SetY(10);////si disminuye sube ||||si aumenta baja
+$pdf->SetX(30);
 
-
+$pdf->Cell(50,10,$nombre,0,0,'C');
+$pdf->SetY(10);////si disminuye sube ||||si aumenta baja
+$pdf->SetX(53);
+$pdf->Cell(50,10,$apellido,0,0,'C');
 
 
 $pdf->SetY(60);////si disminuye sube ||||si aumenta baja
 $pdf->SetX(75);////si disminuye se mueve para izquierda ||||si aumenta mueva para derecha
 $pdf->SetFont('Arial','B',15);
 $pdf->SetTextColor(50);
+
+$pdf->Image('presupuesto1.png',45,62,170,60);
+
+$pdf->Image('presupuesto2.png',45,130,170,60);
+
+
+$pdf->SetFont('Arial','B',20);
+$pdf->SetTextColor(50,43,67);
+
+$pdf->SetY(190);////si disminuye sube ||||si aumenta baja
+$pdf->SetX(55);
+$pdf->Cell(50,5,"costo mensual",0,0,'C');
+
+$pdf->SetY(190);////si disminuye sube ||||si aumenta baja
+$pdf->SetX(135);
+
+$pdf->Cell(50,5,$costo,0,0,'C');
+
+$pdf->SetY(200);////si disminuye sube ||||si aumenta baja
+$pdf->SetX(135);
+$pdf->SetFont('Arial','B',17);
+$pdf->Cell(50,5,$costoEscrito,0,0,'C');
+/*
 $pdf->Cell(50,10,'ASESORAMIENTO IMPOSITIVO MENSUAL',0,0,'C');
 
 $pdf->SetFont('Arial','B',13);
@@ -135,7 +176,47 @@ $pdf->Cell(50,10,'Tareas',0,0,'C');
 $pdf->SetFont('Arial','',11);
 $pdf->SetY(80);
 $pdf->SetX(60);
-$pdf->Write(6,'Confeccion y envio mensual de la Declaracion Jurada de Ingresos Brutos de tu provincia (en los casos que corresponda).');
+$pdf->Write(6,'O Confeccion y envio mensual de la Declaracion Jurada de Ingresos Brutos de ');
+$pdf->SetY(86);
+$pdf->SetX(60);
+$pdf->Write(6,'tu provincia (en los casos que corresponda).');
+
+$pdf->SetY(96);
+$pdf->SetX(60);
+$pdf->Cell(50,10,'O Confeccion semestral Declaracion Jurada Monotributo y determinacion de categoria.',0,0,'L');
+
+
+$pdf->SetY(106);
+$pdf->SetX(60);
+$pdf->Cell(50,10,'O Control y envio al cliente de compras y ventas mensuales
+declaradas en AFIP.',0,0,'L');
+
+
+$pdf->SetY(200);
+$pdf->SetX(70);
+$pdf->SetDrawColor(249, 205, 43);
+$pdf->SetLineWidth(3);
+$pdf->Line(70, 200, 200, 200);
+$pdf->Cell(50,10,'Forma de pago: transferencia o deposito. Precio valido hasta Septiembre',0,0,'L');
+$pdf->SetY(206);
+$pdf->SetX(70);
+$pdf->Cell(50,10,'2020 inclusive,posteriormente seran ajustados de acuerdo a lo establecido ',0,0,'L');
+$pdf->SetY(212);
+$pdf->SetX(70);
+$pdf->Cell(50,10,'por el Consejo Prof. de Cs. Económicas de la Provincia de La Pampa.',0,0,'L');
+$pdf->SetY(218);
+$pdf->SetX(70);
+$pdf->Cell(50,10,'La continuidad del servicio depende del cumplimiento del pago del honorario',0,0,'L');
+
+$pdf->SetY(224);
+$pdf->SetX(70);
+$pdf->Cell(50,10,'mensual del 1 al 10 de cada mes (Ej.: los servicios prestados en Mayo se pagan',0,0,'L');
+$pdf->SetY(230);
+$pdf->SetX(70);
+$pdf->Cell(50,10,'del 1 al 10 de Junio).',0,0,'L');
+
+
+*/
 
 
 

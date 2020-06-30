@@ -92,8 +92,15 @@ print('</select>
   ?>
 
 
-<ul class="list-group list-group-flush">
-  <li class="list-group-item"><button type="submit" id="crearPDF" name="crearPDF"><a href="">PRESUPUESTO</a></button> </li>
+<ul class=" ">
+  <li class="list-group-item"><div >
+<caption>
+      <button class="btn btn-primary" style="background-color:#27B8CB; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
+	  PRESUPUESTO
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+</caption>
+</div> </li>
   <li class="list-group-item"><a href="">NOTA AUMENTO HONORARIOS</a></li>
   <li class="list-group-item"><a href="">MODELO BALANCE</a></li>
   <li class="list-group-item"><a href="">OTROS</a></li>
@@ -102,11 +109,50 @@ print('</select>
 
 
 
+<!-- modal para agregar los datos de un cliente nuevo-->
+   
+<div class="modal fade" id="modalPresupuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Costo De presupuesto</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+	  </div>
+	  
+         <div class="modal-body">
+           <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Costo</label>
+                  <input type="text"   name="costoNumero" id="costoNumero" class="form-control input-sm">
+                </div>
+                <div class="form-group col-md-6">
+                <label>Valor del costo (escrito)</label>
+             
+                  <input type="text"   name="costoEscrito" id="costoEscrito" class="form-control input-sm">
+                   </div>
+            </div>
+
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="generarPresupuesto">
+         Generar Presupuesto
+        </button>
+       
+      </div>
+    </div>
+    
+    </div>
+</div>
+
 <script type="text/javascript">
-	 $("#crearPDF").click(function(){
+	 $("#generarPresupuesto").click(function(){
 	 	dni=$('#dni').val();
-	 	cadena="dni="+dni ;
-		 window.open("presupuestoPdf.php?"+cadena, '_blank');
+
+		costo="$"+$('#costoNumero').val();
+		costoEscrito=$('#costoEscrito').val();
+	 	cadena="dni="+dni+"&costoNumero="+costo+"&costoEscrito="+costoEscrito;
+		window.open("presupuestoPdf.php?"+cadena, '_blank');
 	//	window.location.href="crearPdf.php?"+cadena;
             
 });
