@@ -18,49 +18,28 @@
   display: inline-block;
   margin: 16px;
 }
-	#circulo1 {
-	width: 230px;
-	height: 230px;
-	background: #D16659;
-   -moz-border-radius: 125px;
-   -webkit-border-radius: 125px;
-   border-radius: 150px;
+	#rectangulo {
+	width: 250px;
+	height: 80px;
+	
+   
 	
 	justify-content: center;
 	align-items: center;
 	text-align: center;
  
-  padding:85px 10px;
-	margin: 20px   70px   15px   70px;
+  padding:25px 10px;
+	margin: 20px   40px   15px   40px;
 }
 
-#circulo1 > a {
+#rectangulo > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 25px;
 	font-weight: bold;
 }
 
-#circulo2 {
- width: 230px;
-	height: 230px;
-	   background: #FCC839;
-   -moz-border-radius: 125px;
-   -webkit-border-radius: 125px;
-   border-radius: 150px;
-	
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	   padding:85px 38px;
-	  margin: 20px   100px   10px   200px;
-}
-#circulo2 > a {
-	font-family: sans-serif;
-	color: black;
-	font-size: 40PX;
-	font-weight: bold;
-}
+
 </style>
 
 <!--  ESTOS  ESTILOS PODRIAN IR EN UN ARCHIVO .CSS  ASI LO IMPORTAMOS Y QUEDA MAS LIMPIO EL PHP
@@ -73,16 +52,23 @@ SUPONETE estilosBdd.CSS  -->
 if ($_SESSION['usuario_valido']!="")
    {
 ?>
-<div class="col-11">
-	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/estudio.php">ESTUDIO</h1></a>  </div>
+<br>
+<br>
+<div class="container">
 
-	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/usuarios.php">USUARIOS </a></div>
+	<center>
+	<div id="rectangulo"  class="forma" style="background: #D9D9D9;"><a href="/Proyecto_Contadores/estudio.php">ESTUDIO</h1></a>  </div>
+
+	<div  id="rectangulo"  class="forma" style="background: #D9D9D9;"> <a a href="/Proyecto_Contadores/usuarios.php">USUARIOS </a></div>
 	
-	<div  id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/clientes.php"> CLIENTES </a> </div>
+	<div  id="rectangulo"  class="forma" style="background: #D9D9D9;"><a href="/Proyecto_Contadores/clientes.php"> CLIENTES </a> </div>
 	<BR>
-	<div id="circulo2"   class="forma" ><a a href="/Proyecto_Contadores/oxc.php"> OBLIG.</a> </div>
+	<center>
+	<div id="rectangulo"   class="forma" style="background: #D9D9D9;"><a a href="/Proyecto_Contadores/oxc.php"> OBLIGACIONES</a> </div>
 	
-	<div  id="circulo2"  class="forma" > <a href="/Proyecto_Contadores/tareas.php">TAREAS  </a></div>
+	<div  id="rectangulo"  class="forma" style="background: #D9D9D9;"> <a href="/Proyecto_Contadores/tareas.php">TAREAS  </a></div>
+	</center>
+
 </div>
 <?php
  }

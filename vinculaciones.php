@@ -18,26 +18,24 @@
   display: inline-block;
   margin: 16px;
 }
-	#circulo1 {
+	#rectangulo {
 	width: 400px;
-	height: 400px;
-	background: #27B8CB;
-   -moz-border-radius: 200px;
-   -webkit-border-radius: 200px;
-   border-radius: 200px;
+	height: 200px;
+	background: #D9D9D9;
+   
 	
 	justify-content: center;
 	align-items: center;
 	text-align: center;
  
-  padding:95px 10px;
-	margin: 60px   70px   15px   120px;
+  padding:35px 10px;
+	margin: 60px  50px   15px   50px;
 }
 
-#circulo1 > a {
+#rectangulo > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -45,16 +43,18 @@
 </style>
 </HEAD>
 <body>
-<div class="col-11">
-	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/vinculacionOxU.php">VINCULACION 
+<div class="container">
+	<center>
+	<div id="rectangulo"  class="forma" ><a href="/Proyecto_Contadores/vinculacionOxU.php">VINCULACION 
 	DE OBLIGACION
 	Y USUARIO A 
 	CLIENTE
 	</a> </div>
 
-	<div  id="circulo1"  class="forma" > <a a href="/Proyecto_Contadores/vinculacionTxU.php">VINCULACION
+	<div  id="rectangulo"  class="forma" > <a a href="/Proyecto_Contadores/vinculacionTxU.php">VINCULACION
 	DE TAREAS
 	Y USUARIO A
 	CLIENTE </a></div>
+	</center>
 </div>
 </body>

@@ -58,7 +58,20 @@ $cuit=$_POST['cuit/cuil'];
 <HEAD>
 <TITLE>Aca va el nombre del programa </TITLE>
 
+<style type="text/css">
+  .container {
+   
+   height: 480px;
+   max-width: 900px;
+   overflow:hidden;
+   min-height:0px !important;
+}
+#banner{
+    width: 100%;
+    height: 120px;
 
+  }
+</style>
 </HEAD>
 <BODY>
 
@@ -67,77 +80,86 @@ if ($_SESSION['usuario_valido']==$id_user)
    {
 ?>
 </head>
-<body style="background-color:#D3D3D3;">
+<body style="background-color:white;">
+  <div id="banner">
+      <img src="/Proyecto_Contadores/logo.png"  align="center" width="340px" height="102px"  alt="..." >
+    </div>
+  <div class="container">
 <div class="card-deck">
-  <div class="card" style="background-color:#E7E7E7;" >
-
-    <div class="card-body" >
-      <h4 class="card-title"><center>Inicio  </center></h4>
-    
-    <a href="/Proyecto_Contadores/home1.php"><br><img src="/Proyecto_Contadores/men1.png"  align="center" width="180" height="180"  alt="..." ></a>
-
+  <div class="card" style="background-color:white; border: none;"   >
+    <div class="card-body">
+    <center><a href="/Proyecto_Contadores/home1.php"><img src="/Proyecto_Contadores/img/men1.png"  align="center" width="150" height="150"  alt="..." ></a></center>
+      <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;" ><center>Inicio  </center></h4>
     </div>
     
   </div>
-  <div class="card" style="background-color:#E7E7E7;">
+  <div class="card" style="background-color:white; border: none;">
     <center></center>
     <div class="card-body">
 
-      <h4 class="card-title"><center> Base de Datos  </center></h4>
-      <a href="/Proyecto_Contadores/bdd.php"><img src="/Proyecto_Contadores/men2.png"  width="210" height="210"  alt="..."></a>
+     
+      <center><a href="/Proyecto_Contadores/bdd.php"><img src="/Proyecto_Contadores/img/men2.png"  width="150" height="150"  alt="..."></a></center>
+       <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center> Base de Datos  </center></h4>
   </center>
     </div>
     
   </div>
-  <div class="card"style="background-color:#E7E7E7;">
+  <div class="card"style="background-color:white; border: none;">
     
     <div class="card-body">
-      <h4 class="card-title"><center> Vinculaciones  </center></h4>
-    <a href="/Proyecto_Contadores/vinculaciones.php"> <img src="/Proyecto_Contadores/men3.png" width="210" height="210"  alt="..."></a>
+    <center><a href="/Proyecto_Contadores/vinculaciones.php"> <img src="/Proyecto_Contadores/img/men3.png" width="150" height="150"  alt="..."></a></center>
+    <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center> Vinculaciones  </center></h4>
     </div>
     
   </div>
-  <div class="card" style="background-color:#E7E7E7;">
+  <div class="card" style="background-color:white; border: none;">
     
     <div class="card-body">
-      <h4 class="card-title"><center> Tablero de Control   </center></h4>
-     <a href="/Proyecto_Contadores/tabcont.php"><img src="/Proyecto_Contadores/men4.png" width="210" height="210"  alt="..."></a>
+      
+     <center><a href="/Proyecto_Contadores/tabcont.php"><img src="/Proyecto_Contadores/img/men4.png" width="150" height="150"  alt="..."></a></center>
+     <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center> Tablero de Control   </center></h4>
     </div>
     </center>
   </div>
 </div>
-<BR>
+
 <div class="card-deck">
-  <div class="card" style="background-color:#E7E7E7;">
-      <a href="/Proyecto_Contadores/archivos.php"><img src="/Proyecto_Contadores/men5.png" width="210" height="210"  alt="..."></a>
-    <div class="card-body">
-   <h4 class="card-title"><center> Archivos  </center></h4>
+  <div class="card" style="background-color:white; border: none;">
       
+    <div class="card-body">
+   
+      <center><a href="/Proyecto_Contadores/archivos.php"><img src="/Proyecto_Contadores/img/men5.png" width="150" height="150"  alt="..."></a></center>
+      <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center> Archivos  </center></h4>
     </div>
   
   </div>
-  <div class="card" style="background-color:#E7E7E7;">
-     <a href="/Proyecto_Contadores/comunicacion.php"> <img src="/Proyecto_Contadores/men6.png" width="210" height="210"   alt="..."></a>
+  <div class="card" style="background-color:white; border: none;">
+    
     <div class="card-body">
-      <h4 class="card-title"><center>Comunicacion  </center></h4>
       
+       <center><a href="/Proyecto_Contadores/comunicacion.php"> <img src="/Proyecto_Contadores/img/men6.png" width="150" height="150"   alt="..."></a></center>
+       <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center>Comunicacion  </center></h4>
     </div>
   </div>
-  <div class="card" style="background-color:#E7E7E7;">
-      <a href="/Proyecto_Contadores/informes.php"><img src="/Proyecto_Contadores/men7.png" width="210" height="210"   alt="..."></a>
+  <div class="card" style="background-color:white; border: none;" >
+      
     <div class="card-body">
-      <h4 class="card-title"> <center> Informes  </center></h4>
+      
+      <center><a href="/Proyecto_Contadores/informes.php"><img src="/Proyecto_Contadores/img/men7.png" width="150" height="150"   alt="..."></a></center>
+      <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"> <center> Informes  </center></h4>
     </div>
    
   </div>
-  <div class="card" style="background-color:#E7E7E7;">
-     <a href="/Proyecto_Contadores/normativa.php"> <img src="/Proyecto_Contadores/men8.png" width="210" height="210"  alt="..."></a>
+  <div class="card" style="background-color:white; border: none;">
+     
     <div class="card-body">
-      <h4 class="card-title"> <center> Normativa   </center></h4>
       
+      <center><a href="/Proyecto_Contadores/normativa.php"> <img src="/Proyecto_Contadores/img/men8.png" width="150" height="150"  alt="..."></a></center>
+      <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"> <center> Normativa   </center></h4>
     </div>
     
   </div>
+</div>
 </div>
 <?PHP
 }

@@ -39,40 +39,36 @@
   display: inline-block;
 
 }
-	#circulo1 {
-	width: 300px;
-	height: 300px;
-	background: #27B8CB;
-   -moz-border-radius: 150px;
-   -webkit-border-radius: 150px;
-   border-radius: 150px;
-	
+	#rectangulo {
+	width: 240px;
+	height: 120px;
+	background: #55D6D2;
+   
 	justify-content: center;
 	align-items: center;
 	text-align: center;
  
-  padding:100px 20px;
-	margin: 10px  40px 10px  70px;
+  
 }
 
-#circulo1 > a {
+#rectangulo > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
 }
-#circulo1 > button {
+#rectangulo > button {
 	font-family: sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
-	background: #27B8CB;
+	background: #55D6D2;
 border-width: 0px;
 }
 #rectangle {
 	width:200px; 
 	height:50px; 
-	background: #27B8CB;
+	background: #55D6D2;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -93,7 +89,7 @@ border-width: 0px;
 
 
 
-	
+<div class="container">
  <div class="form-row">
     <div class="form-group col-md-3">
 	<div id="rectangle" ><h2> CLIENTE:</h2> 
@@ -107,7 +103,7 @@ border-width: 0px;
 	justify-content: left;
 	align-items: left;
 	text-align: left;
-	margin: 40px   10px   15px   10px;">
+	margin: 40px   10px   10px   10px;">
                          <?PHP 
                          
                            if($filas>0)
@@ -131,15 +127,18 @@ print('</select>
 	//href="crearPdf.php?dni='.$_GET['dni'].'"
 //onchange="this.form.submit()"
 ?>
-<div class="col-12">	
+<div class="container">
+<center>	
 
-	<div id="circulo1"  class="forma" > <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
+	<div id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
 
 
-	<div  id="circulo1"  class="forma" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
+	<div  id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
 
-	<div  id="circulo1"  class="forma" > <a  href="">  	OTRA DOC </a></div>
+	<div  id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <a  href="">  	OTRA DOC </a></div>
 
+</center>
+</div>
 </div>
 </body>
 <script type="text/javascript">
@@ -150,5 +149,5 @@ print('</select>
 	//	window.location.href="crearPdf.php?"+cadena;
             
 });
-</script>-->
+</script>
 

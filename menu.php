@@ -4,32 +4,33 @@
 <?PHP
   extract($_REQUEST);
 ?>
-
-        
-        <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color:#E7E7E7;">
+<style>
+    #banner{
+    width: 100%;
+    height: 90px;
+   
+  }  
       
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
- 
-  </button>
- <style>
-            
    nav a{
     text-decoration:none;
      color: black;
-    font-size:18px;
-    font-family: sans-serif;
-    
+    font-size:22px;
+    font-family: Bahnschrift Condensed;
+    letter-spacing: -1px;
+    float:none;
+   
 
 }
         
 nav li{
      color: #f4f4f4;
-    font-size:16px;
-    font-family: sans-serif;
+    font-size:22px;
+    font-family: Bahnschrift Condensed;
     
     font-color:black;
-    
-   
+    letter-spacing: -1px;
+   padding-left:-5em;
+   padding-right:-5em;
 }
 
 
@@ -37,14 +38,17 @@ nav li{
             
 nav li:hover{
      color: grey;
-     font-size:16px;
+     font-size:26px;
      font-color:grey;
+     letter-spacing: -1px;
+
      
 }
 nav a:hover{
      color: grey;
-     font-size:17px;
+     font-size:26px;
      font-color:grey;
+     letter-spacing: -1px;
      
 }
 
@@ -59,6 +63,16 @@ nav a:visited{
     
 }
         </style>
+         <div id="banner">
+      <center><img src="/Proyecto_Contadores/logo.png"  width="290px" height="80px"  alt="..." ></center>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color:white;" aling="right">
+      
+    <button class="navbar-toggler" style="background-color:#D9D9D9" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
      <?PHP 
       $conexion = mysqli_connect ("localhost", "root", "")
          or die ("No se puede conectar con el servidor");
@@ -79,7 +93,7 @@ nav a:visited{
 
             
              //print($resultado['label']);
-             print('<li style="display:inline-block;"> <center><a class="nav-link" href="/Proyecto_contadores'.$resultado['link'].'">'.$resultado['etiqueta'].'<BR><img src="'.$resultado['imagen'].'" width="60" height="50" alt="..."></center></a> </li>');
+             print('<li style="display:inline-block;  margin:-5;"> <center><a class="nav-link" href="/Proyecto_contadores'.$resultado['link'].'"><img src="'.$resultado['imagen'].'" width="65" height="65" alt="..."><br>'.$resultado['etiqueta'].' </a></center></li>');
              
         }
       
@@ -90,7 +104,8 @@ nav a:visited{
 
 ?>
    </ul>
+ </div>
   </nav>
- 
+ </div>
 </HEAD>
 </html>
