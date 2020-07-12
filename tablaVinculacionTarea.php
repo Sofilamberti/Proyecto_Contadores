@@ -25,10 +25,10 @@ session_start ();
             <caption>Lista de Tareas</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#D16659; color:white;">Cliente</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Usuario</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Tareas</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Eliminar</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Cliente</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Usuario</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Tareas</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Eliminar</th>
               </tr>
               </thead>
               <tbody >

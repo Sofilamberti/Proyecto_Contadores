@@ -25,12 +25,12 @@ session_start ();
             <caption>Lista de Usuarios</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#27B8CB;">ID</th>
-                <th scope="col" style="background-color:#27B8CB;">Usuario</th>
-                <th scope="col" style="background-color:#27B8CB;">Rol</th>
-                <th scope="col" style="background-color:#27B8CB;">Email</th>
-                <th scope="col" style="background-color:#27B8CB;">Editar datos</th>
-                <th scope="col" style="background-color:#27B8CB;">Dar de baja</th>
+               
+                <th scope="col" style="background-color:#55D6D2;">Usuario</th>
+                <th scope="col" style="background-color:#55D6D2;">Rol</th>
+                <th scope="col" style="background-color:#55D6D2;">Email</th>
+                <th scope="col" style="background-color:#55D6D2;">Editar datos</th>
+                <th scope="col" style="background-color:#55D6D2;">Dar de baja</th>
               </tr>
               </thead>
               <tbody >
@@ -39,7 +39,7 @@ session_start ();
                      {
                       $resultado = mysqli_fetch_array ($consulta);
                       print('<tr>
-                        <td>'.$resultado['id_user'].'</td>
+                        <td style="display:none;">'.$resultado['id_user'].'</td>
                               <td >'.$resultado['user'].'</td>');
 
                      $instruccion2 = "select descripcion_rol from rol where id_rol=".$resultado['id_rol'].";";

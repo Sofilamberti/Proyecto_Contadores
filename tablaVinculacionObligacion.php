@@ -20,15 +20,15 @@ session_start ();
 
   <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="filtrar" style=" width:250px; height:50px; margin-top:10px;margin-left:10px;">
 
-
+            
             <table class="table table-striped table-hover  "  id="tablaVinculacionObligacion" style="margin-top:10px;" >
             <caption>Lista de Obligaciones</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#D16659; color:white;">Cliente</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Usuario</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Obligaciones</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Eliminar</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Cliente</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Usuario</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Obligaciones</th>
+                <th scope="col" style="background-color:#55D6D2; color:white;">Eliminar</th>
               </tr>
               </thead>
               <tbody >

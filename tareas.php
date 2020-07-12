@@ -50,25 +50,25 @@ if ($_SESSION['usuario_valido']!="")
 
 
 ?>
-<BR>
-
-      <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
-
-
 <div class="container">
-    <div class="col-12">
+    <div class="container">
+    <div class="container">
+ <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+ <div class="col-12">
  <div style="float:right;">
 <caption>
-      <button class="btn btn-primary" style="background-color:#D16659; color:white;" data-toggle="modal" data-target="#modalUsuario">
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalUsuario">
         Agregar Nueva Tarea
       <span class="glyphicon glyphicon-plus"></span>
       </button>
 </caption>
 </div>
-</div>
-        <div id="tablaTarea"> </div>
-   </div>
 
+        <div id="tablaTarea"> </div>
+      </div>
+   </div>
+</div>
+</div>
    <!-- modal para agregar los datos de un usuario nuevo-->
    
 <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

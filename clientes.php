@@ -38,24 +38,30 @@
 
    ?>
       
-<BR>
-<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
-<BR>
+
+
 
 
    <div class="container">
+    <div class="container">
+      <div class="container">
+    <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+
     <div class="col-12">
  <div style="float:right;">
 <caption>
-      <button class="btn btn-primary" style="background-color:#27B8CB; color:white;" data-toggle="modal" data-target="#modalCliente">
+      <button class="btn btn-primary" style="background-color:#FDB813; color:white;" data-toggle="modal" data-target="#modalCliente">
         Agregar nuevo 
       <span class="glyphicon glyphicon-plus"></span>
       </button>
 </caption>
 </div>
-</div>
+
         <div id="tabla"> </div>
+        </div>
    </div>
+ </div>
+</div>
 
    <!-- modal para agregar los datos de un cliente nuevo-->
    

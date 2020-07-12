@@ -16,7 +16,7 @@ session_start ();
   ?> 
 
 
-
+  
 
   <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="filtrar" style=" width:250px; height:50px; margin-top:10px;margin-left:10px;">
 
@@ -25,10 +25,8 @@ session_start ();
             <caption>Lista de Obligaciones</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#D16659; color:white;">Rubro</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Impuesto</th>
-                 <th scope="col" style="background-color:#D16659; color:white;">Editar</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Eliminar</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Rubro</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Impuesto</th>
               </tr>
               </thead>
               <tbody >
@@ -40,25 +38,15 @@ session_start ();
                           <td style="display:none" id="'.$resultado['id'].'" name="'.$resultado['id'].'">'.$resultado['id'].'</td>
                           <td>'.$resultado['rubro'].'</td>
                           <td >'.$resultado['impuesto'].'</td>');
-
-                    
-                          print('  <div class="btn-group">
-                            <td><a style="color:black;" href="/Proyecto_Contadores/editarObligacion.php?id='.$resultado['id'].'" ><i class="fas fa-edit"></i><input type="hidden" value='.$resultado['id'].'/> Editar </a> </td>
-
-                           <td> <button class="btn ajs-capture btnElim" value='.$resultado['id'].' id="eliminar"  ><i class="fas fa-trash"></i><input type="hidden" value='.$resultado['id'].'/> Eliminar </button> </div></td>
-                            ');
-                    
-
                             print('</tr>');
                         }
                         ?>
 
               </tbody>
           </table>
-
-                
+       
   
- <!--script para  buscar clientes en la tabla -->
+ <!--script para  buscar OBLIGACIONES en la tabla -->
 <script>
   $(document).ready(function(){
    $("#search").keyup(function(){
@@ -74,40 +62,6 @@ session_start ();
 </script>
 
 
-  <!--script para  dar de baja un usuario en la tabla -->
-<!--<script>
-  $(document).ready(function(){
-    $("#eliminar").click(function(){
-      alert($('#eliminar').val());
-        id_user=$('#eliminar').val();
-        cadena="id_user="+id_user;
-
-      $.ajax({
-          url:"/Proyecto_Contadores/eliminarUsuario.php?"+cadena,
-        }).done(function(data) {
-        $('#tablaUsuario').load('tablaUsuarios.php');
-        alertify.success("El usuario fue dado de baja con exito! ");
-        });
-    });
-});
-</script>-->
-<!-- para eliminar-->
-<script type="text/javascript">
-
-  $(document).on("click",".btnElim",function(){
-
-      fila=$(this).closest("tr");
-
-      id=fila.find('td:eq(0)').text()
-        cadena="id="+id;
-
-      $.ajax({
-          url:"/Proyecto_Contadores/eliminarObligacion.php?"+cadena,
-        }).done(function(data) {
-        $('#tablaObligacion').load('tablaObligaciones.php');
-        });
-
-  });
 
 </script>
 

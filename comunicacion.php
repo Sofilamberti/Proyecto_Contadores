@@ -25,33 +25,35 @@ if ($_SESSION['usuario_valido']!="")
 
 }
 	#circulo1 {
-	width: 270px;
-	height: 130px;
-	background: #FDB813;
+	width: 250px;
+	height: 125px;
+	background: #D9D9D9;
    
 
 	text-align: center;
  
-  padding:30px 20px;
-	margin: 20px   20px   15px   20px;
+  padding:30px 30px;
+	margin: 20px   20px   10px   20px;
 }
 
 #circulo1 > a {
 	font-family: sans-serif;
 	color: black;
 	font-size: 25px;
+	padding: -15px -15px;
 	font-weight: bold;
 	text-align: center;
+
 }
 #circulo2 {
-	width: 270px;
-	height: 130px;
-	background: #FDB813;
+	width: 250px;
+	height: 125px;
+	background: #D9D9D9;
    
 
 	text-align: center;
  
-  padding:30px 20px;
+  padding:20px 50px;
 	margin: 20px   20px   10px   20px;
 }
 #circulo2 > a {
@@ -60,6 +62,27 @@ if ($_SESSION['usuario_valido']!="")
 	font-size: 20px;
 	font-weight: bold;
 }
+#circulo3 {
+	width: 250px;
+	height: 125px;
+	background: #D9D9D9;
+   
+
+	text-align: center;
+ 
+  padding:12px 35px;
+	margin: 20px   20px   10px   20px;
+}
+
+#circulo3 > a {
+	font-family: sans-serif;
+	color: black;
+	font-size: 22px;
+	margin: -50px   0px   0px   0px;
+	font-weight: bold;
+	text-align: center;
+}
+
 
 </style>
 </HEAD>
@@ -67,15 +90,18 @@ if ($_SESSION['usuario_valido']!="")
 <body>	
 	
 <div class="container">
+
 	<center>
+		<br>
 	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/mensajeMasivo.php" > MENSAJES MASIVOS
 	</a> </div>
 	<div  id="circulo2"  class="forma" > <a href="/Proyecto_Contadores/mensajeGrupo.php" > MENSAJES PARA GRUPO DE CLIENTES
  </a></div>
-	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJES ENTRE USUARIOS
+	<div  id="circulo3"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJES ENTRE USUARIOS
 	 </a></div>
 	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeAdministracion.php">MENSAJERIA CON ADMIN DE CONTAONLINE
 	 </a></div>
+
 	</center>
 	</div>
 <?PHP

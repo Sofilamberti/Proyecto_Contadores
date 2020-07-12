@@ -26,32 +26,28 @@ if ($_SESSION['usuario_valido']!="")
 }
 	#circulo1 {
 	width:300px;
-	height:300px;
-	background: #D16659;
-   -moz-border-radius: 150px;
-   -webkit-border-radius: 150px;
-   border-radius: 150px;
+	height:120px;
+	background: #D9D9D9;
+ 
 
 	text-align: center;
  
-  padding:90px 30px;
-	margin: 70px   50px   50px   70px;
+  padding:20px 30px;
+	margin: 70px   10px   50px   25px;
 }
 
 #circulo1 > a {
 	font-family: sans-serif;
 	color: black;
-	font-size: 35px;
+	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 }
 #circulo2 {
-	width:300px;
-	height:300px;
-	background: #FCC839;
-   -moz-border-radius: 150px;
-   -webkit-border-radius: 150px;
-   border-radius: 150px;
+	width:200px;
+	height:100px;
+	background: #D9D9D9;
+
 
 	text-align: center;
  
@@ -70,8 +66,10 @@ if ($_SESSION['usuario_valido']!="")
 
 <body>	
 	
-<div class="col-12">
+<div class="container">
 
+	<center>
+		<br>
 	
 	<div id="circulo1"  class="forma" ><a href="noticiasLaboralPrevisional.php" > LABORAL Y PREVISIONAL
 	</a> </div>
@@ -82,7 +80,7 @@ if ($_SESSION['usuario_valido']!="")
 
 	<div  id="circulo1"  class="forma" > <a a href="noticiasSociedadesComerciales.php">SOCIEDADES COMERCIALES
 	 </a></div>
-	
+	</center>
 	</div>
 <?PHP
 }

@@ -41,26 +41,30 @@
 
 
    ?>
-      
-<BR>
-<a href="/Proyecto_Contadores/bdd.php"><h4><i class="fas fa-arrow-circle-left"></i>Volver</h4></a>
-<BR>
+
+
+
 
 
 <div class="container">
+<div class="container">
+<div class="container">
+  <a href="/Proyecto_Contadores/bdd.php"><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4></a>
     <div class="col-12">
  <div style="float:right;">
 <caption>
-      <button class="btn btn-primary" style="background-color:#27B8CB; color:white;" data-toggle="modal" data-target="#modalUsuario">
+      <button class="btn btn-primary" style="background-color:#55D6D2; color:white;" data-toggle="modal" data-target="#modalUsuario">
         Agregar nuevo Usuario
       <span class="glyphicon glyphicon-plus"></span>
       </button>
 </caption>
 </div>
-</div>
-        <div id="tablaUsuario"> </div>
-   </div>
 
+        <div id="tablaUsuario"> </div>
+        </div>
+   </div>
+</div>
+</div>
    <!-- modal para agregar los datos de un usuario nuevo-->
    
 <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -136,7 +140,7 @@ header("Location: index.html");
 
       $.ajax({
           url: "/Proyecto_Contadores/agregarUsuario.php?"+cadena,
-        }).done(function(data) {
+        }).done(function(data){
         $('#tablaUsuario').load('tablaUsuarios.php');
         alertify.success("Usuario agregado con exito  ");
         }).fail(function(jqXHR, textStatus, errorThrown) { 

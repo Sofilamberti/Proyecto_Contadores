@@ -50,43 +50,24 @@ if ($_SESSION['usuario_valido']!="")
 
 
 ?>
-<BR>
 
-      <a href="/Proyecto_Contadores/vinculacionOxU.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
-
+     
 
 <div class="container">
-   
-        <div id="tablaVinculacionObligacion"> </div>
-   </div>
+ 
+<div class="container">
 
-   <!-- modal para agregar los datos de un usuario nuevo-->
-   
-<div class="modal fade" id="modalGrupo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Agregar Grupo</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
+<div class="container">
+
+    <a href="/Proyecto_Contadores/vinculacionOxU.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+
+        <div class="col-12">
+        <div id="tablaVinculacionObligacion"> </div>
       </div>
-         <div class="modal-body">
-                <label>Nombre</label>
-                  <input type="text"   name="" id="rubro" class="form-control input-sm">
-                <label>Seleccionar Cliente</label>
-                  <input type="text"   name="" id="impuesto" class="form-control input-sm">
-            
-          </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="agregarGrupo">
-        Agregar Grupo
-        </button>
-       
       </div>
     </div>
+  </div>
     
-    </div>
-</div>
 </body>
 
 

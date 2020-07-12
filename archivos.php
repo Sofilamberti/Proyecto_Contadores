@@ -42,7 +42,7 @@
 	#rectangulo {
 	width: 240px;
 	height: 120px;
-	background: #55D6D2;
+	background: #D9D9D9;
    
 	justify-content: center;
 	align-items: center;
@@ -62,7 +62,7 @@
 	color: black;
 	font-size: 30px;
 	font-weight: bold;
-	background: #55D6D2;
+	background: #D9D9D9;
 border-width: 0px;
 }
 #rectangle {

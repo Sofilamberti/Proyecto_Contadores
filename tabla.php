@@ -25,13 +25,13 @@ session_start ();
             <caption>Lista de  clientes</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#27B8CB;">Nombre</th>
-                <th scope="col" style="background-color:#27B8CB;">Apellido</th>
-                <th scope="col" style="background-color:#27B8CB;">CUIT</th>
-                <th scope="col" style="background-color:#27B8CB;">Email</th>
-                <th scope="col" style="background-color:#27B8CB;">Tipo Societario</th>
-                <th scope="col" style="background-color:#27B8CB;">Editar</th>
-                <th scope="col" style="background-color:#27B8CB;">Dar de baja</th>
+                <th scope="col" style="background-color:#FDB813;">Nombre</th>
+                <th scope="col" style="background-color:#FDB813;">Apellido</th>
+                <th scope="col" style="background-color:#FDB813;">CUIT</th>
+                <th scope="col" style="background-color:#FDB813;">Email</th>
+                <th scope="col" style="background-color:#FDB813;">Tipo Societario</th>
+                <th scope="col" style="background-color:#FDB813;">Editar</th>
+                <th scope="col" style="background-color:#FDB813;">Dar de baja</th>
                </tr>
               </thead>
               <tbody >

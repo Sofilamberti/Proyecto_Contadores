@@ -50,51 +50,23 @@ if ($_SESSION['usuario_valido']!="")
 
 
 ?>
-<BR>
+<div class="container">
+  <div class="container">
+    <div class="container">
+
 
       <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
 
 
-<div class="container">
+
     <div class="col-12">
- <div style="float:right;">
-<caption>
-      <button class="btn btn-primary" style="background-color:#D16659; color:white;" data-toggle="modal" data-target="#modalUsuario">
-        Agregar Nueva Obligacion
-      <span class="glyphicon glyphicon-plus"></span>
-      </button>
-</caption>
-</div>
-</div>
+
         <div id="tablaObligacion"> </div>
    </div>
-
+</div>
    <!-- modal para agregar los datos de un usuario nuevo-->
-   
-<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Agregar Obligacion</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-         <div class="modal-body">
-                <label>Rubro</label>
-                  <input type="text"   name="" id="rubro" class="form-control input-sm">
-                <label>Impuesto</label>
-                  <input type="text"   name="" id="impuesto" class="form-control input-sm">
-            
-          </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="agregarObligacion">
-        Agregar Obligacion
-        </button>
-       
-      </div>
-    </div>
-    
-    </div>
+   </div>
+
 </div>
 </body>
 

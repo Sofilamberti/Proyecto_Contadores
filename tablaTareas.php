@@ -15,11 +15,11 @@ include ("conexion.php");
             <caption>Lista de Tareas</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#D16659; color:white;">Nombre</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Descripcion</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Vencimiento</th>
-                 <th scope="col" style="background-color:#D16659; color:white;">Editar</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Eliminar</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Nombre</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Descripcion</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Vencimiento</th>
+                 <th scope="col" style="background-color:#FA7564; color:white;">Editar</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Eliminar</th>
               </tr>
               </thead>
               <tbody >

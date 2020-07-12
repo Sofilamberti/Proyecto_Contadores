@@ -22,7 +22,6 @@ if ($_SESSION['usuario_valido']!="")
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -35,7 +34,7 @@ if ($_SESSION['usuario_valido']!="")
 }
   
 #rectangle {
-  width:900px; 
+  width:800px; 
   height:30px; 
 
   justify-content: left;
@@ -68,14 +67,14 @@ if ($_SESSION['usuario_valido']!="")
       
  ?>
  <center>
-
-    <div class="col-10">
-       <BR>     
+<div class="container">
+    <div class="col-11">
+            
        
-                <div  id="rectangle" style="background: #27B8CB" align="left"><h3>VINCULACION  DE TAREA Y USUARIO A CLIENTE</h3></div>
-                <form  METHOD="POST" enctype="multipart/form-data">
+                <div  id="rectangle" style="background: #55D6D2" align="left"><h3>VINCULACION  DE TAREA Y USUARIO A CLIENTE</h3></div>
+               
              <div align="right">
-                     <input type="button" value="Ver Vinculaciones" class="btn btn-primary" style="background-color:#27B8CB; color:white;"name="VerVInculaciones" OnClick="location.href='/Proyecto_Contadores/verVinculacionesTarea.php'"></div>
+                     <input type="button" value="Ver Vinculaciones" class="btn btn-primary" style="background-color:#55D6D2; color:white;"name="VerVInculaciones" OnClick="location.href='/Proyecto_Contadores/verVinculacionesTarea.php'"></div>
                
                 <table class="table table-striped table-hover  "  id="tablaVinculaciones" style="margin-top:10px;" >
                   <thead class="thead-light">
@@ -107,17 +106,16 @@ if ($_SESSION['usuario_valido']!="")
                           print('<option value="'.$res3['id_user'].'">'.$res3['user'].'</option>');
                         }
                          print(' </select></td>
-                         <td><select id="tarea[]" name="tarea[]" class="tarea form-control" style="height: 50px;overflow: auto;" multiple>');
-                      $in2 = "select id_tarea from tareaxcliente where id_cliente=".$resultado['cuit']." order by id_tarea" ;
-         $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
-         $nf = mysqli_num_rows ($cons2);
-                          for($h=0;$h<$nf;$h++){
-                          $res4 = mysqli_fetch_array ($cons2);
-                            
-                              $in5="select * from tarea where id=".$res4['id_tarea']." order by id";
+                         <td><select id="tarea[]" name="tarea[]" class="tarea form-control" style="height: 70px;overflow: auto;" multiple>');
+                     
+                                  $in5="select * from tarea ";
                                 $cons5 = mysqli_query ($conexion, $in5) or die ("Fallo en la consulta 4");
                                 $nf4 = mysqli_num_rows ($cons5);
-                            $res5 = mysqli_fetch_array ($cons5);
+                           
+                          for($h=0;$h<$nf4;$h++){
+                         $res5 = mysqli_fetch_array ($cons5);
+                            
+                              
                                print('<option value="'.$res5['id'].'">'.$res5['nombre'].'</option>');
 
                         }
@@ -132,9 +130,8 @@ if ($_SESSION['usuario_valido']!="")
                        ?> 
                      </tbody>
                    </table>
-</form>
-              </div>
-
+                   </div>
+                  </div>
             </center>
 
 <?PHP
@@ -155,18 +152,15 @@ if ($_SESSION['usuario_valido']!="")
 <script type="text/javascript">
 
 $(document).on('click','.btnVincular', function(e){ // funcion para cargar las vinculaciones en la tabla
-  //e.preventDefault(); //evita que se recargue la pagina
+  e.preventDefault(); //evita que se recargue la pagina
 
   var fila = $(this).parents("tr");// aca agarro la fila y despues agarro todos los valores de la fila
   cuit=fila.find(".cliente").val();
   usuario= fila.find('.usuario').val();
   tarea= fila.find('.tarea').val();// es un select multiple por lo que puede tener mas de un valor
-  alert(cuit);
-  alert(usuario);
-  alert(tarea);
   cadena="cuit="+cuit+"&usuario="+usuario+"&tarea="+tarea;
-  //alert(cadena);
-  //window.location.href="/Proyecto_Contadores/agregarVinculacion.php?"+cadena;
+  
+  //window.location.href="/Proyecto_Contadores/agregarVinculacionTarea.php?"+cadena;
  $.ajax({
           url:"/Proyecto_Contadores/agregarVinculacionTarea.php?"+cadena,
         }).done(function(data) {

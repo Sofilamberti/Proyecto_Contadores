@@ -22,7 +22,6 @@ if ($_SESSION['usuario_valido']!="")
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -68,14 +67,12 @@ if ($_SESSION['usuario_valido']!="")
       
  ?>
  <center>
-
-    <div class="col-10">
-       <BR>     
-       
-                <div  id="rectangle" style="background: #27B8CB" align="left"><h3>VINCULACION  DE OBLIGACION Y USUARIO A CLIENTE</h3></div>
-                <form  METHOD="POST" enctype="multipart/form-data">
+<div class="container">
+    <div class="col-11">
+       <div  id="rectangle" style="background: #55D6D2" align="left"><h3>VINCULACION  DE OBLIGACION Y USUARIO A CLIENTE</h3></div>
+               
              <div align="right">
-                     <input type="button" value="Ver Vinculaciones" class="btn btn-primary" style="background-color:#27B8CB; color:white;"name="VerVInculaciones" OnClick="location.href='/Proyecto_Contadores/verVinculacionesObligacion.php'"></div>
+                     <input type="button" value="Ver Vinculaciones" class="btn btn-primary" style="background-color:#55D6D2; color:white;"name="VerVInculaciones" OnClick="location.href='/Proyecto_Contadores/verVinculacionesObligacion.php'"></div>
                
                 <table class="table table-striped table-hover  "  id="tablaVinculaciones" style="margin-top:10px;" >
                   <thead class="thead-light">
@@ -107,17 +104,15 @@ if ($_SESSION['usuario_valido']!="")
                           print('<option value="'.$res3['id_user'].'">'.$res3['user'].'</option>');
                         }
                          print(' </select></td>
-                         <td><select id="obligacion[]" name="obligacion[]" class="obligacion form-control" style="height: 50px;overflow: auto;" multiple>');
-                      $in2 = "select Obligacion_id from obligacionxcliente where Cliente_cuit=".$resultado['cuit']." order by Obligacion_id" ;
-         $cons2 = mysqli_query ($conexion, $in2) or die ("Fallo en la consulta 2");
-         $nf = mysqli_num_rows ($cons2);
-                          for($h=0;$h<$nf;$h++){
-                          $res4 = mysqli_fetch_array ($cons2);
-                            
-                              $in5="select * from obligacion where id=".$res4['Obligacion_id']." order by id";
+                         <td><select id="obligacion[]" name="obligacion[]" class="obligacion form-control" style="height: 70px;overflow: auto;" multiple>');
+                       $in5="select * from obligacion ";
                                 $cons5 = mysqli_query ($conexion, $in5) or die ("Fallo en la consulta 4");
                                 $nf4 = mysqli_num_rows ($cons5);
-                            $res5 = mysqli_fetch_array ($cons5);
+                           
+                          for($h=0;$h<$nf4;$h++){
+                                $res5 = mysqli_fetch_array ($cons5);
+                            
+                             
                                print('<option value="'.$res5['id'].'">'.$res5['impuesto'].'</option>');
 
                         }
@@ -132,9 +127,8 @@ if ($_SESSION['usuario_valido']!="")
                        ?> 
                      </tbody>
                    </table>
-</form>
               </div>
-
+</div>
             </center>
 
 <?PHP
@@ -161,11 +155,8 @@ $(document).on('click','.btnVincular', function(e){ // funcion para cargar las v
   cuit=fila.find(".cliente").val();
   usuario= fila.find('.usuario').val();
   obligacion= fila.find('.obligacion').val();// es un select multiple por lo que puede tener mas de un valor
-  alert(cuit);
-  alert(usuario);
-  alert(obligacion);
   cadena="cuit="+cuit+"&usuario="+usuario+"&obligacion="+obligacion;
-  //alert(cadena);
+
   //window.location.href="/Proyecto_Contadores/agregarVinculacion.php?"+cadena;
  $.ajax({
           url:"/Proyecto_Contadores/agregarVinculacion.php?"+cadena,
