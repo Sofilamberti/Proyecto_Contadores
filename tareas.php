@@ -1,5 +1,7 @@
 <?PHP
  session_start ();
+ if ($_SESSION['usuario_valido']!="")
+   {
   ?>
   <HTML>
 <HEAD>
@@ -42,9 +44,14 @@
   
 <?PHP
  include ("conexion.php");
-if ($_SESSION['usuario_valido']!="")
-   {
 
+ 
+    $id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
       
     
 
@@ -106,6 +113,18 @@ if ($_SESSION['usuario_valido']!="")
       <?PHP
 
   }
+  else{
+      ?>
+      <div class="container">
+  <center>
+  <div id="cartel"  class="forma" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+ 
+  <?PHP
+}
+}
 
  else
    {

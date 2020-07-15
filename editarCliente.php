@@ -5,7 +5,12 @@
      
         include ("menu.php");
         include ("conexion.php");
+        $id=$_SESSION['usuario_valido'];
 
+         $instruccion = "select * from usuario where id_user='".$id."'";
+         $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+            $res2= mysqli_fetch_array ($consulta2);
+        if($res2['id_rol']==1){
 
         $cuit=$_GET["cuit"];
     
@@ -25,6 +30,8 @@
         ?>
 
  <head>
+  
+<TITLE>CONTAONLINE</TITLE>
      <link rel="stylesheet" type="text/css" href="alertify.css" >
     <link rel="stylesheet" type="text/css" href="semantic.css" >
     <link rel="stylesheet" type="text/css" href="default.css" >
@@ -37,6 +44,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <style>
+      #cartel {
+  width: 1000px;
+  height: 200px;
+  background: #D9D9D9;
+   
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+  padding:35px 10px;
+  margin: 60px  50px   15px   50px;
+}
   .forma{
   display: inline-block;
 
@@ -76,31 +96,31 @@
            print('
             <div class="form-row">
     <div class="form-group col-md-6">
-                <div id="rectangle" style="background-color:#27B8CB;"><h3>Nombre</h3></div>
+                <div id="rectangle" style="background-color:#55D6D2;"><h3>Nombre</h3></div>
             <input type="text"  value="'.$cliente['nombre'].'" name="nombre" id="nombre" class="form-control input-sm">
               </div>
           <div class="form-group col-md-6">
-               <div id="rectangle" style="background-color:#27B8CB;"><h3>Apellido</h3></div>
+               <div id="rectangle" style="background-color:#55D6D2;"><h3>Apellido</h3></div>
                 <input type="text" value="'.$cliente['apellido'].'"  name="apellido" id="apellido"  class="form-control" >
                 </div>
           </div>
            <div class="form-row">
     <div class="form-group col-md-6">
-                   <div id="rectangle" style="background-color:#D16659;"><h3>Cuit</h3></div>
+                   <div id="rectangle" style="background-color:#FA7564;"><h3>Cuit</h3></div>
                   <input type="number"  value="'.$cliente['cuit'].'" name="cu" id="cu" class="form-control input-sm" readonly>
                   </div>
                   <div class="form-group col-md-6">
-                 <div id="rectangle" style="background-color:#D16659;"><h3>DNI</h3></div>
+                 <div id="rectangle" style="background-color:#FA7564;"><h3>DNI</h3></div>
                   <input type="number" value="'.$cliente['dni'].'" name="dni" id="dni"  class="form-control input-sm">
            </div>
                     </div>
                     <div class="form-row">
               <div class="form-group col-md-6">
-                 <div id="rectangle" style="background-color: #FCC839;"><h3>Email</h3> </div>
+                 <div id="rectangle" style="background-color: #FDB813;"><h3>Email</h3> </div>
                   <input type="text"   value="'.$cliente['email'].'" name="email" id="email"  class="form-control input-sm">
                   </div>
                    <div class="form-group col-md-6">
-                 <div id="rectangle" style="background-color: #FCC839;"><h3>TipoSocietaro</h3> </div>
+                 <div id="rectangle" style="background-color: #FDB813;"><h3>TipoSocietaro</h3> </div>
                 <select class="form-control" id="tipo_soc" name="tipo_soc" >
                    <option  disabled> Seleccione un Tipo Societario </option>');
                         
@@ -117,11 +137,11 @@
                   </div>
                   <div class="form-row">
               <div class="form-group col-md-6">
-                     <div id="rectangle" style="background-color:#27B8CB;"><h3>Domicilio Fiscal</h3></div>
+                     <div id="rectangle" style="background-color:#55D6D2;"><h3>Domicilio Fiscal</h3></div>
                      <BR>
                     <input type="text" value="'.$cliente['domicilio_fiscal'].'" name="domicilio_fiscal" id="domicilio_fiscal" class="form-control input-sm"></div>
                      <div class="form-group col-md-6">
-                   <div id="rectangle" style="background-color:#27B8CB;"><h3>Domicilio Legal</h3></div><BR>
+                   <div id="rectangle" style="background-color:#55D6D2;"><h3>Domicilio Legal</h3></div><BR>
                     <input type="text" value="'.$cliente['domicilio_legal'].'" name="domicilio_legal" id="domicilio_legal"  class="form-control input-sm">
                   </div>
                     </div>
@@ -157,4 +177,20 @@ if (isset($_GET['submit'])) {
    echo '<script language="javascript">alert("Se han modificado los datos con exito con exito");window.location.href="clientes.php"</script>';
   }
 }
+else{
+      ?>
+      <br>
+      <div class="container">
+  <center>
+  <div id="cartel" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px; "> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+<?PHP
+}
+}
+    else {
+    header("Location: index.html");
+            exit();
+    }
 ?>

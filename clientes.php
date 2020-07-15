@@ -11,7 +11,7 @@
     include ("conexion.php");
     ?>
 
-
+<TITLE>CONTAONLINE</TITLE>
 <link rel="stylesheet" type="text/css" href="alertify.css" >
 <link rel="stylesheet" type="text/css" href="semantic.css" >
 <link rel="stylesheet" type="text/css" href="default.css" >
@@ -46,7 +46,14 @@
     <div class="container">
       <div class="container">
     <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+    <?PHP
+$id=$_SESSION['usuario_valido'];
 
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
+    ?>
     <div class="col-12">
  <div style="float:right;">
 <caption>
@@ -56,6 +63,9 @@
       </button>
 </caption>
 </div>
+<?PHP
+}
+?>
 
         <div id="tabla"> </div>
         </div>

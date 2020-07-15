@@ -8,7 +8,7 @@ if ($_SESSION['usuario_valido']!="")
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -49,13 +49,19 @@ if ($_SESSION['usuario_valido']!="")
  include("PHPMailer-master/src/PHPMailer.php");
  include("PHPMailer-master/src/SMTP.php");
  include("PHPMailer-master/src/Exception.php");
+  $id=$_SESSION['usuario_valido'];
+
+         $instruccion = "select * from usuario where id_user='".$id."'";
+         $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+            $res2= mysqli_fetch_array ($consulta2);
+        if($res2['id_rol']==1){
 ?>
 <center>
 
 		<div class="col-7">
 			 <BR>
 			 <form ACTION="" METHOD="POST" enctype="multipart/form-data">
-                <div  id="rectangle" style="background: #D16659" align="left"><h3>Este mensaje se enviara a todos los clientes</h3></div>
+                <div  id="rectangle" style="background: #FA7564" align="left"><h3>Este mensaje se enviara a todos los clientes</h3></div>
                  
                 <BR>
                 <h5 align="left">Asunto</h5>
@@ -130,4 +136,22 @@ if (isset($_POST['enviar']) ) {
  
  }
 }
+
+else{
+      ?>
+      <br>
+      <div class="container">
+  <center>
+  <div id="cartel" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px; "> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+<?PHP
+}
+}
+    else {
+    header("Location: index.html");
+            exit();
+    }
+?>
 ?>

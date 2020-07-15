@@ -3,7 +3,7 @@
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -46,52 +46,59 @@
 if ($_SESSION['usuario_valido']!="")
    {
    	$id_cuenta=$_SESSION['cuenta'];
+    $id=$_SESSION['usuario_valido'];
    	$instruccion = "select * from cuenta where id='$id_cuenta'" ;
       $consulta = mysqli_query ($conexion, $instruccion)  or die ("Fallo en la consulta");
        $resultado = mysqli_fetch_array ($consulta);
+       $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
 ?>
 
-		<br>
-<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+	
 
-
+ <div class="container">  
+ 
+  <div class="col-7">
+<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a></div></div>
 			<center>
 	<div class="col-7">
-	
+
 <form ACTION="" METHOD="POST">
 
     <div class="form-row">
     <div class="form-group col-md-6">
-  		<div id="rectangle" style="background-color:#27B8CB;"><h3>Nombre</h3></div>
-    <!--<label for="inputCuit" style="background-color:#FCC839;"><h3>Nombre/Razon social</h3></label>-->
+  		<div id="rectangle" style="background-color:#55D6D2;"><h3>Nombre</h3></div>
+    
     <input type="text" class="form-control" id="inputNombre" name="inputNombre" value="<?php print($resultado['nombre_cuenta']);?>">
   </div>
   <div class="form-group col-md-6">
-  		<div id="rectangle" style="background-color:#27B8CB;"><h3>Titular</h3></div>
-    <!--<label for="inputCuit" style="background-color:#FCC839;"><h3>Nombre/Razon social</h3></label>-->
+  		<div id="rectangle" style="background-color:#55D6D2;"><h3>Titular</h3></div>
+    
     <input type="text" class="form-control" id="inputTitular" name="inputTitular" value="<?php print($resultado['titular']);?>">
   </div>
 </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <div id="rectangle" style="background-color:#D16659;"><h3>Email</h3></div>
+      <div id="rectangle" style="background-color:#FA7564;"><h3>Email</h3></div>
       <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php print($resultado['email']);?>">
     </div>
     <div class="form-group col-md-6" >
-      <div id="rectangle"style="background-color:#D16659;"><h3>Cuit</h3></div>
+      <div id="rectangle"style="background-color:#FA7564;"><h3>Cuit</h3></div>
       <input type="text" class="form-control" id="inputPassword4" name="inputCuit" value="<?php print($resultado['cuit']);?>" readonly>
     </div>
   </div>
   
   <div class="form-row">
   	<div class="form-group col-md-6">
-    <div id="rectangle" style="background-color: #FCC839;"><h3>Direccion</h3> </div>
+    <div id="rectangle" style="background-color: #FDB813;"><h3>Direccion</h3> </div>
     <input type="text" class="form-control" id="inputDireccion" name="inputDireccion" value="<?php print($resultado['direccion']);?>">
   </div>
   <div class="form-group col-md-6">
     
-      <div id="rectangle" style="background-color: #FCC839;"><h3>Telefono</h3></div>
+      <div id="rectangle" style="background-color: #FDB813;"><h3>Telefono</h3></div>
       <input type="text" class="form-control" id="inputTelefono" name="inputTelefono" value="<?php print($resultado['telefono']);?>">
     </div>
 </div>
@@ -119,6 +126,61 @@ if ($_SESSION['usuario_valido']!="")
 		        echo '<script language="javascript">alert("Se han guradado los Cambios con exito");window.location.href="estudio.php"</script>';
 
  }
+ } else{ 
+  //aca se muestra lo que es para los usuarios que no son administradores
+      ?>
+      <div class="container">  
+ 
+  <div class="col-7">
+<a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a></div></div>
+      <center>
+      <center>
+  <div class="col-7">
+
+<form ACTION="" METHOD="POST">
+
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <div id="rectangle" style="background-color:#55D6D2;"><h3>Nombre</h3></div>
+    
+    <input type="text" class="form-control" id="inputNombre" name="inputNombre" value="<?php print($resultado['nombre_cuenta']);?>" readonly>
+  </div>
+  <div class="form-group col-md-6">
+      <div id="rectangle" style="background-color:#55D6D2;"><h3>Titular</h3></div>
+    
+    <input type="text" class="form-control" id="inputTitular" name="inputTitular" value="<?php print($resultado['titular']);?>" readonly>
+  </div>
+</div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div id="rectangle" style="background-color:#FA7564;"><h3>Email</h3></div>
+      <input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php print($resultado['email']);?>" readonly>
+    </div>
+    <div class="form-group col-md-6" >
+      <div id="rectangle"style="background-color:#FA7564;"><h3>Cuit</h3></div>
+      <input type="text" class="form-control" id="inputPassword4" name="inputCuit" value="<?php print($resultado['cuit']);?>" readonly>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col-md-6">
+    <div id="rectangle" style="background-color: #FDB813;"><h3>Direccion</h3> </div>
+    <input type="text" class="form-control" id="inputDireccion" name="inputDireccion" value="<?php print($resultado['direccion']);?>" readonly>
+  </div>
+  <div class="form-group col-md-6">
+    
+      <div id="rectangle" style="background-color: #FDB813;"><h3>Telefono</h3></div>
+      <input type="text" class="form-control" id="inputTelefono" name="inputTelefono" value="<?php print($resultado['telefono']);?>" readonly>
+    </div>
+</div>
+  
+</form>
+  </div>
+  </center>
+  
+  <?PHP
+}
 }
  else
    {

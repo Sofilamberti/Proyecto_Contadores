@@ -1,9 +1,16 @@
 <?PHP
  session_start ();
-  ?>
+  
+  include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
+
+   ?>   
+    
+
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE </TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -40,8 +47,17 @@
 }
 
 
+
 </style>
 </HEAD>
+<?php  
+	$id=$_SESSION['usuario_valido'];
+
+	 $instruccion = "select * from usuario where id_user='".$id."'";
+	 $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+	if($res2['id_rol']==1){
+?>
 <body>
 <div class="container">
 	<center>
@@ -58,3 +74,24 @@
 	</center>
 </div>
 </body>
+
+<?PHP 
+		}
+		else{
+			?>
+			<div class="container">
+	<center>
+	<div id="cartel"  class="forma" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+<?PHP
+		}
+	}
+
+ else
+   {
+     header("Location: index.html");
+        exit();
+   }
+?>

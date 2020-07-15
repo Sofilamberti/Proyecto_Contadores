@@ -22,7 +22,7 @@ session_start ();
 
             
             <table class="table table-striped table-hover  "  id="tablaVinculacionObligacion" style="margin-top:10px;" >
-            <caption>Lista de Obligaciones</caption>
+            <caption>Lista de Vinculaciones</caption>
              <thead class="thead-light">
               <tr>
                 <th scope="col" style="background-color:#55D6D2; color:white;">Cliente</th>
@@ -38,7 +38,7 @@ session_start ();
                       $resultado = mysqli_fetch_array ($consulta);
                        print('<tr>
 
-                          <td style="display:none " id="'.$resultado['id_oxcxu'].'" name="'.$resultado['id_oxcxu'].'"></td>');
+                          <td style="display:none " value="'.$resultado['id_oxcxu'].'" name="id">'.$resultado['id_oxcxu'].'</td>');
 
                       $instruccion2 = "select  * FROM obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
                        $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
@@ -83,7 +83,7 @@ session_start ();
   $(document).ready(function(){
    $("#search").keyup(function(){
      _this = this;
-    $.each($("#tablaGrupo tbody tr"), function() {
+    $.each($("#tablaVinculacionObligacion tbody tr"), function() {
     if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
         $(this).hide();
     else
@@ -118,13 +118,14 @@ session_start ();
 
       fila=$(this).closest("tr");
 
-      nombre=fila.find('td:eq(0)').text()
-        cadena="nombre="+nombre;
-
+      id=fila.find('td:eq(0)').text();
+   
+        cadena="id="+id;
+        //window.location.href="/Proyecto_Contadores/eliminarVinculacion.php?"+cadena;
       $.ajax({
-          url:"/Proyecto_Contadores/eliminarGrupo.php?"+cadena,
+          url:"/Proyecto_Contadores/eliminarVinculacion.php?"+cadena,
         }).done(function(data) {
-        $('#tablaGrupo').load('tablaGrupo.php');
+        $('#tablaVinculacionObligacion').load('tablaVinculacionObligacion.php');
         });
 
   });

@@ -8,7 +8,7 @@ if ($_SESSION['usuario_valido']!="")
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 <link rel="stylesheet" type="text/css" href="alertify.css" >
 <link rel="stylesheet" type="text/css" href="semantic.css" >
 <link rel="stylesheet" type="text/css" href="default.css" >
@@ -56,8 +56,14 @@ if ($_SESSION['usuario_valido']!="")
 </style>
 <?PHP include ("menu.php");
  include ("conexion.php");
+
  $id_cuenta=$_SESSION['cuenta'];
-       
+       $id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
       $instruccion = "select * from cliente where cuenta_id='$id_cuenta'"; 
       
        
@@ -133,22 +139,26 @@ if ($_SESSION['usuario_valido']!="")
                    </div>
                   </div>
             </center>
-
 <?PHP
-/*if (isset($_POST['vincular']) ) {
-  $cliente=$_POST['cliente'];
-   $usuario=$_POST['usuario'];
-    $tarea=$_POST['tarea'];
-    print($cliente);
-    print($usuario);
-    for($i=0;$i<count($tarea);$i++){
-       print($tarea[$i]);
-    }
-   
-
-}*/
+} else{
+      ?>
+      <div class="container">
+  <center>
+  <div id="cartel"  class="forma" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+  ?>
+  <?PHP
 }
+}else
+   {
+     header("Location: index.html");
+        exit();
+   }
+
 ?>
+
 <script type="text/javascript">
 
 $(document).on('click','.btnVincular', function(e){ // funcion para cargar las vinculaciones en la tabla

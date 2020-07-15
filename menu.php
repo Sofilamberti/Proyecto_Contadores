@@ -100,7 +100,7 @@ nav a:visited{
                
       
     }
-        mysqli_close ($conexion);
+        //mysqli_close ($conexion);
 
 ?>
    </ul>

@@ -8,7 +8,7 @@ if ($_SESSION['usuario_valido']!="")
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -53,9 +53,8 @@ if ($_SESSION['usuario_valido']!="")
 <center>
 
 		<div class="col-7">
-			 <BR>
 			 <form ACTION="" METHOD="POST" enctype="multipart/form-data">
-                <div  id="rectangle" style="background: #27B8CB" align="left"><h3>Mensaje para otros usuarios</h3></div>
+                <div  id="rectangle" style="background: #55D6D2" align="left"><h3>Mensaje para otros usuarios</h3></div>
                  
                 <BR>
                 <h5 align="left" >Seleccione los usuarios:</h5>

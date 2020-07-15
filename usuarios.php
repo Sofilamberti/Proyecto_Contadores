@@ -3,13 +3,15 @@
   
  ?>
 <?PHP 
+
     include ("menu.php");
     include ("conexion.php");
+       if($_SESSION['usuario_valido']!=""){
     ?>
 
 
 <head>
-
+<TITLE>CONTAONLINE</TITLE>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
@@ -24,16 +26,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
-
 </head>
 
 
 <body>
 
   <?PHP 
-   if($_SESSION['usuario_valido']!=""){
-   
+
+     $id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
       
     $instruccion = "select * from rol";
     $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
@@ -113,12 +118,25 @@
 
 
 <?PHP
-}
-else {
-header("Location: index.html");
-        exit();
-}
-?>
+
+
+} else{
+      ?>
+      <div class="container">
+  <center>
+  <div id="cartel"  class="forma" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+  
+  <?PHP
+  }
+    }
+    else {
+    header("Location: index.html");
+            exit();
+    }
+    ?>
 
 <script type="text/javascript">
   $(document).ready(function(){

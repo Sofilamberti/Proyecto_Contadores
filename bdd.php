@@ -1,9 +1,12 @@
 <?PHP
  session_start ();
+  include ("conexion.php");
+if ($_SESSION['usuario_valido']!="")
+   {
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -48,9 +51,7 @@ SUPONETE estilosBdd.CSS  -->
 </HEAD>
 <body>
 	<?PHP
- include ("conexion.php");
-if ($_SESSION['usuario_valido']!="")
-   {
+
 ?>
 <br>
 <br>

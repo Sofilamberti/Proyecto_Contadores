@@ -1,9 +1,11 @@
 <?PHP
  session_start ();
+  if ($_SESSION['usuario_valido']!="")
+   {
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -47,7 +49,15 @@
 include ("menu.php");
 include ("conexion.php");
 //se tendria que poner el id de la cuenta como variable se session
-$instruccion = "select * from cliente" ;////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
+ $id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
+ $id_cuenta=$_SESSION['cuenta'];
+       
+      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  ////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
 $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
 $filas = mysqli_num_rows ($consulta);
 
@@ -95,7 +105,7 @@ print('</select>
 <ul class=" ">
   <li class="list-group-item"><div >
 <caption>
-      <button class="btn btn-primary" style="background-color:#27B8CB; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
 	  PRESUPUESTO
       <span class="glyphicon glyphicon-plus"></span>
       </button>
@@ -144,7 +154,27 @@ print('</select>
     
     </div>
 </div>
-
+<?PHP
+ }
+            else{
+      ?>
+      <br>
+      <div class="container">
+  <center>
+  <div id="cartel"  > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>    
+  <?PHP
+    }
+    }
+ else
+   {
+     header("Location: index.html");
+        exit();
+   }
+?>
+    ?>
 <script type="text/javascript">
 	 $("#generarPresupuesto").click(function(){
 	 	dni=$('#dni').val();

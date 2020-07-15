@@ -1,9 +1,11 @@
 <?PHP
  session_start ();
+ if ($_SESSION['usuario_valido']!="")
+   {
   ?>
   <HTML>
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE </TITLE>
 
 
 
@@ -25,15 +27,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-<?PHP include ("menu.php");
-
-	  include ("conexion.php");
-	  
-	  $instruccion = "select * from cliente " ;////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
-      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
-      $filas = mysqli_num_rows ($consulta);
-?>
 <style>
 	.forma{
   display: inline-block;
@@ -85,9 +78,25 @@ border-width: 0px;
 
 
 </style>
+<?PHP include ("menu.php");
+
+	  include ("conexion.php");
+	  $id=$_SESSION['usuario_valido'];
+
+	 $instruccion = "select * from usuario where id_user='".$id."'";
+	 $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+	if($res2['id_rol']==1){ 
+		$id_cuenta=$_SESSION['cuenta'];
+       
+      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  ;////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
+      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
+      $filas = mysqli_num_rows ($consulta);
+?>
+
 </HEAD>
 
-
+<body>
 
 <div class="container">
  <div class="form-row">
@@ -141,6 +150,82 @@ print('</select>
 </div>
 </div>
 </body>
+<?PHP 
+		}
+		else{
+			?>
+			<body>
+
+<div class="container">
+ <div class="form-row">
+    <div class="form-group col-md-3">
+	<div id="rectangle" ><h2> CLIENTE:</h2> 
+	 </div></div>
+
+	  <div class="form-group col-md-3">
+	  	<div aling="left">
+	  	
+	<select id="dni" name="dni"  class="form-control" style="width:200px; 
+	height:50px; 
+	justify-content: left;
+	align-items: left;
+	text-align: left;
+	margin: 40px   10px   10px   10px;">
+                         <?PHP 
+                         $instruccion = "select  * FROM oxcxusuario where id_user='$id'"; 
+					      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 1");
+
+					      $nfilas = mysqli_num_rows ($consulta);
+					      for($i=0; $i<$nfilas; $i++)
+                     {
+                      $resultado = mysqli_fetch_array ($consulta);
+                   			$instruccion2 = "select  * FROM obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
+                       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
+                       $resultado2 = mysqli_fetch_array ($consulta2);
+                       $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."'";
+                      $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
+                       $resultado3 = mysqli_fetch_array ($consulta3);
+                          
+							  print('<option value="'.$resultado3['dni'].'">'.$resultado3['nombre'].' '.$resultado3['apellido'].'</option>');
+							  
+                                                      }
+                            
+                           
+						
+						   
+						  
+print('</select>
+		 
+	</div>
+	</div>
+	</div>');
+//$d=$_GET['dni'];
+	//href="crearPdf.php?dni='.$_GET['dni'].'"
+//onchange="this.form.submit()"
+?>
+<div class="container">
+<center>	
+
+	<div id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
+
+
+	<div  id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
+
+	<div  id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <a  href="">  	OTRA DOC </a></div>
+
+</center>
+</div>
+</div>
+</body>
+<?PHP	
+	}
+}
+ else
+   {
+     header("Location: index.html");
+        exit();
+   }
+?>
 <script type="text/javascript">
 	 $("#crearPDF").click(function(){
 	 	dni=$('#dni').val();

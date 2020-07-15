@@ -2,7 +2,12 @@
 session_start ();
 
       include ("conexion.php");
-      
+       $id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
        $id_cuenta=$_SESSION['cuenta'];
        
       $instruccion = "select * from cliente where cuenta_id='$id_cuenta'"; 
@@ -14,7 +19,21 @@ session_start ();
 
       
   ?> 
-
+<style type="text/css">
+  #cartel {
+  width: 1000px;
+  height: 200px;
+  background: #D9D9D9;
+   
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+  padding:35px 10px;
+  margin: 60px  50px   15px   50px;
+}
+</style>
 
 
 
@@ -55,9 +74,20 @@ session_start ();
 
               </tbody>
           </table>
-
-                
-  
+<?PHP
+            }
+            else{
+      ?>
+      <br>
+      <div class="container">
+  <center>
+  <div id="cartel"  > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>    
+  <?PHP
+    }
+    ?>
  <!--script para  buscar clientes en la tabla -->
 <script>
   $(document).ready(function(){

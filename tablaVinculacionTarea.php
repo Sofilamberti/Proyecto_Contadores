@@ -38,7 +38,7 @@ session_start ();
                       $resultado = mysqli_fetch_array ($consulta);
                        print('<tr>
 
-                          <td style="display:none " id="'.$resultado['id_txcxu'].'" name="'.$resultado['id_txcxu'].'"></td>');
+                          <td style="display:none " id="'.$resultado['id_txcxu'].'" name="'.$resultado['id_txcxu'].'"> '.$resultado['id_txcxu'].'</td>');
 
                       $instruccion2 = "select  * FROM tareaxcliente where id_txc='".$resultado['id_txc']."'"; 
                        $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
@@ -118,13 +118,14 @@ session_start ();
 
       fila=$(this).closest("tr");
 
-      nombre=fila.find('td:eq(0)').text()
-        cadena="nombre="+nombre;
-
+      id=fila.find('td:eq(0)').text();
+   
+        cadena="id="+id;
+        //window.location.href="/Proyecto_Contadores/eliminarVinculacion.php?"+cadena;
       $.ajax({
-          url:"/Proyecto_Contadores/eliminarGrupo.php?"+cadena,
+          url:"/Proyecto_Contadores/eliminarVinculacionTarea.php?"+cadena,
         }).done(function(data) {
-        $('#tablaGrupo').load('tablaGrupo.php');
+        $('#tablaVinculacionTarea').load('tablaVinculacionTarea.php');
         });
 
   });
