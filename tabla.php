@@ -49,8 +49,9 @@ session_start ();
                 <th scope="col" style="background-color:#FDB813;">CUIT</th>
                 <th scope="col" style="background-color:#FDB813;">Email</th>
                 <th scope="col" style="background-color:#FDB813;">Tipo Societario</th>
+                <th scope="col" style="background-color:#FDB813;">Condicion</th>
                 <th scope="col" style="background-color:#FDB813;">Editar</th>
-                <th scope="col" style="background-color:#FDB813;">Dar de baja</th>
+                <th scope="col" style="background-color:#FDB813;">Eliminar</th>
                </tr>
               </thead>
               <tbody >
@@ -64,6 +65,7 @@ session_start ();
                               <td >'.$resultado['cuit'].'</td>
                               <td >'.$resultado['email'].'</td>
                               <td >'.$resultado['TipoSocietario_tipo_societario'].'</td>
+                              <td >'.$resultado['condicion'].'</td>
                               <td><a style="color:black;" href="/Proyecto_Contadores/editarCliente.php?cuit='.$resultado['cuit'].'" ><i class="fas fa-edit"></i><input type="hidden" value='.$resultado['cuit'].'/> Editar datos </a> </td>
                                   <td> <button class="btn ajs-capture btnElim   " value='.$resultado['cuit'].' id="eliminar"  > <i class="fas fa-trash"></i> Eliminar </button> </div>
                               </td>

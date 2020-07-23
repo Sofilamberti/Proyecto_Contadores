@@ -30,7 +30,7 @@
 
 <?PHP
    
-  
+     include ("conexion.php");
 
       $instruccion2 = "select * from tiposocietario";
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
@@ -50,8 +50,8 @@
 $id=$_SESSION['usuario_valido'];
 
    $instruccion = "select * from usuario where id_user='".$id."'";
-   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
-      $res2= mysqli_fetch_array ($consulta2);
+   $consulta3 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta3);
   if($res2['id_rol']==1){
     ?>
     <div class="col-12">
@@ -63,9 +63,7 @@ $id=$_SESSION['usuario_valido'];
       </button>
 </caption>
 </div>
-<?PHP
-}
-?>
+
 
         <div id="tabla"> </div>
         </div>
@@ -107,7 +105,8 @@ $id=$_SESSION['usuario_valido'];
           </div>
                 <label>Email</label>
                   <input type="text"   name="" id="email" class="form-control input-sm">
-
+<div class="form-row">
+            <div class="form-group col-md-6">
               <label>Tipo de Societario</label>
                 <select id="tipoSocietario" name="tipoSocietario" class="form-control" >
                    <option value='' disabled>Seleccione una opcion</option>
@@ -121,6 +120,15 @@ $id=$_SESSION['usuario_valido'];
                              print('</select>');
                            }
                           ?>
+                        </select></div>
+                         <div class="form-group col-md-6">
+              <label>Condicion</label>
+                <select id="condicion" name="condicion" class="form-control" >
+                   <option value='' disabled>Seleccione una opcion</option>
+                   <option value='Monotributo' >Monotributo</option>
+                   <option value='Responsable Inscripto'>Responsable Inscripto</option>
+                        
+                        </select></div></div>
                     <div class="form-row">
             <div class="form-group col-md-6">
                   <label>Domicilio Fiscal</label>
@@ -146,6 +154,9 @@ $id=$_SESSION['usuario_valido'];
 </html>
 <?PHP
 }
+
+}
+
 else {
 header("Location: index.html");
         exit();
@@ -170,6 +181,7 @@ header("Location: index.html");
       dni=$('#dni').val();
       email=$('#email').val();
       tipoSocietario=$('#tipoSocietario').val();
+      condicion=$('#condicion').val();
       domicilio_fiscal=$('#domicilio_fiscal').val();
       domicilio_legal=$('#domicilio_legal').val();
          
@@ -182,7 +194,8 @@ header("Location: index.html");
       "&email="+email + 
       "&tipoSocietario="+tipoSocietario+
       "&domicilio_fiscal="+domicilio_fiscal+
-      "&domicilio_legal="+domicilio_legal ;
+      "&domicilio_legal="+domicilio_legal +
+      "&condicion="+condicion;
 
       $.ajax({
           url: "/Proyecto_Contadores/agregarCliente.php?"+cadena,

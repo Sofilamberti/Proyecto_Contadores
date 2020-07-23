@@ -122,7 +122,7 @@
                    <div class="form-group col-md-6">
                  <div id="rectangle" style="background-color: #FDB813;"><h3>TipoSocietaro</h3> </div>
                 <select class="form-control" id="tipo_soc" name="tipo_soc" >
-                   <option  disabled> Seleccione un Tipo Societario </option>');
+                   <option  disabled selected> Seleccione un Tipo Societario </option>');
                         
                             for($i=0; $i<$filas; $i++){
                               $result= mysqli_fetch_array ($consulta2);
@@ -145,7 +145,15 @@
                     <input type="text" value="'.$cliente['domicilio_legal'].'" name="domicilio_legal" id="domicilio_legal"  class="form-control input-sm">
                   </div>
                     </div>
-
+                    <div class="form-row">
+              <div class="form-group col-md-6">
+                   <div id="rectangle" style="background-color:#FA7564;"><h3>Condicion</h3></div>
+                <select id="condicion" name="condicion" class="form-control" >
+                   <option value="" disabled selected>Seleccione una opcion</option>
+                   <option value="Monotributo">Monotributo</option>
+                   <option value="Responsable Inscripto">Responsable Inscripto</option>
+                        
+                        </select></div></div>
                   ');
        //print('<input type="hidden" class="form-control" value="'.$cuit.'" id="cuit" name="cuit">');
          ?>
@@ -167,11 +175,12 @@ if (isset($_GET['submit'])) {
    $v6= $_GET["tipo_soc"];
    $v7= $_GET["domicilio_fiscal"];
    $v8= $_GET["domicilio_legal"];
+   $v9= $_GET["condicion"];
 
        $id_cuenta=$_SESSION['cuenta'];
 
   
-  $instruccion = "update  cliente  set nombre='$v1', apellido='$v2', dni='$v4',email='$v5',TipoSocietario_tipo_societario='$v6',domicilio_fiscal='$v7',domicilio_legal='$v8',cuenta_id='$id_cuenta' where cuit='$v3'";
+  $instruccion = "update  cliente  set nombre='$v1', apellido='$v2', dni='$v4',email='$v5',TipoSocietario_tipo_societario='$v6',domicilio_fiscal='$v7',domicilio_legal='$v8',condicion='$v9'  where cuit='$v3' and cuenta_id='$id_cuenta'";
   mysqli_query($conexion, $instruccion) or die ("Fallo en insertar  en la tabla de usuarios");
 
    echo '<script language="javascript">alert("Se han modificado los datos con exito con exito");window.location.href="clientes.php"</script>';
