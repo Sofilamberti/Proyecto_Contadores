@@ -3,7 +3,7 @@
   ?>
 
 <HEAD>
-<TITLE>Aca va el nombre del programa </TITLE>
+<TITLE>CONTAONLINE</TITLE>
 
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -11,6 +11,29 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<style type="text/css">
+  .forma{
+  display: inline-block;
+
+}
+  #rectangulo {
+  width: 90px;
+  height: 25px;
+   
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+  
+}
+
+#rectangulo > h5{
+  font-family: sans-serif;
+  color: black;
+  font-size: 5px;
+  font-weight: bold;
+}
+</style>
 <?PHP include ("menu.php");
       include ("conexion.php");
   
@@ -58,41 +81,73 @@ if ($_SESSION['usuario_valido']!="")
 
 
 <div class="container">
+  <div class="container">
+    <center>
     <div class="col-11">
       <table class="table table-striped"  style="float:center; height:20%;" > 
             <thead>
                   <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">#</th>
-                      <th scope="col">cuota</th>
-                      <th scope="col">anticipo</th>
-                      <th scope="col">periodo</th>
-                      <th scope="col">estado</th>
-                      <th scope="col">comentarios</th>
+                      <th scope="col">Cliente</th>
+                      <th scope="col">Obligacion</th>
+                      <th scope="col">Cuota</th>
+                      <th scope="col">Anticipo</th>
+                      <th scope="col">Periodoooo</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Comentario</th>
                   </tr>
             </thead>
             <tbody>
-                   <tr>
-                     <th scope="row">aca iria el impuesto</th>
+                   
+                  
       <?PHP
      /* for($n=0;$n<$nfilas;$n++){
         $resultado= mysqli_fetch_array ($consulta);*/
-       print('<td>persona</td>
-              <td>  </td>
-              <td>@mdo</td>
-              <td>persona</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-           ');
+        $ins="select * from obligacionxcliente";
+          $cons= mysqli_query ($conexion, $ins) or die ("Fallo en la consulta");///obtengo todos las filas de tablero de control
+      $nfilas = mysqli_num_rows ($cons);
+
+        for ($i=0; $i < $nfilas; $i++) {
+        print('<tr>');
+          $res= mysqli_fetch_array ($cons);
+          $ins1="select * from cliente where cuit='".$res['Cliente_cuit']."'";
+          $cons1= mysqli_query ($conexion, $ins1) or die ("Fallo en la consulta");
+          $res1= mysqli_fetch_array ($cons1);
+          print('<td> '.$res1['nombre'].' '.$res1['apellido'].'</td>');
+           $ins2="select * from obligacion where id='".$res['Obligacion_id']."'";
+          $cons2= mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta");
+          $res2= mysqli_fetch_array ($cons2);
+           print('<td> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
+          $cuit=substr("".$res['Cliente_cuit']."", -1);;
+          print('<td>--</td>
+              <td>--</td>');
+         $ins3="select * from vencimientos where id_obligacion='".$res['Obligacion_id']."' and terminacion_cuit   LIKE '%".$cuit."%'";
+          $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta9");
+          $res3= mysqli_fetch_array ($cons3);
+         setlocale(LC_TIME, "spanish");//para tener los meses en español
+         $mes_anterior = date('F', strtotime('-1 month'));//para tener el mes anterior el %B es para tener el nombre del mes entero para tener "julio" en vez de "jul"
+           print('<td style="height:10px">' .$res3[''.strftime("%B").''].' / '.strftime("%B").'<BR>' .$res3[''.strftime("%B", strtotime($mes_anterior)).''].' / '.strftime("%B",strtotime($mes_anterior)).' </td>
+                  
+           <td id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>Presentado</h6> </td>
+           <td id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
+           <td id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
+           
+
+              <td><button value=" " class="btn btn-primary" name="" > <i class="fas fa-plus-circle"></i></button></td>
+
+              </tr>');
+
+        }
+       
 
       //}
       
-      ?>
-                    </tr>
-
+    ?>
+                   
             </tbody>
     </table>
   </div>
+  </center>
+</div>
 </div>
 <?PHP
    }

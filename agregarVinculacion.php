@@ -33,7 +33,18 @@
           $instruccion2 = "insert into oxcxusuario (id_oxc, id_user, id_cuenta)  values ('$id','$v2','$id_cuenta')";
       mysqli_query($conexion, $instruccion2) or die ("Fallo en insertar  en la tabla");
         }
-       
+       else{ ?>
+        <script type="text/javascript">
+
+
+          alertify.success("ya existe la vinculacion");
+        
+  
+     
+
+</script>
+<?PHP
+       }
         
 }
 

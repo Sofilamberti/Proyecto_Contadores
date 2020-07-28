@@ -183,6 +183,7 @@ print('</select>
                        $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
                        $resultado2 = mysqli_fetch_array ($consulta2);
                        $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."'";
+                      
                       $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
                        $resultado3 = mysqli_fetch_array ($consulta3);
                           
