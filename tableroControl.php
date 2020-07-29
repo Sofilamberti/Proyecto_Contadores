@@ -122,7 +122,7 @@ if ($_SESSION['usuario_valido']!="")
            $ins2="select * from obligacion where id='".$res['Obligacion_id']."'";
           $cons2= mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta");
           $res2= mysqli_fetch_array ($cons2);
-           print('<td id="impuesto"> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
+           print('<td> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
           $cuit=substr("".$res['Cliente_cuit']."", -1);;
           print('<td>--</td>
               <td>--</td>');
@@ -136,6 +136,8 @@ if ($_SESSION['usuario_valido']!="")
            <td id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>Presentado</h6> </td>
            <td id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
            <td id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
+
+            <input  type="hidden"  value="'.$res2['rubro'].' | '.$res2['impuesto'].'"  id="impuesto">
            
 
               <td><button value=" " class="btn btn-primary" name="" > <i class="fas fa-plus-circle"></i></button></td>
@@ -186,8 +188,8 @@ if ($_SESSION['usuario_valido']!="")
         <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
          <div class="modal-body">
-                <label id="nombreCliente" > - </label>
-                <label id="impuesto" ></label>
+                <label id="nombreCliente" > </label>
+                <label id="obligacion" > - </label>
 
 
 
@@ -235,10 +237,10 @@ else
 
       cliente=$('#abrirModal').val();
       impuesto=$('#impuesto').val();
-     
+  
 
         $("#nombreCliente").append(cliente);
-        $("#impuesto").append(impuesto);///esto muestra nada
+        $("#obligacion").append(impuesto);///esto muestra nada
         $("#modalTableroControl").modal("show");
 
     });
