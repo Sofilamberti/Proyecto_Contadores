@@ -1,7 +1,11 @@
 <?PHP
  session_start ();
   ?>
-
+  <?php
+if ($_SESSION['usuario_valido']!="")
+   {
+     
+     ?>
 <HEAD>
 <TITLE>CONTAONLINE</TITLE>
 
@@ -11,6 +15,10 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
 <style type="text/css">
   .forma{
   display: inline-block;
@@ -72,9 +80,6 @@
 
      
 
-if ($_SESSION['usuario_valido']!="")
-   {
-     
 
 
 ?>
@@ -91,9 +96,10 @@ if ($_SESSION['usuario_valido']!="")
                       <th scope="col">Obligacion</th>
                       <th scope="col">Cuota</th>
                       <th scope="col">Anticipo</th>
-                      <th scope="col">Periodoooo</th>
+                      <th scope="col">Periodo</th>
                       <th scope="col">Estado</th>
                       <th scope="col">Comentario</th>
+                      <th scope="col">Modificar estado de la obligacion</th>
                   </tr>
             </thead>
             <tbody>
@@ -112,11 +118,11 @@ if ($_SESSION['usuario_valido']!="")
           $ins1="select * from cliente where cuit='".$res['Cliente_cuit']."'";
           $cons1= mysqli_query ($conexion, $ins1) or die ("Fallo en la consulta");
           $res1= mysqli_fetch_array ($cons1);
-          print('<td> '.$res1['nombre'].' '.$res1['apellido'].'</td>');
+          print(' <td>'.$res1['nombre'].' '.$res1['apellido'].'</td>');
            $ins2="select * from obligacion where id='".$res['Obligacion_id']."'";
           $cons2= mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta");
           $res2= mysqli_fetch_array ($cons2);
-           print('<td> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
+           print('<td id="impuesto"> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
           $cuit=substr("".$res['Cliente_cuit']."", -1);;
           print('<td>--</td>
               <td>--</td>');
@@ -134,6 +140,8 @@ if ($_SESSION['usuario_valido']!="")
 
               <td><button value=" " class="btn btn-primary" name="" > <i class="fas fa-plus-circle"></i></button></td>
 
+              <td> <button value="'.$res1['nombre'].'"  id="abrirModal"  class="btn btn-primary openBtn" name="" > <i class=" fa fa-wrench"></i></button>  </td>
+
               </tr>');
 
         }
@@ -145,10 +153,70 @@ if ($_SESSION['usuario_valido']!="")
                    
             </tbody>
     </table>
+
+
+
+
+
   </div>
+
+
   </center>
+
+
+
+
+
 </div>
 </div>
+
+
+
+
+<!-- MODAL -->
+
+
+
+<div class="modal fade" id="modalTableroControl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Modificar estado de una obligacion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden=" true">&times;</span> </button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+         <div class="modal-body">
+                <label id="nombreCliente" > - </label>
+                <label id="impuesto" ></label>
+
+
+
+
+                <div class="card" style="width:50%; height:30%;">
+                  <div class="card-header">  Archivos adjuntos </div>
+                <div class="card-body">
+               <blockquote class="blockquote sm-0">
+                 <p>DDJJ</p>
+                 <p>Ticket</p>
+                 <p>VEP</p>
+                 <p>Compensacion</p>
+                 <p>Archivos Opcionales</p>
+                 <footer class="blockquote-footer"> </footer>
+                </blockquote>
+               </div>
+              </div>
+                
+
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="agregarUsuario">
+       
+        </button>
+       
+      </div>
+    </div>
+    
+    </div>
 <?PHP
    }
 else
@@ -158,3 +226,31 @@ else
    }
   ?>
 
+
+
+
+<script>
+  $(document).ready(function(){
+    $("#abrirModal").click(function(){
+
+      cliente=$('#abrirModal').val();
+      impuesto=$('#impuesto').val();
+     
+
+        $("#nombreCliente").append(cliente);
+        $("#impuesto").append(impuesto);///esto muestra nada
+        $("#modalTableroControl").modal("show");
+
+    });
+});
+
+</script>
+<!-- 
+<script>
+$('.openBtn').click(function(){
+    $('.modal-body').load('contenidoModal.php',function(){
+        $('#modalTableroControl').modal({show:true});
+    });
+});
+</script>
+-->
