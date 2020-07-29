@@ -139,6 +139,7 @@ if ($_SESSION['usuario_valido']!="")
 
             <input  type="hidden"  value="'.$res2['rubro'].' | '.$res2['impuesto'].'"  id="impuesto">
            
+           
 
               <td><button value=" " class="btn btn-primary" name="" > <i class="fas fa-plus-circle"></i></button></td>
 
@@ -203,7 +204,7 @@ if ($_SESSION['usuario_valido']!="")
                  <p>VEP</p>
                  <p>Compensacion</p>
                  <p>Archivos Opcionales</p>
-                 <footer class="blockquote-footer"> </footer>
+                 <footer class="blockquote-footer">  </footer>
                 </blockquote>
                </div>
               </div>
@@ -237,10 +238,11 @@ else
 
       cliente=$('#abrirModal').val();
       impuesto=$('#impuesto').val();
-  
+      correo=$('#correo').val();
 
-        $("#nombreCliente").append(cliente);
-        $("#obligacion").append(impuesto);///esto muestra nada
+        $("#nombreCliente").text(cliente);
+        $("#obligacion").text(impuesto);
+        $("#contacto").text(impuesto);
         $("#modalTableroControl").modal("show");
 
     });
