@@ -54,6 +54,11 @@ include ("menu.php");
 
 ?>
 <div class="container">
-    <a href="/Proyecto_Contadores/normativa.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+    <a href="/Proyecto_Contadores/normativa.php" ><h4>
+        <i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+        <!--<?PHP 
+        //$texto = file_get_contents("http://www.sil2.com.ar/laboralonline/novlab1403.htm");
+        //print('<center><h4 readonly> '.$texto.'</h4>');
+        ?>-->
 <center><object type="text/html" data="http://www.sil2.com.ar/laboralonline/novlab1403.htm" frameborder="0" allowfullscreen width="100%" height="100%"></object></center>
 </div>

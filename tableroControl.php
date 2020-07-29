@@ -96,10 +96,10 @@ if ($_SESSION['usuario_valido']!="")
                       <th scope="col">Obligacion</th>
                       <th scope="col">Cuota</th>
                       <th scope="col">Anticipo</th>
-                      <th scope="col">Periodo</th>
+                      <th scope="col">Periodooo</th>
                       <th scope="col">Estado</th>
                       <th scope="col">Comentario</th>
-                      <th scope="col">Modificar estado de la obligacion</th>
+                      <th scope="col">Modificar</th>
                   </tr>
             </thead>
             <tbody>
@@ -212,8 +212,8 @@ if ($_SESSION['usuario_valido']!="")
 
           </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="agregarUsuario">
-       
+        <button type="button" class="btn btn-primary" data-dismiss="modal"  id="agregarUsuario">
+        Enviar
         </button>
        
       </div>

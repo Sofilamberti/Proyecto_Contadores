@@ -116,7 +116,7 @@ if ($_SESSION['usuario_valido']==$id_user)
     
     <div class="card-body">
       
-     <center><a href="/Proyecto_Contadores/tabcont.php"><img src="/Proyecto_Contadores/img/men4.png" width="150" height="150"  alt="..."></a></center>
+     <center><a href="/Proyecto_Contadores/tableroControl.php"><img src="/Proyecto_Contadores/img/men4.png" width="150" height="150"  alt="..."></a></center>
      <h4 class="card-title" style="font-family: Bahnschrift Condensed; font-size: 25px;"><center> Tablero de Control   </center></h4>
     </div>
     </center>

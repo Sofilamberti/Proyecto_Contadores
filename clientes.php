@@ -45,7 +45,7 @@
    <div class="container">
     <div class="container">
       <div class="container">
-    <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+    
     <?PHP
 $id=$_SESSION['usuario_valido'];
 
@@ -54,6 +54,7 @@ $id=$_SESSION['usuario_valido'];
       $res2= mysqli_fetch_array ($consulta3);
   if($res2['id_rol']==1){
     ?>
+    <a href="/Proyecto_Contadores/bdd.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
     <div class="col-12">
  <div style="float:right;">
 <caption>
@@ -154,6 +155,17 @@ $id=$_SESSION['usuario_valido'];
 </html>
 <?PHP
 }
+else{
+      ?>
+      <div class="container">
+  <center>
+  <div id="cartel"  class="forma" > <h3 style="font-family: Bahnschrift Condensed; font-size: 60px;"> LO SENTIMOS NO TIENES ACCESO A ESTA SECCION :( </h3>
+</div>
+</center>
+</div>
+  
+  <?PHP
+  }
 
 }
 

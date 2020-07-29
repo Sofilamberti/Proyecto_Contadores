@@ -57,7 +57,7 @@ include ("conexion.php");
   if($res2['id_rol']==1){
  $id_cuenta=$_SESSION['cuenta'];
        
-      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  ////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
+      $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  
 $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
 $filas = mysqli_num_rows ($consulta);
 
