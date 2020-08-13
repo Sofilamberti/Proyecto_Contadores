@@ -52,20 +52,30 @@ if ($_SESSION['usuario_valido']!="")
 ?>
 <BR>
 
-      <a href="/Proyecto_Contadores/mensajeGrupo.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
+     
 
 
 <div class="container">
+<div class="container">
+<div class="container">
+   <a href="/Proyecto_Contadores/mensajeGrupo.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
     <div class="col-12">
- <div style="float:right;">
+ 
+         <div style="float:right;">
 <caption>
-      <input type="button" value=" Agregar Grupo" class="btn btn-primary" style="background-color:#D16659; color:white;"name="Agregar Grupo" OnClick="location.href='/Proyecto_Contadores/agregarGrupo.php'">
+      <input type="button" value=" Agregar Grupo" class="btn btn-primary" style="background-color:#FA7564; color:white;"name="Agregar Grupo" OnClick="location.href='/Proyecto_Contadores/agregarGrupo.php'">
                 
 </caption>
 </div>
-</div>
+
+
         <div id="tablaGrupo"> </div>
    </div>
+
+        </div>
+   </div>
+</div>
+
 
    <!-- modal para agregar los datos de un usuario nuevo-->
    

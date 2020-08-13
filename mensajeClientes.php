@@ -10,8 +10,19 @@ if ($_SESSION['usuario_valido']!="")
 <HEAD>
 <TITLE>CONTAONLINE</TITLE>
 
+<link rel="stylesheet" type="text/css" href="alertify.css" >
+<link rel="stylesheet" type="text/css" href="semantic.css" >
+<link rel="stylesheet" type="text/css" href="default.css" >
+
+<script src="alertify/alertify.js"></script>
+
 <script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://kit.fontawesome.com/0c4b5fe221.js" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -25,19 +36,19 @@ if ($_SESSION['usuario_valido']!="")
   
 #rectangle {
   width:550px; 
-  height:30px; 
+  height:25px; 
   
   justify-content: left;
   align-items: left;
   text-align: left;
  
-  padding:22px 50px;
+  padding:20px 105px;
   margin: 10px   10px   20px   10px;
 }
 #rectangle > h3 {
   font-family: sans-serif;
   color: black;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
   text-align: left;
 }
@@ -56,21 +67,11 @@ if ($_SESSION['usuario_valido']!="")
 		<div class="col-7">
 			 <BR>
 			 <form ACTION="" METHOD="POST" enctype="multipart/form-data">
-                <div  id="rectangle" style="background: #FDB813" align="left"><h3>Mensaje para grupo de clientes</h3></div>
+                <div  id="rectangle" style="background: #FDB813" align="left"><h3>Mensaje para clientes</h3></div>
                   
-                <BR>
-                <div class="form-row">
-                <div class="form-group col-md-6">
+               
                 <h5 align="left" >Seleccione los clientes:</h5>
-              </div>
-
-                <div class="form-group col-md-6">  
-                <div align="right">           
-                <input type="button" value=" Grupos de Clientes" class="btn btn-primary" style="background-color:#FDB813; color:white;"name=" Grupos de Clientes" OnClick="location.href='/Proyecto_Contadores/grupo.php'">
-                
-              </div>
-              </div>
-            </div>
+              
       <div align="left">
                 <input type="text" class="form-control"  id="search" placeholder="filtrar">
 
@@ -80,44 +81,41 @@ if ($_SESSION['usuario_valido']!="")
                <div align="left">
                <div style="height: 150px;overflow: auto;" >
                <?PHP 
-               $id_cuenta=$_SESSION['cuenta'];
-                $instruccion = "select * from cliente where cuenta_id='$id_cuenta'"; 
-                $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta"); 
-                 $nfilas = mysqli_num_rows ($consulta);
+
                   ?>
                      <table   align="left" style="border-collapse: separate; border-spacing: 0 10px; width: 100%;"  name="tablaClientes" id="tablaClientes" >
                       <tbody>
                   <?PHP
-                  $ins = "select  DISTINCT (nombre) FROM grupo where id_cuenta='$id_cuenta'";
-                $con = mysqli_query ($conexion, $ins) or die ("Fallo en la consulta"); 
-                 $nf = mysqli_num_rows ($con);
+                  
+                   $id=$_SESSION['usuario_valido'];
+               $id_cuenta=$_SESSION['cuenta'];
+               $instruccion = "select  * FROM oxcxusuario where id_user='$id'"; 
+                $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 1");
                 
-                 for($j=0;$j<$nf;$j++){
-                             $res = mysqli_fetch_array ($con);
+                
+                $nfilas = mysqli_num_rows ($consulta);
 
-                          print('<tr>
-                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"> Grupo </td>
-                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"> '.$res['nombre'].'   </td>
-                            <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px"></td>
-                             <td>
-                             <button value="grupo" title="grupo" class="btn btn-primary grupo" id="'.$res['nombre'].'" name="'.$res['nombre'].'" aling="right">
-                              <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                            </button></td>
-                             <td style="display:none " id="" name=""></td>
-                            </tr>');
-                        }
-                  for($i=0;$i<$nfilas;$i++){
-                  $resultado = mysqli_fetch_array ($consulta);
+                for($i=0; $i<$nfilas; $i++)
+                     {
+                      $resultado = mysqli_fetch_array ($consulta);
+                        $instruccion2 = "select * from obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
+                       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
+                       $resultado2 = mysqli_fetch_array ($consulta2);
+                       $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."' and cuenta_id='".$id_cuenta."'";
+                      
+                      $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
+                       $resultado3 = mysqli_fetch_array ($consulta3);
+                     
                   print('<tr>
                                 
-                              <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado['nombre'].'</td>
-                              <td  class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado['apellido'].'</td>
-                              <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado['email'].'</td>
+                              <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado3['nombre'].'</td>
+                              <td  class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado3['apellido'].'</td>
+                              <td class="bg-light border-bottom border-gray rounded text-center px-2" style="font-size:15px">'.$resultado3['email'].'</td>
                               <td>
-                              <button value="comprarLibro" title="Agregar a la lista" class="btn btn-primary btn-cargar" id="'.$resultado['cuit'].'" aling="right">
+                              <button value="comprarLibro" title="Agregar a la lista" class="btn btn-primary btn-cargar" id="'.$resultado3['cuit'].'" aling="right">
                               <i class="fa fa-check-square-o" aria-hidden="true"></i>
                             </button></td>
-                            <td style="display:none" id="'.$resultado['cuit'].'" name="'.$resultado['cuit'].'">'.$resultado['cuit'].'</td>
+                            <td style="display:none" id="'.$resultado3['cuit'].'" name="'.$resultado3['cuit'].'">'.$resultado3['cuit'].'</td>
                             </tr>');
                         }
                ?>
@@ -161,8 +159,7 @@ if (isset($_POST['enviar']) ) {
      $id_cuenta=$_SESSION['cuenta'];
       if (isset($_POST['emails']) ) { //hago esta verificacion para evitar errores y por las dudas que vengan vacios ya que pueden seleccionar tanto emails sueltos como gurpos.
         $destino=$_POST['emails'];}
-     if (isset($_POST['grupos']) ) {//hago esta verificacion para evitar errores y por las dudas que vengan vacios ya que pueden seleccionar tanto emails sueltos como gurpos.
-      $grupos=$_POST['grupos'];}
+     
        $archivos = $_FILES['archivos'];
     $nombre_archivos = $archivos['name'];
     $ruta_archivos = $archivos['tmp_name'];
@@ -198,26 +195,7 @@ if (isset($_POST['enviar']) ) {
      
      
       //print($nom);// este for es para enviar a los integrantes de un grupo, primero busco los integrantes y despues en clientes busco el mail de cada integrante
-      if (isset($_POST['grupos']) ) { 
-      for($j=0;$j<count($grupos);$j++){
-         $nom=trim($grupos[$j]);
-          $instruccion3 = "select * from grupo where nombre='".$nom."' and id_cuenta='$id_cuenta'"; 
-          $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta grupos");
-          $nfilas3 = mysqli_num_rows ($consulta3);
-          print($nfilas3);
-          for($h=0;$h<$nfilas3;$h++){
-              $resultado3 = mysqli_fetch_array ($consulta3);
-              $cu=$resultado3['cuit'];
-             
-              $instruccion4= "select * from cliente where cuenta_id='$id_cuenta' and cuit='$cu'";  
-              $consulta4 = mysqli_query ($conexion, $instruccion4) or die ("Fallo en la consulta clientes");
-              $resultado4 = mysqli_fetch_array ($consulta4);
-              $ma=$resultado4['email'];
-              $mail->AddAddress($ma); 
-           
-          }
-      }
-    }
+      
     if (isset($_POST['emails']) ) {
     for($i=0;$i<count($destino);$i++){
         $mail->AddAddress($destino[$i]); 
@@ -231,10 +209,7 @@ if (isset($_POST['enviar']) ) {
  }
 }
 
-
-
-
-    else {
+  else {
     header("Location: index.html");
             exit();
     }

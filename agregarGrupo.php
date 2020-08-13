@@ -55,7 +55,7 @@ if ($_SESSION['usuario_valido']!="")
 		<div class="col-7">
 			 <BR>
 			 <form ACTION="" METHOD="POST" enctype="multipart/form-data">
-                <div  id="rectangle" style="background: #FCC839" align="left"><h3>Crear Nuevo Grupo</h3></div>
+                <div  id="rectangle" style="background: #FDB813" align="left"><h3>Crear Nuevo Grupo</h3></div>
                   
                 <BR>
 

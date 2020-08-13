@@ -89,17 +89,17 @@ if ($_SESSION['usuario_valido']!="")
   <div class="container">
     <center>
     <div class="col-11">
-      <table class="table table-striped"  style="float:center; height:20%;" > 
+      <table class="table table-striped"  id="panel" style="float:center; height:20%;" > 
             <thead>
                   <tr>
-                      <th scope="col">Cliente</th>
-                      <th scope="col">Obligacion</th>
-                      <th scope="col">Cuota</th>
-                      <th scope="col">Anticipo</th>
-                      <th scope="col">Periodooo</th>
-                      <th scope="col">Estado</th>
-                      <th scope="col">Comentario</th>
-                      <th scope="col">Modificar</th>
+                      <th scope="col" onclick="sortTable(0, 'str')">Cliente</th>
+                      <th scope="col" onclick="sortTable(1, 'str')">Obligacion</th>
+                      <th scope="col" onclick="sortTable(2, 'str')">Cuota</th>
+                      <th scope="col" onclick="sortTable(3, 'str')">Anticipo</th>
+                      <th scope="col" onclick="sortTable(4, 'date')">Periodooo</th>
+                      <th scope="col" onclick="sortTable(5, 'str')">Estado</th>
+                      <th scope="col" >Comentario</th>
+                      <th scope="col" >Modificar</th>
                   </tr>
             </thead>
             <tbody>
@@ -113,27 +113,40 @@ if ($_SESSION['usuario_valido']!="")
       $nfilas = mysqli_num_rows ($cons);
 
         for ($i=0; $i < $nfilas; $i++) {
-        print('<tr>');
-          $res= mysqli_fetch_array ($cons);
-          $ins1="select * from cliente where cuit='".$res['Cliente_cuit']."'";
+           $res= mysqli_fetch_array ($cons);
+            $ins1="select * from cliente where cuit='".$res['Cliente_cuit']."'";
           $cons1= mysqli_query ($conexion, $ins1) or die ("Fallo en la consulta");
           $res1= mysqli_fetch_array ($cons1);
-          print(' <td>'.$res1['nombre'].' '.$res1['apellido'].'</td>');
+          $cuit=substr("".$res['Cliente_cuit']."", -1);;
+        
            $ins2="select * from obligacion where id='".$res['Obligacion_id']."'";
           $cons2= mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta");
           $res2= mysqli_fetch_array ($cons2);
-           print('<td> '.$res2['rubro'].' | '.$res2['impuesto'].'</td>');
-          $cuit=substr("".$res['Cliente_cuit']."", -1);;
-          print('<td>--</td>
-              <td>--</td>');
-         $ins3="select * from vencimientos where id_obligacion='".$res['Obligacion_id']."' and terminacion_cuit   LIKE '%".$cuit."%'";
+          $ins3="select * from vencimientos where id_obligacion='".$res['Obligacion_id']."' and terminacion_cuit   LIKE '%".$cuit."%'";
           $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta9");
           $res3= mysqli_fetch_array ($cons3);
+          for($j=0;$j<2;$j++){
+        print('<tr>');
+
+          print(' <td>'.$res1['nombre'].' '.$res1['apellido'].'</td>');
+         
+           print('<td>  '.$res2['impuesto'].'</td>');
+          
+          print('<td>--</td>
+              <td>--</td>');
+        /* $ins3="select * from vencimientos where id_obligacion='".$res['Obligacion_id']."' and terminacion_cuit   LIKE '%".$cuit."%'";
+          $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta9");
+          $res3= mysqli_fetch_array ($cons3);*/
          setlocale(LC_TIME, "spanish");//para tener los meses en español
-         $mes_anterior = date('F', strtotime('-1 month'));//para tener el mes anterior el %B es para tener el nombre del mes entero para tener "julio" en vez de "jul"
-           print('<td style="height:10px">' .$res3[''.strftime("%B").''].' / '.strftime("%B").'<BR>' .$res3[''.strftime("%B", strtotime($mes_anterior)).''].' / '.strftime("%B",strtotime($mes_anterior)).' </td>
+         $mes_siguiente = date('F', strtotime('+1 month'));//para tener el mes anterior el %B es para tener el nombre del mes entero para tener "julio" en vez de "jul"
+         if($j==0){
+           print('<td style="height:10px">' .$res3[''.strftime("%B").''].'</td>');
+         }elseif ($j==1) {
+           print('<td style="height:10px">' .$res3[''.strftime("%B", strtotime($mes_siguiente)).''].' </td>');
+         }
+            
                   
-           <td id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>Presentado</h6> </td>
+           print('<td id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>Presentado</h6> </td>
            <td id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
            <td id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </td> 
 
@@ -143,9 +156,10 @@ if ($_SESSION['usuario_valido']!="")
 
               <td><button value=" " class="btn btn-primary" name="" > <i class="fas fa-plus-circle"></i></button></td>
 
-              <td> <button value="'.$res1['nombre'].'"  id="abrirModal"  class="btn btn-primary openBtn" name="" > <i class=" fa fa-wrench"></i></button>  </td>
+              <td> <button value="'.$res1['cuit'].'"  id="abrirModal"  class="btn btn-primary openBtn" name="" > <i class=" fa fa-wrench"></i></button>  </td>
 
               </tr>');
+         }
 
         }
        
@@ -247,7 +261,57 @@ else
 
     });
 });
-
+function sortTable(n,type) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+ 
+  table = document.getElementById("panel");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc";
+ 
+  /*Make a loop that will continue until no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare, one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place, based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if ((type=="str" && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type=="date" && x.innerHTML > y.innerHTML)) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if ((type=="str" && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type=="date" && x.innerHTML < y.innerHTML)) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /*If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
 </script>
 <!-- 
 <script>

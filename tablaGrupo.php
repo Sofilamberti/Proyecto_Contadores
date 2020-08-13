@@ -25,9 +25,9 @@ session_start ();
             <caption>Lista de Obligaciones</caption>
              <thead class="thead-light">
               <tr>
-                <th scope="col" style="background-color:#D16659; color:white;">Nombre</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Clientes</th>
-                <th scope="col" style="background-color:#D16659; color:white;">Eliminar</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Nombre</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Clientes</th>
+                <th scope="col" style="background-color:#FA7564; color:white;">Eliminar</th>
               </tr>
               </thead>
               <tbody >

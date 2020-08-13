@@ -98,7 +98,7 @@ if ($_SESSION['usuario_valido']!="")
                         <td value="'.$resultado['cuit'].'"><input type="hidden" value="'.$resultado['cuit'].'" class="cliente">'.$resultado['nombre'].' '.$resultado['apellido'].'</td>
           
                         <td>  <select id="usuario" name="usuario" class="usuario form-control">');
-                      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta' and id_rol=2"; 
+                      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta'"; 
       
        
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");

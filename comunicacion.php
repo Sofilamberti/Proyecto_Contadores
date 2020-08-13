@@ -88,7 +88,14 @@ if ($_SESSION['usuario_valido']!="")
 </HEAD>
 
 <body>	
-	
+	<?PHP
+	$id=$_SESSION['usuario_valido'];
+
+   $instruccion = "select * from usuario where id_user='".$id."'";
+   $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
+      $res2= mysqli_fetch_array ($consulta2);
+  if($res2['id_rol']==1){
+  	?>
 <div class="container">
 
 	<center>
@@ -104,7 +111,27 @@ if ($_SESSION['usuario_valido']!="")
 
 	</center>
 	</div>
-<?PHP
+	<?PHP
+} else{
+      ?>
+      <div class="container">
+
+	<center>
+		<br>
+	<div id="circulo1"  class="forma" ><a href="/Proyecto_Contadores/mensajeClientes.php" > MENSAJES A CLIENTES
+	</a> </div>
+	<div  id="circulo3"  class="forma" > <a a href="/Proyecto_Contadores/mensajeInterno.php">MENSAJES ENTRE USUARIOS
+	 </a></div>
+	<div  id="circulo2"  class="forma" > <a a href="/Proyecto_Contadores/mensajeAdministracion.php">MENSAJERIA CON ADMIN DE CONTAONLINE
+	 </a></div>
+
+	</center>
+	</div>
+  
+  <?PHP
+}
+
+
 }
 
  else

@@ -29,8 +29,7 @@ session_start ();
                 <th scope="col" style="background-color:#55D6D2;">Usuario</th>
                 <th scope="col" style="background-color:#55D6D2;">Rol</th>
                 <th scope="col" style="background-color:#55D6D2;">Email</th>
-                <th scope="col" style="background-color:#55D6D2;">Editar datos</th>
-                <th scope="col" style="background-color:#55D6D2;">Dar de baja</th>
+            
               </tr>
               </thead>
               <tbody >
@@ -48,14 +47,7 @@ session_start ();
                           
                      print('<td>'.$nombreRol['descripcion_rol'].'</td>
                             <td >'.$resultado['email'].'</td>  
-                            <div class="btn-group">
-                            <td><a style="color:black;" href="/Proyecto_Contadores/editarUsuario.php?id_user='.$resultado['id_user'].'" ><i class="fas fa-edit"></i><input type="hidden" value='.$resultado['id_user'].'/> Editar datos </a> </td>
-
-                           <td> <button class="btn ajs-capture btnElim" value='.$resultado['id_user'].' id="eliminar"  ><i class="fas fa-trash"></i><input type="hidden" value='.$resultado['id_user'].'/> dar de baja </button> </div></td>
-                            ');
-                    
-
-                            print('</tr>');
+                            </tr>');
                         }
                         ?>
 

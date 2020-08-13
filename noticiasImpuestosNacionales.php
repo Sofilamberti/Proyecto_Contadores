@@ -33,12 +33,12 @@
 include ("menu.php");
 
 
-?>
+?><body >
 <div class="container">
 	<a href="/Proyecto_Contadores/normativa.php" ><h4><i class="fas fa-arrow-circle-left"></i> Volver</h4>  </a>
 <center><object type="text/html" data="
-http://www.sil2.com.ar/impuestoonline/novimp1403.htm" frameborder="0" allowfullscreen width="100%" height="100%" ></object></center></div>
-
+http://www.sil2.com.ar/impuestoonline/novimp1403.htm" frameborder="0" id="obj" allowfullscreen width="100%" height="100%" readonly></object></center></div>
+</body>
 
 
 
