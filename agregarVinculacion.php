@@ -24,13 +24,11 @@
         if($nfilas2==0) {
            $instruccion ="insert into  obligacionxcliente (Cliente_cuit,Obligacion_id,id_cuenta) values ('$cu','$ob','$id_cuenta')";
 
-            mysqli_query($conexion, $instruccion) or die ("Fallo en consulta  en la tabla");
-            $ins2= "select * from obligacionxcliente where id_cuenta='$id_cuenta' and Cliente_cuit='$cu' and Obligacion_id='$ob'"; 
-          $cons2 = mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta 1");
-          $res5 = mysqli_fetch_array ($cons2);
-          //pongo esto aca para evitar cargar repetidas las cosas, las viculaciones de la obligacion con el cliente se hacen aca tambien, o sea que al eliminar la vinculacion del cliente con un determinado usuario y una obligacion se elimina la vinculacion del cleinte con la obligacion
-          $id=$res5['id_oxc'];
-          $instruccion2 = "insert into oxcxusuario (id_oxc, id_user, id_cuenta)  values ('$id','$v2','$id_cuenta')";
+           mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 1");
+           
+          
+          
+          $instruccion2 = "insert into oxcxusuario (id_ob, id_user, id_cuenta,cuit_cliente)  values ('$ob','$v2','$id_cuenta','$v1')";
       mysqli_query($conexion, $instruccion2) or die ("Fallo en insertar  en la tabla");
         }
        else{ ?>

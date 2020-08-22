@@ -40,10 +40,8 @@ session_start ();
 
                           <td style="display:none " value="'.$resultado['id_oxcxu'].'" name="id">'.$resultado['id_oxcxu'].'</td>');
 
-                      $instruccion2 = "select  * FROM obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
-                       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
-                       $resultado2 = mysqli_fetch_array ($consulta2);
-                       $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."'";
+                    
+                       $instruccion3="select * from cliente where cuit='".$resultado['cuit_cliente']."'";
                       $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
                        $resultado3 = mysqli_fetch_array ($consulta3);
 
@@ -56,7 +54,7 @@ session_start ();
                       
                       print('<td>'.$res['user'].' </td>');
 
-                       $instruccion4="select * from obligacion where id='".$resultado2['Obligacion_id']."'";
+                       $instruccion4="select * from obligacion where id='".$resultado['id_ob']."'";
                         $consulta4 = mysqli_query ($conexion, $instruccion4) or die ("Fallo en la consulta 2");
                        $resultado4 = mysqli_fetch_array ($consulta4);
 

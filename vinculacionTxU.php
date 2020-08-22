@@ -100,7 +100,7 @@ if ($_SESSION['usuario_valido']!="")
                         <td value="'.$resultado['cuit'].'"><input type="hidden" value="'.$resultado['cuit'].'" class="cliente">'.$resultado['nombre'].' '.$resultado['apellido'].'</td>
           
                         <td>  <select id="usuario" name="usuario" class="usuario form-control">');
-                      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta' and id_rol=2"; 
+                      $instruccion2 = "select * from usuario where cuenta_id='$id_cuenta' "; 
       
        
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
@@ -168,6 +168,7 @@ $(document).on('click','.btnVincular', function(e){ // funcion para cargar las v
   cuit=fila.find(".cliente").val();
   usuario= fila.find('.usuario').val();
   tarea= fila.find('.tarea').val();// es un select multiple por lo que puede tener mas de un valor
+
   cadena="cuit="+cuit+"&usuario="+usuario+"&tarea="+tarea;
   
   //window.location.href="/Proyecto_Contadores/agregarVinculacionTarea.php?"+cadena;

@@ -11,7 +11,7 @@
           $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("errro al elimianr a la obligacion");
           
           $res = mysqli_fetch_array ($consulta2);
-          $ins= "delete from obligacionxcliente where id_oxc='".$res['id_oxc']."'";
+          $ins= "delete from obligacionxcliente where Obligacion_id='".$res['id_ob']."' and Cliente_cuit='".$res['cuit_cliente']."'";
 		 mysqli_query ($conexion, $ins) or die ("erro al elimianr a la obligacion");
 
         $instruccion= "delete from oxcxusuario where id_oxcxu='$id'";
