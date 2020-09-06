@@ -82,12 +82,12 @@ border-width: 0px;
 
 	  include ("conexion.php");
 	  $id=$_SESSION['usuario_valido'];
-
+$id_cuenta=$_SESSION['cuenta'];
 	 $instruccion = "select * from usuario where id_user='".$id."'";
 	 $consulta2 = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 2");
       $res2= mysqli_fetch_array ($consulta2);
 	if($res2['id_rol']==1){ 
-		$id_cuenta=$_SESSION['cuenta'];
+		
        
       $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  ;////FALTA ACLARAR QUE TRAIGA SOLO LOS CLIENTES DE LA CUENTA 
       $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
@@ -144,7 +144,7 @@ print('</select>
 
 	<div  id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
 
-	<div  id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <a  href="">  	OTRA DOC </a></div>
+	<div  id="rectangulo"  class="forma"  style="padding:40px 20px; margin: 10px  30px 10px  30px;">  <button type="submit" id="verDocs" name="verDocs"> OTRA DOC </a> </button> </a></div>
 
 </center>
 </div>
@@ -172,17 +172,17 @@ print('</select>
 	text-align: left;
 	margin: 40px   10px   10px   10px;">
                          <?PHP 
-                         $instruccion = "select  * FROM oxcxusuario where id_user='$id'"; 
+                         $instruccion = "select DISTINCT(cuit_cliente) from (select cuit_cliente from oxcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."' 
+                UNION   
+                 select cuit_cliente from txcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."')clientes";
 					      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 1");
 
 					      $nfilas = mysqli_num_rows ($consulta);
 					      for($i=0; $i<$nfilas; $i++)
                      {
                       $resultado = mysqli_fetch_array ($consulta);
-                   			$instruccion2 = "select  * FROM obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
-                       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
-                       $resultado2 = mysqli_fetch_array ($consulta2);
-                       $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."'";
+                   			
+                       $instruccion3="select * from cliente where cuit='".$resultado['cuit_cliente']."'";
                       
                       $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
                        $resultado3 = mysqli_fetch_array ($consulta3);
@@ -232,8 +232,13 @@ print('</select>
 	 	dni=$('#dni').val();
 	 	cadena="dni="+dni ;
 		 window.open("crearPdf.php?"+cadena, '_blank');
+		 });
 	//	window.location.href="crearPdf.php?"+cadena;
-            
-});
+       $("#verDocs").click(function(){
+	 	dni=$('#dni').val();
+	 	cadena="dni="+dni ;
+		 window.location.href="verDocumentos.php?"+cadena;
+		 });
+
 </script>
 

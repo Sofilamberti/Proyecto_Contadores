@@ -89,19 +89,17 @@ if ($_SESSION['usuario_valido']!="")
                   
                    $id=$_SESSION['usuario_valido'];
                $id_cuenta=$_SESSION['cuenta'];
-               $instruccion = "select  * FROM oxcxusuario where id_user='$id'"; 
+                $instruccion = "select DISTINCT(cuit_cliente) from (select cuit_cliente from oxcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."' 
+                UNION   
+                 select cuit_cliente from txcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."')clientes"; 
                 $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta 1");
-                
-                
-                $nfilas = mysqli_num_rows ($consulta);
 
+                $nfilas = mysqli_num_rows ($consulta);
                 for($i=0; $i<$nfilas; $i++)
                      {
                       $resultado = mysqli_fetch_array ($consulta);
-                        $instruccion2 = "select * from obligacionxcliente where id_oxc='".$resultado['id_oxc']."'"; 
-                       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta 1");
-                       $resultado2 = mysqli_fetch_array ($consulta2);
-                       $instruccion3="select * from cliente where cuit='".$resultado2['Cliente_cuit']."' and cuenta_id='".$id_cuenta."'";
+                        
+                       $instruccion3="select * from cliente where cuit='".$resultado['cuit_cliente']."'";
                       
                       $consulta3 = mysqli_query ($conexion, $instruccion3) or die ("Fallo en la consulta 2");
                        $resultado3 = mysqli_fetch_array ($consulta3);

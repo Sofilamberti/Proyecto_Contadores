@@ -110,6 +110,7 @@ if ($_SESSION['usuario_valido']!="")
      /* for($n=0;$n<$nfilas;$n++){
         $resultado= mysqli_fetch_array ($consulta);*/
         $ins="select * from oxcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."'";
+
           $cons= mysqli_query ($conexion, $ins) or die ("Fallo en la consulta");
       $nfilas = mysqli_num_rows ($cons);
 
@@ -163,7 +164,56 @@ if ($_SESSION['usuario_valido']!="")
          }
 
         }
-       
+       //repito lo mismo para agregar las tareas al tablero de control
+        $ins="select * from txcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."'";
+
+          $cons= mysqli_query ($conexion, $ins) or die ("Fallo en la consulta");
+      $nfilas = mysqli_num_rows ($cons);
+        
+        for ($i=0; $i < $nfilas; $i++) {
+           $res= mysqli_fetch_array ($cons);
+            $ins1="select * from cliente where cuit='".$res['cuit_cliente']."'";
+          $cons1= mysqli_query ($conexion, $ins1) or die ("Fallo en la consulta");
+          $res1= mysqli_fetch_array ($cons1);
+          $cuit=substr("".$res['cuit_cliente']."", -1);;
+        
+           $ins2="select * from tarea where id='".$res['id_tarea']."'";
+          $cons2= mysqli_query ($conexion, $ins2) or die ("Fallo en la consulta");
+          $res2= mysqli_fetch_array ($cons2);
+          
+          
+        print('<tr>');
+
+          print(' <td value="'.$res1['nombre'].'  '.$res1['apellido'].'">'.$res1['nombre'].' '.$res1['apellido'].'</td>');
+         
+           print('<td value="'.$res2['nombre'].'">  '.$res2['nombre'].'</td>');
+          
+          print('<td style="display:none" value="'.$res1['email'].'"></td>
+            <td>--</td>
+              <td>--</td>');
+        /* $ins3="select * from vencimientos where id_obligacion='".$res['Obligacion_id']."' and terminacion_cuit   LIKE '%".$cuit."%'";
+          $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta9");
+          $res3= mysqli_fetch_array ($cons3);*/
+         setlocale(LC_TIME, "spanish");//para tener los meses en español
+         $mes_siguiente = date('F', strtotime('+1 month'));//para tener el mes anterior el %B es para tener el nombre del mes entero para tener "julio" en vez de "jul"
+         
+           print('<td style="height:10px" value=" ' .$res2['vencimiento'].'">' .$res2['vencimiento'].'</td>');
+        
+            
+                  
+           print('<td> <div id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>Presentado</h6> </div> <br>
+           <div id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Vencido</h6> </div> <br>
+           <div id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>Pendiente</h6> </td> 
+
+            <input  type="hidden"  value="'.$res2['nombre'].' | '.$res2['descripcion'].'"  id="impuesto">
+           
+           
+              <td> <button value="'.$res1['cuit'].'"  id="abrirModal"  class="btn btn-primary openBtn" name="" > <i class=" fa fa-wrench"></i></button>  </td>
+
+              </tr>');
+         
+
+        }
 
       //}
       
