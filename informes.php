@@ -111,9 +111,35 @@ print('</select>
       </button>
 </caption>
 </div> </li>
-  <li class="list-group-item"><a href="">NOTA AUMENTO HONORARIOS</a></li>
-  <li class="list-group-item"><a href="">MODELO BALANCE</a></li>
-  <li class="list-group-item"><a href="">OTROS</a></li>
+
+
+    <li class="list-group-item">
+    <caption>
+       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
+          NOTA AUMENTO HONORARIOS
+          <span class="glyphicon glyphicon-plus"></span>
+      </button>
+ </caption>
+  </li>
+
+
+
+  <li class="list-group-item">
+
+  <caption>
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
+      MODELO BALANCE
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+</caption>
+  
+    </a></li>
+  <li class="list-group-item"><caption>
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
+   otros
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+</caption></li>
 </ul>
 
 
