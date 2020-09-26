@@ -139,12 +139,14 @@ print('</select>
 <div class="container">
 <center>	
 
-	<div id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
+	<div id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;"> <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”>
+	 DATOS </a> </button> </div>
 
 
-	<div  id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
+	<div  id="rectangulo"  class="forma"  style="padding:20px 7px; margin: 10px  30px 10px  30px;">  <button type="submit" id="declaraciones" name="declaraciones"> DDJJ,VEPS Y ACUSES </a> </button> </a></div>
 
-	<div  id="rectangulo"  class="forma"  style="padding:40px 20px; margin: 10px  30px 10px  30px;">  <button type="submit" id="verDocs" name="verDocs"> OTRA DOC </a> </button> </a></div>
+
+	<div  id="rectangulo"  class="forma"  style="padding:20px 20px; margin: 10px  30px 10px  30px;">  <button type="submit" id="verDocs" name="verDocs"> OTRA DOC </a> </button> </a></div>
 
 </center>
 </div>
@@ -210,10 +212,10 @@ print('</select>
 	<div id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <button type="submit" id="crearPDF" name="crearPDF"><a TARGET=”_blank”> DATOS </a> </button> </div>
 
 
-	<div  id="rectangulo"  class="forma" style="padding:20px 20px; margin: 10px  30px 10px  30px;" > <a  href=""> DDJJ,VEPS Y ACUSES </a></div>
+	<div  id="rectangulo"  class="forma"  style="padding:40px 20px; margin: 10px  30px 10px  30px;">  <button type="submit" id="declaraciones" name="declaraciones"> DDJJ,VEPS Y ACUSES </a> </button> </a></div>
 
-	<div  id="rectangulo"  class="forma" style="padding:40px 20px; margin: 10px  30px 10px  30px;"> <a  href="">  	OTRA DOC </a></div>
 
+	<div  id="rectangulo"  class="forma"  style="padding:40px 20px; margin: 10px  30px 10px  30px;">  <button type="submit" id="verDocs" name="verDocs"> OTRA DOC </a> </button> </a></div>
 </center>
 </div>
 </div>
@@ -234,6 +236,14 @@ print('</select>
 		 window.open("crearPdf.php?"+cadena, '_blank');
 		 });
 	//	window.location.href="crearPdf.php?"+cadena;
+	// para el segundo rectangulo
+	$("#declaraciones").click(function(){
+	 	dni=$('#dni').val();
+	 	cadena="dni="+dni ;
+		 window.location.href="verDeclaraciones.php?"+cadena;
+		 });
+
+	//para el tercer rectangulo
        $("#verDocs").click(function(){
 	 	dni=$('#dni').val();
 	 	cadena="dni="+dni ;

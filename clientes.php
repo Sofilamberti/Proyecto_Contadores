@@ -24,13 +24,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script> <!--sin este link no se carga la tabla -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </head>
 <body>
 
 <?PHP
    
-     include ("conexion.php");
+     //include ("conexion.php");
 
       $instruccion2 = "select * from tiposocietario";
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
@@ -208,8 +209,8 @@ header("Location: index.html");
       "&domicilio_fiscal="+domicilio_fiscal+
       "&domicilio_legal="+domicilio_legal +
       "&condicion="+condicion;
-
-      $.ajax({
+      //window.location.href="/Proyecto_Contadores/agregarCliente.php?"+cadena;
+     $.ajax({
           url: "/Proyecto_Contadores/agregarCliente.php?"+cadena,
         }).done(function(data) {
         $('#tabla').load('tabla.php');

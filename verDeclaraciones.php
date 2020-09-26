@@ -99,70 +99,57 @@ $id_cuenta=$_SESSION['cuenta'];
       	<div class="container">
      <div class="col-12">
 
-      <h1><?PHP print(''.$res2['nombre'].' '.$res2['apellido'].'')?></h1></div>
+      <h1><?PHP print(''.$res2['nombre'].' '.$res2['apellido'].'')?></h1>
       <br>
-      <div class="form-row">
-      <div class="form-group col-md-3">
-      	
-      <h3> Agregar Archivos</h3></div>
-      <div class="form-group col-md-3">
-      	<form method="POST" action="" enctype="multipart/form-data">
-		<input id="archivos" type="file"   name="archivos[]"   multiple="multiple" /></div>
-		</div>
-		<button class="btn btn-primary" style=" color:white;" id="confirmacion" name="confirmacion"><h5>Confirmar   <i class="fas fa-check-circle"></i></h5></button>
-</form>
-<BR>
+      
+
+
 
 <?PHP
 
-$formato=array('.jpg','.png','.pdf');
-if(isset($_POST['confirmacion'])){
-	$archivos = $_FILES['archivos'];
-    $nombre_archivos = $archivos['name'];
-    $ruta_archivos = $archivos['tmp_name'];
 
-	//$extencion= substr($nombre_archivos, strrpos($nombre_archivos, '.'));
-	$i = 0;
-    
-      foreach ($ruta_archivos as $rutas_archivos) {
-          
-          
-      
-		if(move_uploaded_file($rutas_archivos, "".$res2['cuit']."/Otra_Doc/".$nombre_archivos[$i].""))//permite subir archvios a la carpeta que quiero 
-		{
-		 	
-		}
-		else{
-			print("no se pudo subir el archivo especificado");
-		}
-		$i++;
-	}
-}
 print("<br>");
-	$carpeta = scandir("".$res2['cuit']."/Otra_Doc");
-    //Miramos si existen archivos
-    if (count($carpeta) > 2){ // aca pongo 2 porque cuenta . y .. que significan actual y padre respectivamente
-	$directorio = opendir("".$res2['cuit']."/Otra_Doc"); //ruta actual
+	$directorio = opendir("".$res2['cuit']."/Doc_Varios"); //ruta actual
 
-		while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro sucesivamente
-		{
-		    if (is_dir($archivo))//verificamos si es o no un directorio
-		    {
-		        //echo "[".$archivo . "]<br />"; //de ser un directorio lo envolvemos entre corchetes
-		    }
-		    else
-		    {
-		    	print('<a href="'.$res2['cuit'].'/Otra_Doc" download="'.$archivo.'">
-		    		<h5><i class="fas fa-file-download"></i>  </a>');
-		    	print('<a href="'.$res2['cuit'].'/Otra_Doc/'.$archivo.'" target="_blank"><i class="far fa-eye"></i></a> ');
-		        echo $archivo . "<br />";
-		        //print('<embed src="'.$res2['cuit'].'/Otra_Doc/'.$archivo.'" type="application/pdf" width="100%" height="600px" />');
+while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro sucesivamente
+{
+    if (is_dir($archivo))//verificamos si es o no un directorio
+    {
+        //echo "[".$archivo . "]<br />"; //de ser un directorio lo envolvemos entre corchetes
+    }
+    else
+    {
+    	/*print('<a href="'.$res2['cuit'].'/Otra_Doc" download="'.$archivo.'">
+    		<h5><i class="fas fa-file-download"></i>  </a>');
+    	print('<a href="'.$res2['cuit'].'/Otra_Doc/'.$archivo.'" target="_blank"><i class="far fa-eye"></i></a> ');*/
+        print('<h5><i class="fas fa-folder"></i> '.$archivo.'</h5> <br> ');
+        $dir = opendir("".$res2['cuit']."/Doc_Varios/".$archivo.""); //ruta actual
 
-		    }
-		}
-	}
+			while ($arch = readdir($dir)) //obtenemos un archivo y luego otro sucesivamente
+			{
+			    if (is_dir($arch))//verificamos si es o no un directorio
+			    {
+			        //echo "[".$archivo . "]<br />"; //de ser un directorio lo envolvemos entre corchetes
+			    }
+			    else
+			    {
+			    	print('<div class="container">
+			    		<div class="container">
+			    		<a href="'.$res2['cuit']."/Doc_Varios/".$archivo."/".$arch.'" download="'.$arch.'">
+			    		<h6><i class="fas fa-file-download"></i>  </a>');
+			    	print('<a href="'.$res2['cuit']."/Doc_Varios/".$archivo."/".$arch.'" target="_blank"><i class="far fa-eye"></i></a> ');
+			        echo $arch . " </h6><br/> </div> </div>";
+			        //print('<embed src="'.$res2['cuit'].'/Otra_Doc/'.$archivo.'" type="application/pdf" width="100%" height="600px" />');
+
+			    }
+			}
+        //print('<embed src="'.$res2['cuit'].'/Otra_Doc/'.$archivo.'" type="application/pdf" width="100%" height="600px" />');
+
+    }
+}
 }
 ?>
+</div>
 </div>
 </div>
 </div>

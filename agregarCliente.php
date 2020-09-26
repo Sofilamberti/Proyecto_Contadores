@@ -22,7 +22,23 @@
       $pathname="./".$v3."/Otra_Doc";
       $mode = 0777;
       $recursive = TRUE;
-         mkdir ( $pathname, $mode, $recursive);
+      $miSubCarpeta="/Doc_Varios/";
+      $sub1="/DDJJ IVA/";
+      $sub2="/DDJJ GANANCIAS/";
+      $sub3="/DDJJ IIBB/";
+      $sub4="/DDJJ SUSS/";
+     
+
+      mkdir ( $pathname, $mode, $recursive);
+      mkdir ("./".$v3."/" . $miSubCarpeta."", $mode);
+      mkdir ("./".$v3."/" . $miSubCarpeta."".$sub1."", $mode);
+      mkdir ("./".$v3."/" . $miSubCarpeta."".$sub2."", $mode);
+      mkdir ("./".$v3."/" . $miSubCarpeta."".$sub3."", $mode);
+      mkdir ("./".$v3."/" . $miSubCarpeta."".$sub4."", $mode);
+
+
+
+
 
          
 ?>

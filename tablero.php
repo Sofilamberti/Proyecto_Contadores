@@ -103,6 +103,9 @@ if ($_SESSION['usuario_valido']!="")
 
 <div class="container">
   <div class="container">
+    <div align="left">
+    <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="filtrar" style=" width:250px; height:50px; margin-top:10px;margin-left:10px;"></div>
+    <br>
     <center>
 
       <table class="table table-striped"  id="panel1" name="panel1" style="float:center; height:20%;" > 
@@ -333,7 +336,7 @@ if ($_SESSION['usuario_valido']!="")
         <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
          <div class="modal-body">
-          <form method="POST" action="" name="nombreform">
+          <form method="POST" action="" name="nombreform" enctype="multipart / form-data">
                 <label id="nombreCliente" > </label>
                 <label id="obligacion" > - </label>
                 <label id="vencimiento" > - </label>
@@ -356,7 +359,7 @@ if ($_SESSION['usuario_valido']!="")
 <input id="file-upload" onchange='cambiar()' type="file" style='display: none;'/>
 <div id="info"></div>-->
 
-                 <p style="font-size: 18px;font-weight: bold;">DDJJ <input  id="DDJJ" type="file"   name="DDJJ" /><label for="archivos" style="width:70%; height:30%;"></label></p>
+                 <p style="font-size: 18px;font-weight: bold;">DDJJ <input  type="file" id="DDJJ"  name="DDJJ" /><label for="archivos" style="width:70%; height:30%;"></label></p>
                  <p style="font-size: 18px; font-weight: bold;">Ticket <input id="ticket" type="file"   name="ticket" /></p>
                  <p style="font-size: 18px; font-weight: bold;">VEP <input id="VEP" type="file"   name="VEP" /></p>
                  <p style="font-size: 18px; font-weight: bold;">Compensacion <input id="compensacion" type="file"   name="compensacion" /></p>
@@ -389,9 +392,9 @@ if ($_SESSION['usuario_valido']!="")
           </label>
         </div>
         <div class="form-check disabled">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="nada" >
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="sin moviemiento" >
           <label class="form-check-label" for="gridRadios3">
-            Nada
+            Sin Movimiento
           </label>
         </div>
         <br>
@@ -567,17 +570,30 @@ $(document).ready(function(){
       "&vencimiento="+vencimiento;
       
 
-              var ddjj1 = document.getElementById('DDJJ').files[0];
  
-             var data = new FormData();
+           file = $("#DDJJ")[0].files[0];//aca obtengo el archivo
+           file2 = $("#VEP")[0].files[0];
+           file3 = $("#ticket")[0].files[0];
+           file4 = $("#compensacion")[0].files[0];
+           //file2 = $("#VEP")[0].files[0]; ver como hacer cuando son muchos. 
+
+           data = new FormData();// creo esto 
  
-            data.append('ddjj',ddjj1);
- 
-            //var url = "upload.php";
- 
+            data.append("ddjj",file);// aca lo que hago es poner el archivo dentro de lo  que seria ese data, asi lo puedo pasar a php y me toma el archivo como archivo, hago lo mismo para el restos de los archivos y tambien para la informacion.
+
+            data.append("vep",file2); 
+            data.append("ticket",file3); 
+            data.append("compensacion",file4);
+            data.append("id_panel",id_panel);  
+            data.append("condicion",condicion); 
+            data.append("importe",importe); 
+            data.append("obligacion",obligacion); 
+            data.append("vencimiento",vencimiento); 
+            data.append("email",email); 
+            var url = "/Proyecto_Contadores/enviarMail.php";
             $.ajax({
  
-            url: "/Proyecto_Contadores/enviarMail.php",
+            url: url,
  
             type:'POST',
  
@@ -594,13 +610,25 @@ $(document).ready(function(){
         alertify.success("agregado con exito  ");
         }).fail(function(jqXHR, textStatus, errorThrown) { 
           
-          alertify.error("agregado con exito  ");
+          alertify.error("no se envio  ");
           });
     //window.location.href="enviarMail.php?"+cadena;
 
     });
 });
 
+//script para  buscar  en la tabla 
+  $(document).ready(function(){
+   $("#search").keyup(function(){
+     _this = this;
+    $.each($("#panel1 tbody tr"), function() {
+    if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+        $(this).hide();
+    else
+        $(this).show();
+      });
+    });
+});
 
 //funcion para ver que archivo seleccione
 function cambiar(){
