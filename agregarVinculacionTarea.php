@@ -8,11 +8,11 @@
    $v1= $_GET["cuit"];
    $v2= $_GET["usuario"];
    $v3= $_GET["tarea"];
- $v4 = str_replace(',', '', $v3);
-  print(strlen($v3));
+  $vec = explode(",", $v3);
+  //print(strlen($v3));
       $id_cuenta=$_SESSION['cuenta'];
-      for($i=0;$i<strlen($v4);$i++){
-        $tarea=$v4[$i];
+      for($i=0;$i<count($vec);$i++){
+        $tarea=$vec[$i];
         $cu=$v1;
    $instruccion ="select * from tareaxcliente where id_cuenta='$id_cuenta' and id_cliente='".$cu."' and id_tarea='".$tarea."'";
 

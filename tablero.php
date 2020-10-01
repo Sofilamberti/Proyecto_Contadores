@@ -164,6 +164,7 @@ if ($_SESSION['usuario_valido']!="")
           $res3= mysqli_fetch_array ($cons3);*/
          setlocale(LC_TIME, "spanish");//para tener los meses en español
          $mes_siguiente = date('F', strtotime('+1 month'));//para tener el mes anterior el %B es para tener el nombre del mes entero para tener "julio" en vez de "jul"
+          date_default_timezone_set('America/Argentina/Buenos_Aires');
          if($j==0){
            print('<td style="height:10px" value=" ' .$res3[''.strftime("%B").''].'">' .$res3[''.strftime("%B").''].'</td>');
            $ins3="select * from panel_de_control where cuit_cliente='".$res1['cuit']."' and id_obligacion='".$res2['id']."' and vencimiento='".$res3[''.strftime("%B").'']."'";

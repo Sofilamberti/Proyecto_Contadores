@@ -8,13 +8,13 @@
    $v1= $_GET["cuit"];
    $v2= $_GET["usuario"];
    $v3= $_GET["obligacion"];
-   $v3 = str_replace(',', '', $v3);
-  print(strlen($v3));
-      $id_cuenta=$_SESSION['cuenta'];
+   $vec = explode(",", $v3);//saco las comillas y me devuelve un vector con todos los id de las sobligaciones
 
-      for($i=0;$i<strlen($v3);$i++){
-        print($v3[$i]);
-        $ob=$v3[$i];
+      $id_cuenta=$_SESSION['cuenta'];
+      //print($vec);
+      for($i=0;$i<count($vec);$i++){
+       // print($vec[$i]);
+        $ob=$vec[$i];
         $cu=$v1;
         //consulta para ver si la asociacion de la obligacion y el cliente ya esta hecha y asi evitar repetidas
          $ins= "select * from obligacionxcliente where id_cuenta='$id_cuenta' and Cliente_cuit='$cu' and Obligacion_id='$ob'"; 

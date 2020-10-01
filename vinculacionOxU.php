@@ -167,7 +167,7 @@ $(document).on('click','.btnVincular', function(e){ // funcion para cargar las v
   usuario= fila.find('.usuario').val();
   obligacion= fila.find('.obligacion').val();// es un select multiple por lo que puede tener mas de un valor
   cadena="cuit="+cuit+"&usuario="+usuario+"&obligacion="+obligacion;
-
+  //alert(obligacion);
   //window.location.href="/Proyecto_Contadores/agregarVinculacion.php?"+cadena;
  $.ajax({
           url:"/Proyecto_Contadores/agregarVinculacion.php?"+cadena,
