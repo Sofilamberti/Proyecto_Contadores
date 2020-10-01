@@ -61,8 +61,7 @@ nav li:hover{
 
 .active{
 
-  width:70px;
-    height:300px;
+  padding:10px 20px;
 }
 
 nav a:visited{
@@ -103,7 +102,8 @@ nav a:visited{
              //print($resultado['label']);
         print('
                <li  class="" style="display:inline-block;  margin:-5;" id= "'.$resultado['link'].'" >
-               <center><a class="nav-link" href="/Proyecto_contadores'.$resultado['link'].'">
+               <center>
+                   <a class="nav-link" href="/Proyecto_contadores'.$resultado['link'].'">
                    <img src="'.$resultado['imagen'].'" width="65" height="65" alt="..."><br>'.$resultado['etiqueta'].' </a>
                </center>
                </li>'

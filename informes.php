@@ -130,7 +130,7 @@ print('</select>
       <button class="btn btn-primary" style="background-color:#FA7564; color:white;"
       >
       
-      <a href="excel" download="MODELOBALANCE..xls">
+      <a href="excel/MODELOBALANCE.xls" download="MODELOBALANCE.xls">
       MODELO BALANCE  </a>
       <span class="glyphicon glyphicon-plus"></span>
       </button>
