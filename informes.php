@@ -48,6 +48,8 @@
 
 include ("menu.php");
 include ("conexion.php");
+
+
 //se tendria que poner el id de la cuenta como variable se session
  $id=$_SESSION['usuario_valido'];
 
@@ -97,8 +99,13 @@ print('</select>
 		 
 	</div>
 	</div>
-  </div>');
+  </div>'
+
+
+
+);
   
+include ("modalHonorarios.php");
   ?>
 
 
@@ -115,7 +122,7 @@ print('</select>
 
     <li class="list-group-item">
     <caption>
-       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
+       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalHonorarios" >
           NOTA AUMENTO HONORARIOS
           <span class="glyphicon glyphicon-plus"></span>
       </button>
@@ -136,7 +143,19 @@ print('</select>
       </button>
 </caption>
   
-    </a></li>
+    </a>
+    </li>
+  <li class="list-group-item"><caption>
+  <button class="btn btn-primary" style="background-color:#FA7564; color:white;"
+      >
+      <a  href="excel/CALCULADORA DE GANANCIA 4TA.xls" download="CALCULADORA DE GANANCIA 4TA.xls" >
+      CALCULADORA DE GANANCIA 4TA
+      <span class="glyphicon glyphicon-plus"></span>
+                          </a></button>
+</caption></li>
+  
+  
+  </li>
   <li class="list-group-item"><caption>
       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
    otros
