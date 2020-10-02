@@ -12,6 +12,8 @@ $v4= $_POST["condicion"];
 $v5= $_POST["importe"];
 $v6= $_POST["obligacion"];
 $v7= $_POST["vencimiento"];
+$v8= $_POST["grupo_impuesto"];
+$v9= $_POST["cuitc"];
 $id_cuenta=$_SESSION['cuenta'];
 $instruccion2 = "select * from cuenta where id='$id_cuenta'";  
       $consulta2 = mysqli_query ($conexion, $instruccion2) or die ("Fallo en la consulta");
@@ -51,6 +53,7 @@ $instruccion2 = "select * from cuenta where id='$id_cuenta'";
     $mail->Body = $cuerpo;
     if(isset($_FILES['ddjj'])){
     $mail->AddAttachment($ruta_ddjj,$ddjj);
+	    
 	}	
 	if(isset($_FILES['vep'])){
     $mail->AddAttachment($ruta_vep,$vep);
@@ -65,10 +68,24 @@ $instruccion2 = "select * from cuenta where id='$id_cuenta'";
     $mail->AddAddress($v2);
    // print($cuerpo);
     //print($v2);
+
 	$cond =$mail->Send();
-	if($cond){
-		print("se envioooooooo");
-	}
+	if(isset($_FILES['ddjj'])){//aca veo si ddjj no esta vacio.
+		if($v8 =="IVA"){//veo si es de un impuesto de iva y cargo el archivo en la carpeta del cliente en DDJJ IVA, hago lo mismo para los otros archivos
+	    	if(move_uploaded_file($ruta_ddjj, "".$v9."/Doc_Varios/DDJJ IVA/".$ddjj."")){};//permite subir archvios a la carpeta que quiero 
+		}
+		if($v8 =="MTB"){//veo si es de un impuesto de Monotributo y cargo el archivo en la carpeta del cliente en DDJJ MTB, hago lo mismo para los otros archivos
+	    	if(move_uploaded_file($ruta_ddjj, "".$v9."/Doc_Varios/DDJJ MTB/".$ddjj."")){};//permite subir archvios a la carpeta que quiero 
+		}
+		if($v8 =="SUSS"){//veo si es de un impuesto de cargas personales y cargo el archivo en la carpeta del cliente en DDJJ SUSS, hago lo mismo para los otros archivos
+	    	if(move_uploaded_file($ruta_ddjj, "".$v9."/Doc_Varios/DDJJ SUSS/".$ddjj."")){};//permite subir archvios a la carpeta que quiero 
+		}
+		if($v8 =="IIBB"){//veo si es de un impuesto de Ingresos brutos y cargo el archivo en la carpeta del cliente en DDJJ IIBB, hago lo mismo para los otros archivos
+	    	if(move_uploaded_file($ruta_ddjj, "".$v9."/Doc_Varios/DDJJ IIBB/".$ddjj."")){};//permite subir archvios a la carpeta que quiero 
+		}
+
+	}	
+	
 	$instruccion = "update  panel_de_control  set estado='Realizado'  where id='$v1' ";
  	mysqli_query($conexion, $instruccion) or die ("Fallo en insertar  en la tabla de panel");
   ?>

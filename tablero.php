@@ -168,17 +168,25 @@ if ($_SESSION['usuario_valido']!="")
          if($j==0){
            print('<td style="height:10px" value=" ' .$res3[''.strftime("%B").''].'">' .$res3[''.strftime("%B").''].'</td>');
            $ins3="select * from panel_de_control where cuit_cliente='".$res1['cuit']."' and id_obligacion='".$res2['id']."' and vencimiento='".$res3[''.strftime("%B").'']."'";
-          $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta");
-           $nfilas3 = mysqli_num_rows ($cons3); 
+          $cons5= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta");
+           $nfilas3 = mysqli_num_rows ($cons5); 
            if($nfilas3==0){
             //en esta parte lo que hago es cargar a panel de control el vencimiento del mes actual, veo si esta, sino esta lo cargo.
             if($res3[''.strftime("%B").'']>= date('Y-m-d')){
-            $ins4="insert into panel_de_control (estado, vencimiento, id_obligacion,cuit_cliente) value ('Pendiente','".$res3[''.strftime("%B").'']."','".$res2['id']."', '".$res1['cuit']."') ";
+            $ins4="insert into panel_de_control (estado, vencimiento, id_obligacion,cuit_cliente) values ('Pendiente','".$res3[''.strftime("%B").'']."','".$res2['id']."', '".$res1['cuit']."') ";
               $cons4= mysqli_query ($conexion, $ins4) or die ("Fallo en la consulta");
             }
             else{
-            $ins4="insert into panel_de_control (estado, vencimiento, id_obligacion,cuit_cliente) value ('Vencido','".$res3[''.strftime("%B").'']."','".$res2['id']."', '".$res1['cuit']."') ";
+            $ins4="insert into panel_de_control (estado, vencimiento, id_obligacion,cuit_cliente) values ('Vencido','".$res3[''.strftime("%B").'']."','".$res2['id']."', '".$res1['cuit']."') ";
             $cons4= mysqli_query ($conexion, $ins4) or die ("Fallo en la consulta");
+            }
+          }else{// aca lo que hago es ver si la fecha que esta cargada en el panel de control es menor a la actual y entonces cambio el estado a vencido, sino no hago nada
+            for($h=0;$h<$nfilas3;$h++){
+              $res5= mysqli_fetch_array ($cons5);
+              if($res5['vencimiento']<date('Y-m-d')){
+                $instruccion2 = "update  panel_de_control  set estado='Vencido'  where id='".$res5['id']."'";
+              mysqli_query($conexion, $instruccion2) or die ("Fallo en insertar  en la tabla de usuarios");
+              }
             }
           }
           //aca hago la misma consulta para poder obtener el estado, la vuelvo a hacer para que cuando cargue una que no este ya cargada me lo tome bien aca.
@@ -191,8 +199,8 @@ if ($_SESSION['usuario_valido']!="")
 
 
            $ins3="select * from panel_de_control where cuit_cliente='".$res1['cuit']."' and id_obligacion='".$res2['id']."' and vencimiento='".$res3[''.strftime("%B", strtotime($mes_siguiente)).'']."'";
-          $cons3= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta");
-           $nfilas3 = mysqli_num_rows ($cons3); 
+          $cons5= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta");
+           $nfilas3 = mysqli_num_rows ($cons5); 
 
             if($nfilas3==0){
                 if($res3[''.strftime("%B", strtotime($mes_siguiente)).'']>= date('Y-m-d')){
@@ -203,6 +211,14 @@ if ($_SESSION['usuario_valido']!="")
                 $ins4="insert into panel_de_control (estado, vencimiento, id_obligacion,cuit_cliente) value ('Vencido','".$res3[''.strftime("%B", strtotime($mes_siguiente)).'']."','".$res2['id']."', '".$res1['cuit']."') ";
                 $cons4= mysqli_query ($conexion, $ins4) or die ("Fallo en la consulta");
                 }
+          }else{
+            for($h=0;$h<$nfilas3;$h++){
+              $res5= mysqli_fetch_array ($cons5);
+              if($res5['vencimiento']<date('Y-m-d')){
+                $instruccion2 = "update  panel_de_control  set estado='Vencido'  where id='".$res5['id']."'";
+              mysqli_query($conexion, $instruccion2) or die ("Fallo en insertar  en la tabla de usuarios");
+              }
+            }
           } 
           //aca hago la misma consulta para poder obtener el estado, la vuelvo a hacer para que cuando cargue una que no este ya cargada me lo tome bien aca.
 
@@ -214,10 +230,16 @@ if ($_SESSION['usuario_valido']!="")
 
           
             
-           
+           if($res5['estado']=="Pendiente"){      
+           print('<td> <div id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+
+         }elseif ($res5['estado']=="Realizado") {
+           print('<td> <div id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+         }elseif ($res5['estado']=="Vencido") {
+           print('<td> <div id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+         }
                 
-           print('<td> 
-           <div id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px  1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </td> 
+           print(' </td> 
            <td style="display:none" value="'.$res1['email'].'">'.$res1['email'].'</td>
             <input  type="hidden"  value="'.$res2['rubro'].' | '.$res2['impuesto'].'"  id="impuesto">
            
@@ -225,7 +247,8 @@ if ($_SESSION['usuario_valido']!="")
             <td style="display:none" value="'.$res5['id'].'">'.$res5['id'].'</td>
 
               <td> <button value="'.$res1['cuit'].'"  id="abrirModal"   class="btn btn-primary openBtn" name="" > <i class=" fa fa-wrench"></i></button>  </td>
-
+              <td style="display:none" value="'.$res2['grupo'].'">'.$res2['grupo'].'</td>
+              <td style="display:none" value="'.$res1['cuit'].'">'.$res1['cuit'].'</td>
               </tr>');
          }
 
@@ -260,6 +283,14 @@ if ($_SESSION['usuario_valido']!="")
             $ins4="insert into panel_de_control (estado, vencimiento, id_tarea,cuit_cliente) value ('Vencido','".$res2['vencimiento']."','".$res2['id']."', '".$res1['cuit']."') ";
             $cons4= mysqli_query ($conexion, $ins4) or die ("Fallo en la consulta");
             }
+          }else{
+            for($h=0;$h<$nfilas3;$h++){
+              $res5= mysqli_fetch_array ($cons5);
+              if($res5['vencimiento']<date('Y-m-d')){
+                $instruccion2 = "update  panel_de_control  set estado='Vencido'  where id='".$res5['id']."'";
+              mysqli_query($conexion, $instruccion2) or die ("Fallo en insertar  en la tabla de usuarios");
+              }
+            }
           } 
 
           //aca hago la misma consulta para poder obtener el estado, la vuelvo a hacer para que cuando cargue una que no este ya cargada me lo tome bien aca.
@@ -285,9 +316,15 @@ if ($_SESSION['usuario_valido']!="")
            print('<td style="height:10px" value=" ' .$res2['vencimiento'].'">' .$res2['vencimiento'].'</td>');
         
             
-                  
-           print('<td> <div id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div> 
-          </td> 
+           if($res5['estado']=="Pendiente"){      
+           print('<td> <div id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+
+         }elseif ($res5['estado']=="Realizado") {
+           print('<td> <div id="rectangulo"  class="forma" style="background:#55D6D2;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+         }elseif ($res5['estado']=="Vencido") {
+           print('<td> <div id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
+         }
+          print('</td> 
             <td style="display:none" value="'.$res1['email'].'">'.$res1['email'].'</td>
             <input  type="hidden"  value="'.$res2['nombre'].' | '.$res2['descripcion'].'"  id="impuesto">
            
@@ -342,9 +379,9 @@ if ($_SESSION['usuario_valido']!="")
                 <label id="obligacion" > - </label>
                 <label id="vencimiento" > - </label>
                <label  style="display:none" id="id_panel"  name="id_panel"> - </label>
-
+               <label  style="display:none" id="cuitc"  name="cuitc"> - </label>
                <label  style="display:none"  id="contacto"  name="contacto"> - </label>
-               
+               <label  style="display:none"  id="grupo_impuesto"  name="grupo_impuesto"> - </label>
                 <!--<input type="hidden" name="id_panel" id="id_panel" value="">-->
 
                 <div class="form-row">
@@ -364,9 +401,6 @@ if ($_SESSION['usuario_valido']!="")
                  <p style="font-size: 18px; font-weight: bold;">Ticket <input id="ticket" type="file"   name="ticket" /></p>
                  <p style="font-size: 18px; font-weight: bold;">VEP <input id="VEP" type="file"   name="VEP" /></p>
                  <p style="font-size: 18px; font-weight: bold;">Compensacion <input id="compensacion" type="file"   name="compensacion" /></p>
-                 <p style="font-size: 18px; font-weight: bold;">Archivos Opcionales <input id="otros" type="file"   name="otros[]" multiple="multiple" /></p>
-              
-                 <footer class="blockquote-footer">  </footer>
                 </blockquote>
                </div>
               </div>
@@ -399,10 +433,10 @@ if ($_SESSION['usuario_valido']!="")
           </label>
         </div>
         <br>
-        <label  for="importe">
+        <label  for="importe" >
             Importe
           </label>
-        <input type="number" name="importe" id="importe"class="form-control input-sm" value="">
+        <input type="number" name="importe" id="importe"class="form-control input-sm" value="" required="required">
          
       </div>
     </div>
@@ -447,13 +481,17 @@ else
   email=$(this).parent().parent().children("td:eq(6)").text(); 
   vencimiento=$(this).parent().parent().children("td:eq(4)").text(); 
   id_panel=$(this).parent().parent().children("td:eq(7)").text();
-
+  grupo_impuesto=$(this).parent().parent().children("td:eq(9)").text();
+  cuitc=$(this).parent().parent().children("td:eq(10)").text();
+  alert(grupo_impuesto);
+  alert(cuitc);
   $("#nombreCliente").text(nombre_ap);
   $("#obligacion").text(impuesto);
   $("#contacto").text(email);
   $("#vencimiento").text(vencimiento);
   $("#id_panel").text(id_panel);
-
+  $("#grupo_impuesto").text(grupo_impuesto);
+  $("#cuitc").text(cuitc);
         $('#modalTableroControl').modal('show');
       });
 
@@ -552,6 +590,8 @@ $(document).ready(function(){
       obligacion=$('#obligacion').text();
       email=$('#contacto').text();
       vencimiento=$('#vencimiento').text();
+      grupo_impuesto=$('#grupo_impuesto').text();
+       cuitc=$('#cuitc').text();
       //var ddjj=$("#DDJJ");
       //ddjj=document.getElementById('DDJJ').files[0];;
       //ticket=document.getElementById('ticket')files[0];
@@ -568,6 +608,8 @@ $(document).ready(function(){
       "&condicion="+condicion+ 
       "&importe="+importe+ 
       "&obligacion="+obligacion
+      "&cuitc="+cuitc
+      "&grupo_impuesto="+grupo_impuesto
       "&vencimiento="+vencimiento;
       
 
@@ -589,6 +631,8 @@ $(document).ready(function(){
             data.append("condicion",condicion); 
             data.append("importe",importe); 
             data.append("obligacion",obligacion); 
+            data.append("grupo_impuesto",grupo_impuesto);
+            data.append("cuitc",cuitc);
             data.append("vencimiento",vencimiento); 
             data.append("email",email); 
             var url = "/Proyecto_Contadores/enviarMail.php";
