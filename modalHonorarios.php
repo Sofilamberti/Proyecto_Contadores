@@ -25,41 +25,53 @@ $filas4 = mysqli_num_rows ($consulta4);
          <div class="modal-body">
            <div class="form-row">
               
-                <div class="form-group col-md-6">
-                <label> Numero de Resolución </label>
+                 <div class="form-group col-md-6">
+                     <label> Numero de Resolución </label>
              
-                  <input type="text"   name="numResolucion" id="numResolucion" class="form-control input-sm">
+                     <input type="text"   name="numResolucion" id="numResolucion" class="form-control input-sm">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                         <label> Mes </label>
+             
+                          <input type="text"   name="Mes" id="Mes" class="form-control input-sm">
                    </div>
 
                    <div class="form-group col-md-6">
-                 <label> honorarios </label>
+                        <label> Consejo Profecional de ciecnias Economicas  </label>
              
-                  <input type="text"   name="honorarios" id="honorarios" class="form-control input-sm">
+                        <input type="text"   name="consejoCienciasEconomicas" id="consejoCienciasEconomicas" class="form-control input-sm">
+                   </div>
 
-                  <label> valor en letras </label>
-                  <input type="text"   name="honorariosLetra" id="honorariosLetra" class="form-control input-sm">
+                   <div class="form-group col-md-6">
+                        <label> honorarios </label>
+             
+                         <input type="text"   name="honorarios" id="honorarios" class="form-control input-sm">
+
+                        <label> valor en letras </label>
+                          <input type="text"   name="honorariosLetra" id="honorariosLetra" class="form-control input-sm">
 
                    </div>
 
                    <div class="form-group col-md-6">
-                 <label>  Nombre Profesional </label>
+                         <label>  Nombre Profesional </label>
              
-                  <input type="text"   name="nombreProfesional" id="nombreProfesional" class="form-control input-sm">
+                         <input type="text"   name="nombreProfesional" id="nombreProfesional" class="form-control input-sm">
                    </div>
 
 
                    <div class="form-group col-md-6">
-                 <label> Profesión/Cargo </label>
+                         <label> Profesión/Cargo </label>
              
-                  <input type="text"   name="profesion" id="profesion" class="form-control input-sm">
+                        <input type="text"   name="profesion" id="profesion" class="form-control input-sm">
                    </div>
 
 
 
                    <div class="form-group col-md-6">
-                 <label> Matrícula </label>
+                         <label> Matrícula </label>
              
-                  <input type="text"   name="matricula" id="matricula" class="form-control input-sm">
+                          <input type="text"   name="matricula" id="matricula" class="form-control input-sm">
                    </div>
 
             </div>
@@ -79,34 +91,23 @@ $filas4 = mysqli_num_rows ($consulta4);
 
 <script type="text/javascript">
 
-        dniCliente=$('#dni').val();
-
-        
     
-
 	 $("#generarHonorarios").click(function(){
 
 	 	dni=$('#dni').val();
-
     numResolucion=$('#numResolucion').val();
-
     honorarios='$'+$('#honorarios').val();
-
     honorariosLetra=$('#honorariosLetra').val();
-
     nombreProfesional=$('#nombreProfesional').val();
-
+    consejoCienciasEconomicas=$('consejoCienciasEconomicas').val();
     profesion=$('#profesion').val();
     matricula=$('#matricula').val();
-
 		costo="$"+$('#costoNumero').val();
     costoEscrito=$('#costoEscrito').val();
-        
-	 	cadena="dni="+dni+"&numResolucion="+numResolucion+  "&profesion="+profesion+
-        "&nombreProfesional="+nombreProfesional+"&matricula="+matricula+
-        "&honorarios="+honorarios+"&honorariosLetra"+
-   
-        "&costo="+costo+"&costoEscrito="+costoEscrito+"&honorariosLetra="+honorariosLetra;
+    mes=$('#mes').val();
+
+
+	 	cadena="dni="+dni+"&numResolucion="+numResolucion+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional+"&matricula="+matricula+"&honorarios="+honorarios+"&honorariosLetra"+"&mes="+mes+"&consejoCienciasEconomicas="+consejoCienciasEconomicas+"&costo="+costo+"&costoEscrito="+costoEscrito+"&honorariosLetra="+honorariosLetra;
 
 		window.open("honorariosPdf.php?"+cadena, '_blank');
 	//	window.location.href="crearPdf.php?"+cadena;
