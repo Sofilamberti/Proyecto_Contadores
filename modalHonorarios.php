@@ -1,7 +1,3 @@
-
-
-
-
 <?php 
 $instruccion4 = "select * from cliente where dni='$id_cuenta'";  
 $consulta4 = mysqli_query ($conexion, $instruccion4) or die ("Fallo en la consulta");

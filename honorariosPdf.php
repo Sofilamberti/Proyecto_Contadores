@@ -87,6 +87,11 @@ $pdf->SetY(880);
 $pdf->SetX(1160);
 $pdf->Cell(0,0,$costoNumero,0,0,'L');
 
+
+$pdf->SetY(850);
+$pdf->SetX(730);
+$pdf->Cell(100,10,$costoEscrito,1,1,'L');
+
 $pdf->SetY(1640);
 $pdf->SetX(1000);
 $pdf->Cell(54,8,$nombreProfesional,0,0,'L');

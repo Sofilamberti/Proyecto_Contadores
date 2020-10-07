@@ -60,8 +60,8 @@ include ("conexion.php");
  $id_cuenta=$_SESSION['cuenta'];
        
       $instruccion = "select * from cliente where cuenta_id='$id_cuenta'";  
-$consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
-$filas = mysqli_num_rows ($consulta);
+      $consulta = mysqli_query ($conexion, $instruccion) or die ("Fallo en la consulta");
+      $filas = mysqli_num_rows ($consulta);
 
 ?>
 
@@ -106,53 +106,83 @@ print('</select>
 );
   
 include ("modalHonorarios.php");
+  
+include ("modalPropuesta.php");
+
   ?>
 
 
-<ul class=" ">
-  <li class="list-group-item"><div >
-<caption>
-      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
-	  PRESUPUESTO
-      <span class="glyphicon glyphicon-plus"></span>
-      </button>
-</caption>
-</div> </li>
+<ul  >
+  <li class="list-group-item">
+    <div >
+    <caption>
+        <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
+	       PRESUPUESTO
+         <span class="glyphicon glyphicon-plus"></span>
+        </button>
+     </caption>
+    </div> 
+  </li>
+
+  <li class="list-group-item">
+    <div >
+    <caption>
+        <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPropuesta">
+	       Propuesta
+         <span class="glyphicon glyphicon-plus"></span>
+        </button>
+     </caption>
+    </div> 
+  </li>
 
 
-    <li class="list-group-item">
+
+  <li class="list-group-item">
     <caption>
        <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalHonorarios" >
           NOTA AUMENTO HONORARIOS
           <span class="glyphicon glyphicon-plus"></span>
       </button>
- </caption>
+     </caption>
   </li>
+
+
+  <li class="list-group-item">
+  <div >
+    <caption>
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalRecibo">
+	        Recibo
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+     </caption>
+   </div>
+ </li>
+
 
 
 
   <li class="list-group-item">
 
   <caption>
-      <button class="btn btn-primary" style="background-color:#FA7564; color:white;"
-      >
-      
-      <a href="excel/MODELOBALANCE.xls" download="MODELOBALANCE.xls">
-      MODELO BALANCE  </a>
-      <span class="glyphicon glyphicon-plus"></span>
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;">
+        <a href="excel/MODELOBALANCE.xls" download="MODELOBALANCE.xls">
+          MODELO BALANCE  </a>
+          <span class="glyphicon glyphicon-plus"></span>
       </button>
-</caption>
+   </caption>
   
-    </a>
     </li>
-  <li class="list-group-item"><caption>
-  <button class="btn btn-primary" style="background-color:#FA7564; color:white;"
-      >
-      <a  href="excel/CALCULADORA DE GANANCIA 4TA.xls" download="CALCULADORA DE GANANCIA 4TA.xls" >
-      CALCULADORA DE GANANCIA 4TA
-      <span class="glyphicon glyphicon-plus"></span>
-                          </a></button>
-</caption></li>
+  <li class="list-group-item">
+    <caption>
+      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
+        <a  href="excel/CALCULADORA DE GANANCIA 4TA.xls" download="CALCULADORA DE GANANCIA 4TA.xls" >
+         CALCULADORA DE GANANCIA 4TA
+         <span class="glyphicon glyphicon-plus"></span>
+                          </a>
+       </button>
+     </caption>
+
+</li>
   
   
   </li>
@@ -161,7 +191,9 @@ include ("modalHonorarios.php");
    otros
       <span class="glyphicon glyphicon-plus"></span>
       </button>
-</caption></li>
+</caption>
+
+</li>
 </ul>
 
 
@@ -222,7 +254,7 @@ include ("modalHonorarios.php");
         exit();
    }
 ?>
-    ?>
+    
 <script type="text/javascript">
 	 $("#generarPresupuesto").click(function(){
 	 	dni=$('#dni').val();
