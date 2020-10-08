@@ -104,7 +104,7 @@ $("#generarPropuesta").click(function(){
     matricula=$('#matricula2').val();
 		
 
-	 	cadena="dni="+dni+"&tipoCosto="+tipoCosto+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional+"&titulo="+titulo+"&idElemento="+idElemento;
+	 	cadena="dni="+dni+"&tipoCosto="+tipoCosto+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional+"&titulo="+titulo+"&idElemento="+idElemento +"&matricula="+matricula;
 
 		window.open("propuestaPDF.php?"+cadena, '_blank');
 	//	window.location.href="crearPdf.php?"+cadena;
