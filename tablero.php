@@ -167,6 +167,7 @@ if ($_SESSION['usuario_valido']!="")
           date_default_timezone_set('America/Argentina/Buenos_Aires');
          if($j==0){
            print('<td style="height:10px" value=" ' .$res3[''.strftime("%B").''].'">' .$res3[''.strftime("%B").''].'</td>');
+
            $ins3="select * from panel_de_control where cuit_cliente='".$res1['cuit']."' and id_obligacion='".$res2['id']."' and vencimiento='".$res3[''.strftime("%B").'']."'";
           $cons5= mysqli_query ($conexion, $ins3) or die ("Fallo en la consulta");
            $nfilas3 = mysqli_num_rows ($cons5); 
@@ -221,7 +222,7 @@ if ($_SESSION['usuario_valido']!="")
             }
           } 
           //aca hago la misma consulta para poder obtener el estado, la vuelvo a hacer para que cuando cargue una que no este ya cargada me lo tome bien aca.
-
+          print('<div id="act_estado2" name="act_estado2">');
           $ins5="select * from panel_de_control where cuit_cliente='".$res1['cuit']."' and id_obligacion='".$res2['id']."' and vencimiento='".$res3[''.strftime("%B", strtotime($mes_siguiente)).'']."'";
             $cons5= mysqli_query ($conexion, $ins5) or die ("Fallo en la consulta");
            $res5= mysqli_fetch_array ($cons5);
@@ -238,7 +239,7 @@ if ($_SESSION['usuario_valido']!="")
          }elseif ($res5['estado']=="Vencido") {
            print('<td> <div id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
          }
-                
+           print("</div>");     
            print(' </td> 
            <td style="display:none" value="'.$res1['email'].'">'.$res1['email'].'</td>
             <input  type="hidden"  value="'.$res2['rubro'].' | '.$res2['impuesto'].'"  id="impuesto">
@@ -253,6 +254,9 @@ if ($_SESSION['usuario_valido']!="")
          }
 
         }
+
+
+
        //repito lo mismo para agregar las tareas al tablero de control
         $ins="select * from txcxusuario where id_cuenta='".$id_cuenta."' and id_user='".$id."'";
 
@@ -314,7 +318,10 @@ if ($_SESSION['usuario_valido']!="")
          $mes_siguiente = date('F', strtotime('+1 month'));//para tener el mes anterior 
          
            print('<td style="height:10px" value=" ' .$res2['vencimiento'].'">' .$res2['vencimiento'].'</td>');
-        
+                  
+
+                  print('<div id="act_estado" name="act_estado">');
+
             
            if($res5['estado']=="Pendiente"){      
            print('<td> <div id="rectangulo"  class="forma" style="background:#FDB813;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
@@ -324,7 +331,9 @@ if ($_SESSION['usuario_valido']!="")
          }elseif ($res5['estado']=="Vencido") {
            print('<td> <div id="rectangulo"  class="forma" style="background:#FA7564;padding:5px 2px; margin: 5px 1px 1px  1px;"><h6>'.$res5['estado'].'</h6> </div>');
          }
+
           print('</td> 
+            </div>
             <td style="display:none" value="'.$res1['email'].'">'.$res1['email'].'</td>
             <input  type="hidden"  value="'.$res2['nombre'].' | '.$res2['descripcion'].'"  id="impuesto">
            
@@ -572,7 +581,7 @@ $(document).ready(function(){
         $.ajax({
           url: "/Proyecto_Contadores/modificarEstado.php?"+cadena,
         }).done(function(data) {
-        $('#panel1').load('tableroControl.php');
+        $('#act_estado').load('');
         alertify.success("agregado con exito  ");
         }).fail(function(jqXHR, textStatus, errorThrown) { 
           
@@ -651,7 +660,7 @@ $(document).ready(function(){
             cache:false
       
         }).done(function(data) {
-        $('#panel1').load('tableroControl.php');
+        $('#act_estado2').load('');
         alertify.success("agregado con exito  ");
         }).fail(function(jqXHR, textStatus, errorThrown) { 
           
