@@ -156,16 +156,25 @@ $pdf->SetY($y+50);
 $pdf->SetX($x-30);
 $pdf->Cell(54,8,$profesion,0,0,'L');
 
+if($y+100>2250)
+{
 
+  $pdf->AddPage();
+  $pdf->Image('paginaExtra.png',0,0,1655,2340);
+  
+}
 
 $pdf->SetY($y+100);
 $pdf->SetX($x+10);
 $pdf->Cell(54,8,$matricula,0,0,'L');
 
+$pdf->SetY(2250);
 
 
 
-///esto tiene que ir abajo del todo
+
+
+///
 
 $pdf->SetY(2250);
 $pdf->SetX(900);
