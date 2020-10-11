@@ -11,11 +11,18 @@ $id_cuenta=$_SESSION['cuenta'];
 $dni=$_GET['dni'];
 $titulo=$_GET['titulo'];
 $tipoCosto=$_GET['tipoCosto'];
-//$costoTotal=$_GET['costoTotal'];
+$costoTotal=$_GET['costoTotal'];
 $elemento=$_GET['idElemento'];
 $nombreProfesional=$_GET['nombreProfesional'];
 $profesion=$_GET['profesion'];
 $matricula=$_GET['matricula'];
+$textArea=$_GET['textArea'];
+//print($textArea);
+$arrayTextArea=explode("}",$textArea);// puse en cada salto de linea una } entonces aca armo u array con cada linea, para despues poder ponerlo con el formato que lo ingresaron en el text area
+
+
+
+
 $fecha = date('d-m-Y');
 ////////////////////////////////////////////////////////
 $instruccion= "select * from cliente where dni='$dni'";
@@ -95,7 +102,7 @@ $pdf->Cell(10,12,$apellido,0,0,'L');
 
 $pdf->SetY(530);
 $pdf->SetX(660);
-$pdf->Cell(50,10,"elemento 7",0);
+$pdf->Cell(50,10,"Probando",0);
 
 
 $pdf->SetY(590);
@@ -103,13 +110,31 @@ $pdf->SetX(660);
 $x=$pdf->GetX();
 $y=$pdf->Gety();   
 $pdf->SetTextColor(64,67,68);
-while($row22 = $tareas->fetch_assoc()  )
+//$pdf->MultiCell(0,50,"probando \n asasdasd \n asASA ", 0, 'L', false);
+foreach ( $arrayTextArea as $row3) 
+{
+   $pdf->SetTextColor(50);
+    $pdf->SetFont('','B');
+    $pdf->SetDrawColor(128,100,10);
+     
+     $pdf->Image('puntoItem.png',$x-40,$y-10,28,29);
+      $pdf->MultiCell(0,50,$row3,0, 'L', false);
+        $pdf->Ln();
+      $y=$y+40;
+      $pdf->SetY($y);
+      $pdf->SetX(660);
+ 
+
+}
+//$pdf->MultiCell(0,50,$textAre, 0, 'L', false);
+
+/*while($row22 = $tareas->fetch_assoc()  )
 {
 /*
     $pdf->SetTextColor(50);
     $pdf->SetFont('','B');
     $pdf->SetDrawColor(128,100,10);
- */    
+     
      $pdf->Image('puntoItem.png',$x-40,$y-10,28,29);
       $pdf->Cell(50,10,$row22["descripcion"],0);
       $y=$y+40;
@@ -119,7 +144,7 @@ while($row22 = $tareas->fetch_assoc()  )
 
 }   
 
-
+*/
 ///linea griss
 $pdf->SetDrawColor(255 , 255, 255);
 $pdf->SetFillColor(255, 255, 255);
@@ -138,7 +163,7 @@ $pdf->Cell(54,8,$tipoCosto,0,0,'L');
 
 $pdf->SetY($y-50);
 $pdf->SetX(1300);
-$pdf->Cell(54,8,"$ COSTO TOTAL",0,0,'L');
+$pdf->Cell(54,8,$costoTotal,0,0,'L');
 
 $pdf->SetDrawColor(168 , 174, 175);
 $pdf->SetFillColor(168 , 174, 175);
