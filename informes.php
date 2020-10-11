@@ -29,7 +29,7 @@
 #rectangle {
 	width:200px; 
 	height:50px; 
-	background: #D16659;
+	background: #FA7564;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -71,7 +71,9 @@ include ("conexion.php");
 ?>
 
 
-	
+	<div class="container">
+    <div class="container">
+      <div class="container">
 <div class="form-row">
     <div class="form-group col-md-3">
 	<div id="rectangle" ><h2> CLIENTE:</h2> 
@@ -115,10 +117,11 @@ include ("modalHonorarios.php");
 include ("modalPropuesta.php");
 
   ?>
-
-
-<ul  >
-  <li class="list-group-item">
+<div class="container">
+<div class="container">
+  <div class="container">
+<ul>
+  <!--<li class="list-group-item">
     <div >
     <caption>
         <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPresupuesto">
@@ -127,13 +130,13 @@ include ("modalPropuesta.php");
         </button>
      </caption>
     </div> 
-  </li>
+  </li>-->
 
   <li class="list-group-item">
     <div >
     <caption>
         <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalPropuesta">
-	       Propuesta
+	       PROPUESTA
          <span class="glyphicon glyphicon-plus"></span>
         </button>
      </caption>
@@ -152,7 +155,7 @@ include ("modalPropuesta.php");
   </li>
 
 
-  <li class="list-group-item">
+ <!-- <li class="list-group-item">
   <div >
     <caption>
       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" data-toggle="modal" data-target="#modalRecibo">
@@ -161,7 +164,7 @@ include ("modalPropuesta.php");
       </button>
      </caption>
    </div>
- </li>
+ </li>-->
 
 
 
@@ -170,7 +173,7 @@ include ("modalPropuesta.php");
 
   <caption>
       <button class="btn btn-primary" style="background-color:#FA7564; color:white;">
-        <a href="excel/MODELOBALANCE.xls" download="MODELOBALANCE.xls">
+        <a style="color:white;" href="excel/MODELOBALANCE.xls" download="MODELOBALANCE.xls">
           MODELO BALANCE  </a>
           <span class="glyphicon glyphicon-plus"></span>
       </button>
@@ -180,7 +183,7 @@ include ("modalPropuesta.php");
   <li class="list-group-item">
     <caption>
       <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
-        <a  href="excel/CALCULADORA DE GANANCIA 4TA.xls" download="CALCULADORA DE GANANCIA 4TA.xls" >
+        <a style="color:white;" href="excel/CALCULADORA DE GANANCIA 4TA.xls" download="CALCULADORA DE GANANCIA 4TA.xls" >
          CALCULADORA DE GANANCIA 4TA
          <span class="glyphicon glyphicon-plus"></span>
                           </a>
@@ -189,19 +192,9 @@ include ("modalPropuesta.php");
 
 </li>
   
-  
-  </li>
-  <li class="list-group-item"><caption>
-      <button class="btn btn-primary" style="background-color:#FA7564; color:white;" >
-   otros
-      <span class="glyphicon glyphicon-plus"></span>
-      </button>
-</caption>
-
-</li>
 </ul>
-
-
+</div>
+</div></div>
 
 
 <!-- modal para agregar los datos de un cliente nuevo-->
@@ -238,6 +231,9 @@ include ("modalPropuesta.php");
     </div>
     
     </div>
+</div>
+</div>
+</div>
 </div>
 <?PHP
  }
