@@ -108,43 +108,11 @@ $("#generarPropuesta").click(function(){
     nombreProfesional=$('#nombreProfesional2').val();
     profesion=$('#profesion2').val();
     matricula=$('#matricula2').val();
-		textToWrite = input_textarea.value.replace(/\n/g, "}");
+		textToWrite = input_textarea.value.replace(/\n/g, "}");// reemplazo los saltos de linea por } para despues poder cortar el texto.
     //alert(textToWrite);
 	 	cadena="dni="+dni+"&tipoCosto="+tipoCosto+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional+"&titulo="+titulo+"&idElemento="+idElemento +"&matricula="+matricula +"&costoTotal="+costoTotal +"&textArea="+textToWrite;
     //alert(cadena);
-           /* data = new FormData();// creo esto 
-            //aca agrego todos los datos para no perder el formato
-            data.append("dni",dni);
-            data.append("tipoCosto",tipoCosto); 
-            data.append("profesion",profesion); 
-            data.append("nombreProfesional",nombreProfesional);
-            data.append("titulo",titulo);  
-            data.append("matricula",matricula); 
-            data.append("costoTotal",costoTotal); 
-            data.append("textArea",textToWrite); 
-            data.append("idElemento",idElemento);
-            
-            var url = "/Proyecto_Contadores/propuestaPDF.php";
-            $.ajax({
- 
-            url: url,
- 
-            type:'POST',
- 
-            contentType:false,
- 
-            data:data,
- 
-            processData:false,
- 
-            cache:false
-            
-            }).done(function(data) {
-              success(window.open("propuestaPDF.php"));
-              }).fail(function(jqXHR, textStatus, errorThrown) { 
-                
-                alertify.error("no se envio  ");
-                });*/
+          
 		window.open("propuestaPDF.php?"+cadena, '_blank');
 	//	window.location.href="crearPdf.php?"+cadena;
    

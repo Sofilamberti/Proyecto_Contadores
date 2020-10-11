@@ -18,7 +18,7 @@ $profesion=$_GET['profesion'];
 $matricula=$_GET['matricula'];
 $textArea=$_GET['textArea'];
 //print($textArea);
-$arrayTextArea=explode("}",$textArea);// puse en cada salto de linea una } entonces aca armo u array con cada linea, para despues poder ponerlo con el formato que lo ingresaron en el text area
+$arrayTextArea=explode("}",$textArea);// puse en cada salto de linea una } entonces aca armo un array con cada linea, para despues poder ponerlo con el formato que lo ingresaron en el text area
 
 
 
@@ -111,7 +111,7 @@ $x=$pdf->GetX();
 $y=$pdf->Gety();   
 $pdf->SetTextColor(64,67,68);
 //$pdf->MultiCell(0,50,"probando \n asasdasd \n asASA ", 0, 'L', false);
-foreach ( $arrayTextArea as $row3) 
+foreach ( $arrayTextArea as $row3) //recorro el array que forme arriba
 {
    $pdf->SetTextColor(50);
     $pdf->SetFont('','B');
@@ -119,7 +119,7 @@ foreach ( $arrayTextArea as $row3)
      
      $pdf->Image('puntoItem.png',$x-40,$y-10,28,29);
       $pdf->MultiCell(0,50,$row3,0, 'L', false);
-        $pdf->Ln();
+        $pdf->Ln();//agrego un salto de linea para que el proximo se ponga abajo del que a escrbi
       $y=$y+40;
       $pdf->SetY($y);
       $pdf->SetX(660);
