@@ -68,7 +68,6 @@ $("#guardarTarea").click(function(){
           url: "/Proyecto_Contadores/guardarTarea.php?"+cadena,
         }).done(function(data) {
 
-     
         alertify.success("tarea agregada con exito  ");
         }).fail(function(jqXHR, textStatus, errorThrown) { 
           
