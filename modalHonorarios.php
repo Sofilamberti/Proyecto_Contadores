@@ -30,11 +30,11 @@ $filas4 = mysqli_num_rows ($consulta4);
                   <div class="form-group col-md-6">
                          <label> Mes </label>
              
-                          <input type="text"   name="Mes" id="Mes" class="form-control input-sm">
+                          <input type="text"   name="mes" id="mes" class="form-control input-sm">
                    </div>
 
                    <div class="form-group col-md-6">
-                        <label> Consejo Profecional de ciecnias Economicas  </label>
+                        <label> Consejo Profecional de ciencias Economicas  </label>
              
                         <input type="text"   name="consejoCienciasEconomicas" id="consejoCienciasEconomicas" class="form-control input-sm">
                    </div>
@@ -44,11 +44,14 @@ $filas4 = mysqli_num_rows ($consulta4);
              
                          <input type="text"   name="honorarios" id="honorarios" class="form-control input-sm">
 
-                        <label> valor en letras </label>
-                          <input type="text"   name="honorariosLetra" id="honorariosLetra" class="form-control input-sm">
+                       
 
                    </div>
 
+                   <div class="form-group col-md-6">
+                   <label> valor en letras </label>
+                          <input type="text"   name="honorariosLetra" id="honorariosLetra" class="form-control input-sm">
+                    </div>
                    <div class="form-group col-md-6">
                          <label>  Nombre Profesional </label>
              
@@ -69,7 +72,29 @@ $filas4 = mysqli_num_rows ($consulta4);
              
                           <input type="text"   name="matricula" id="matricula" class="form-control input-sm">
                    </div>
+                   <div class="form-group col-md-6">
+                         <label>  Nombre Profesional </label>
+             
+                         <input type="text"   name="nombreProfesional2" id="nombreProfesional2" class="form-control input-sm">
+                   </div>
 
+
+                   <div class="form-group col-md-6">
+                         <label> Profesión/Cargo </label>
+             
+                        <input type="text"   name="profesion2" id="profesion2" class="form-control input-sm">
+                   </div>
+
+
+
+                   <div class="form-group col-md-6">
+                         <label> Matrícula </label>
+             
+                          <input type="text"   name="matricula2" id="matricula2" class="form-control input-sm">
+                   </div>
+                  
+
+                  
             </div>
            
           </div>
@@ -94,16 +119,23 @@ $filas4 = mysqli_num_rows ($consulta4);
     numResolucion=$('#numResolucion').val();
     honorarios='$'+$('#honorarios').val();
     honorariosLetra=$('#honorariosLetra').val();
+
     nombreProfesional=$('#nombreProfesional').val();
-    consejoCienciasEconomicas=$('consejoCienciasEconomicas').val();
+    consejoCienciasEconomicas=$('#consejoCienciasEconomicas').val();
     profesion=$('#profesion').val();
     matricula=$('#matricula').val();
-		costo="$"+$('#costoNumero').val();
-    costoEscrito=$('#costoEscrito').val();
     mes=$('#mes').val();
 
 
-	 	cadena="dni="+dni+"&numResolucion="+numResolucion+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional+"&matricula="+matricula+"&honorarios="+honorarios+"&honorariosLetra"+"&mes="+mes+"&consejoCienciasEconomicas="+consejoCienciasEconomicas+"&costo="+costo+"&costoEscrito="+costoEscrito+"&honorariosLetra="+honorariosLetra;
+    nombreProfesional2=$('#nombreProfesional2').val();
+
+    profesion2=$('#profesion2').val();
+    matricula2=$('#matricula2').val();
+
+	 	cadena="dni="+dni+"&numResolucion="+numResolucion+"&profesion="+profesion+"&nombreProfesional="+nombreProfesional
+     +"&matricula="+matricula+"&profesion2="+profesion2+"&nombreProfesional2="+nombreProfesional2
+     +"&matricula2="+matricula2+"&honorarios="+honorarios+"&honorariosLetra"
+     +"&mes="+mes+"&consejoCienciasEconomicas="+consejoCienciasEconomicas;
 
 		window.open("honorariosPdf.php?"+cadena, '_blank');
 	//	window.location.href="crearPdf.php?"+cadena;
